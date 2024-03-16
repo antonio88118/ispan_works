@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 400px;
+            height: 250px;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            /* outline不占用空間，不影響margin,border,padding */
+            outline: 1px solid red;
+            /* 調整outline位置，負值會在邊界內 */
+            transition: .4s;
+        }
+        .box:hover{
+            outline-offset: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

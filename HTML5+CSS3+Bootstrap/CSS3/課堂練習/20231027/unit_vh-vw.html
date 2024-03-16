@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        .full{
+            height: 100vh;
+        }
+        .box{
+            /* 未重置margin=0，設定100vw會爆版，因為會把margin大小算進長度計算 */
+            /* width: 100vw; */
+            height: 40vh;
+            background: palevioletred;
+        }
+        .box2{
+            width: 30vw;
+            height: 30vh;
+            background: orange;
+        }
+        .box3{
+            width: 30vmax;
+            height: 30vmin;
+            background: peru;
+        }
+    </style>
+</head>
+<body>
+    <div class="full" style="background: pink;">
+        <div class="box"></div>
+    </div>
+    <div class="full" style="background: rgb(125, 255, 99);">
+        <div class="box2"></div>
+        <div class="box3"></div>
+    </div>
+    
+</body>
+</html>

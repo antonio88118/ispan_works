@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .wrapper{
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-areas: 
+            "header header header header" 
+            "nav nav nav nav" 
+            "main main main aside" 
+            "footer footer footer footer";
+            @media screen and (max-width: 768px) {
+                grid-template-columns: 1fr;
+                grid-template-areas: "header" "nav" "main" "aside" "footer";
+            }
+
+            & img{
+                max-width: 100%;
+            }
+            grid-column-gap: 20px;
+        }
+        
+        .wrapper > *{
+            /* border: 1px solid #aaa; */
+
+        }
+        .list-unstyled{
+            list-style-type: none;
+        }
+        header{
+            grid-area: header;
+            & img{
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        a{
+            text-decoration: none;
+            color: #747474;
+        }
+        nav{
+            background: #fff;
+            grid-area: nav;
+            & ul{
+                padding: 0;
+                margin: 0;
+                display: flex;       
+            }
+            & li{
+                padding: 10px 20px;
+            }
+            & li:hover{
+                background: #ccc;
+            }
+        }
+        main{
+            grid-area: main;
+            line-height: 1.6;
+            & h1, & h2{
+                margin-top: 0;
+            }
+            & p{
+                margin-top: 0;
+                margin-bottom: 0.5rem;
+            }
+            & img{
+                width: 100%;
+            }
+        }
+        aside{
+            background: ivory;
+            grid-area: aside;
+            & a{
+                display: block;
+                border-bottom: 1px solid #ccc;
+                padding-block: 10px;
+            }
+            & h3{
+                margin-top: 0;
+            }
+            & ul{
+                padding: 0;
+            }
+        }
+        footer{
+            background: lightslategray;
+            grid-area: footer;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <img src="/example/images/banner.jpg" alt="">
+        </header>
+        <nav>
+            <ul class="list-unstyled">
+                <li><a href="">Home</a></li>
+                <li><a href="">Map</a></li>
+                <li><a href="">Shop</a></li>
+            </ul>
+        </nav>
+        <main>
+            <img src="city.png" alt="">
+            <h1>仙台市</h1>
+            <p>仙台市（日語：仙台市〔仙臺市〕／せんだいし Sendai shi */?）是日本宮城縣縣治，位於宮城縣中部，為東北地方最大都市，同時也是東北地方唯一的政令指定都市。市名一般認為得名於古城「千代城」，於1600年由安土桃山時代名將伊達政宗擴建並改名為同音[註 1]的「仙臺」，此詞係出自唐代韓翃的七言律詩《同題仙遊觀》[1][2]。由於全市綠化比例高，而有「杜之都」（森林之都）之譽。</p>
+            <h2>歷史</h2>
+            <p>仙台藩主伊達政宗最早在此建城，奠定了現在仙台市的市街基礎。伊達政宗自1600年開始築城，之後不斷推行新計畫，進行城建設計和開發等。當時的仙台非常繁榮，西班牙的使節形容當時的情形為—東西南北人來人往，勝似江戶（現在的東京）。<br><br>
+            仙台的街道既重功能性又具有現代化城市的特點，其發展完全歸功於伊達政宗的遠見，他為未來的仙台市的發展打好基礎。仙台的街道佈局和現在發展情形連同廣瀨川一起，從伊達政宗所建造的仙台古城遺跡上往下俯瞰，一覽無遺。</p>
+        </main>
+        <aside>
+            <h3>附近景點</h3>
+            <ul class="list-unstyled">
+                <li><a href="">仙台城</a></li>
+                <li><a href="">仙台市博物館</a></li>
+                <li><a href="">名取川河口</a></li>
+                <li><a href="">仙台站前大街</a></li>
+            </ul>
+        </aside>
+        <footer>
+            footer
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 120px;
+            height: 120px;
+            background-color: aquamarine;
+            margin: 10px;
+            float: left;
+        }
+        .radius{
+            border-radius: 20%;
+        }
+        .circle{
+            border-radius: 50%;
+        }
+        .shadow1{
+            /* 水平(+:左/-:右) 垂直(+:下/-:上) 模糊度(0為實色) 顏色 */
+            box-shadow: 10px 10px 10px grey;
+        }
+        .shadow2{
+            box-shadow: -10px -10px 10px rosybrown;
+        }
+        .shadow3{
+            box-shadow: 0 0 20px blueviolet;
+        }
+        .shadow4:hover{
+            /* 設定漸變時間 */
+            transition: 1s;
+            box-shadow: 0 0 20px blueviolet;
+        }
+        .shadow5{
+            /* 10px設定噴灑範圍(spread) */
+            box-shadow: 0px 0px 20px 10px blueviolet;
+        }
+        .shadow6{
+            /* 設定內陰影 */
+            box-shadow: 5px 5px 20px inset blueviolet;
+        }
+        .shadow7{
+            box-shadow: 10px 0px 10px red, -10px 0px 10px rgb(255, 157, 0), 0px 10px 10px rgb(8, 0, 255), 0px -10px 10px rgb(89, 255, 47) ;
+        }
+        .shadow8:hover{
+            transition: 1s;
+            box-shadow: 60px 60px 0 red, -60px 60px 0 rgb(0, 89, 255), -60px -60px orange, 60px -60px 0 rgb(38, 205, 0);
+        }
+        .shadow9{
+            background: yellow;
+            box-shadow: 0 0 30px inset red, 0 0 60px inset orangered;
+        }
+    </style>
+</head>
+<body>
+    <div class="box shadow1"></div>
+    <div class="box shadow2"></div>
+    <div class="box shadow3"></div>
+    <div class="box shadow3 radius"></div>
+    <div class="box shadow4"></div>
+    <div class="box shadow5"></div>
+    <div class="box shadow6"></div>
+    <div class="box shadow7"></div>
+    <div class="box shadow8"></div>
+    <div class="box shadow9 circle"></div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrapper{
+            /* height: 500px; */
+            background: #ccc;
+            /* wrapper本身維持block屬性，賦予其子元素flex屬性 */
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+        }
+        .box{
+            width: 100px;
+            /* height: 100px; */
+            margin: 10px;
+            background: palevioletred;
+            font-size: 26px;
+            color: #fff; 
+              
+        }
+        .box1{
+            
+        }
+        .box3{
+            order: 2;
+        }
+        .box5{
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="box box1">1</div>
+        <div class="box box2">2</div>
+        <div class="box box3">3</div>
+        <div class="box box4">4</div>
+        <div class="box box5">5</div>
+
+    </div>
+</body>
+</html>

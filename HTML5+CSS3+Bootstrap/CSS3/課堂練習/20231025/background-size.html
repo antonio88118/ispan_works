@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .map{
+            max-width: 800px;
+            height: 300px;
+            margin: 10px auto;
+            border: 2px solid #aaa;
+            background: url(images/map.png) center center no-repeat;
+        }
+        /* 不改變圖片比例的情況下，必定填滿 */
+        .cover{
+            background-size: cover;
+        }
+        /* 未必會填滿，必定顯示全圖 */
+        .contain{
+            background-size: contain;
+        }
+    </style>
+</head>
+<body>
+    <div class="map"></div>
+    <div class="map cover"></div>
+    <div class="map contain"></div>
+</body>
+</html>

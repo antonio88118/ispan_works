@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit</title>
+    <style>
+        .em{
+            /* em在巢狀結構中會被倍數放大 */
+            font-size: 2em;
+        }
+        .rem{
+            /* rem不會被巢狀結構影響 */
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="em">first layer
+        <div class="em">
+            second layer
+        </div>
+    </div>
+    <div class="rem">first layer
+        <div class="rem">
+            second layer
+        </div>
+    </div>
+</body>
+</html>

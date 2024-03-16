@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Border Image</title>
+    <style>
+        .box{
+            width: 160px;
+            height: 160px;
+            background-color: antiquewhite;
+            border: 20px solid red;
+            margin: 20px;
+        }
+        .round{
+            /* 20表示把圖片的四個角落切出20*20的方形，並放到容器的四個角落，其餘部分重複延伸 */
+            border-image: url(images/border-image2.png) 20 round;
+        }
+        .stretch{
+            border-image: url(images/border-image2.png) 20 stretch;
+        }
+        .repeat{
+            border-image: url(images/border-image2.png) 20 repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class="box stretch"></div>
+    <div class="box round"></div>
+    <div class="box repeat"></div>
+</body>
+</html>

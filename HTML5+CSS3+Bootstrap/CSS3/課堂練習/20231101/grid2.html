@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .wrapper{
+            max-width: 800px;
+            height: 600px;
+            margin: 0 auto;
+            background: #ccc;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+        }
+        .one{
+            border: 1px solid #fff;
+            background: rgba(235, 56, 56, .5);
+            grid-column: 2/4;
+            grid-row: 1/4;
+        }
+        .two{
+            border: 1px solid #fff;
+            background: rgba(56, 235, 68, .5);
+            /* 佔第一格到第三格(共兩格) */
+            grid-column: 1/4;
+            grid-row: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="one">one</div>
+        <div class="two">two</div>
+    </div>
+</body>
+</html>

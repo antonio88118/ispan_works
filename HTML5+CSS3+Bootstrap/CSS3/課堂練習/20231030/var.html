@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root{
+            /* 全域變數 */
+            --main-color: rgb(112,40,176);
+            --secondary-color: rgb(194, 61, 227);
+            --transition: .4s;
+        }
+        .wrapper{
+            --color: red;
+        }
+        .box{
+            --width: 200px;
+            width: var(--width);
+            height: var(--width);
+            background: var(--color);
+            transition: var(--transition);
+        }
+        .box:hover{
+            background: var(--secondary-color);
+        }
+        h1{
+            color: var(--main-color);
+        }
+        .card{
+            /* 變數權重:區域>全域 */
+            --main-color: #333;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="box"></div>
+        <h1>Hello World</h1>
+        <div class="card">
+            <h1>H1 in card</h1>
+        </div>
+        <div class="card" style="--main-color:red">
+            <h1>H1 in card</h1>
+        </div>
+    </div>
+</body>
+</html>

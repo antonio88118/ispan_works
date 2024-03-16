@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .shadow1{
+            text-shadow: 1px 1px 3px red;
+        }
+        .shadow2{
+            background-color: black;
+            color: white;
+            
+            padding: 16px;
+        }
+        .shadow2:hover{
+            text-shadow: 0 0 3px yellow, 0 0 10px rgb(255, 213, 0), 0 0 20px orange;
+        }
+        h1{
+            transition: .3s;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="shadow1">Hello World</h1>
+    <h1 class="shadow2">Hello World</h1>
+</body>
+</html>

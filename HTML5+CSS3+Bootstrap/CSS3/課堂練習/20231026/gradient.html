@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient</title>
+    <style>
+        .box{
+            margin-block: 5px;
+            height: 120px;
+            /* background: #ccc; */
+        }
+        .gra1{
+            /* 預設方向:to bottom */
+            background: linear-gradient(red, yellow);
+        }
+        .gra2{
+            background: linear-gradient(to left, red, yellow);
+        }
+        .gra3{
+            /* 設定漸層角度 */
+            background: linear-gradient(160deg, red, yellow);
+        }
+        .gra4{
+            /* px:設定終點；%:設定起點 */
+            background: linear-gradient(to right, red 100px, orange, yellow 50%, green 60%, blue, purple 90%);
+        }
+        .gra5{
+            background: linear-gradient(to right, red, yellow 50%, green 50%, blue);
+        }
+        .gra6{
+            background: linear-gradient(to right, #ccc 50%, #333 50%);
+            background-size: 40px 100%;
+        }
+        .gra7{
+            background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1));
+        }
+        .gra8{
+            /* 每60px重複一次 */
+            background: repeating-linear-gradient(to right, pink, purple 60px);
+        }
+        .gra9{
+            background: repeating-linear-gradient(deeppink, orchid 8%, hotpink 16%, deeppink 25%);
+
+        }
+    </style>
+</head>
+<body>
+    <div class="box gra1"></div>
+    <div class="box gra2"></div>
+    <div class="box gra3"></div>
+    <div class="box gra4"></div>
+    <div class="box gra5"></div>
+    <div class="box gra6"></div>
+    <div class="box gra7"></div>
+    <div class="box gra8"></div>
+    <div class="box gra9"></div>
+</body>
+</html>

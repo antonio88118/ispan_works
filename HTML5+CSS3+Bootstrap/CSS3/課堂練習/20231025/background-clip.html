@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        padding: 10px;
+        border: 10px dashed #aaa;
+        margin: 10px;
+        background: url(../example/images/check.jpg) left top;
+      }
+      /* 設定背景原點依據 */
+      .border {
+        background-clip: border-box;
+      }
+      .padding {
+        background-clip: padding-box;
+      }
+      .content {
+        background-clip: content-box;
+      }
+      h1 {
+        font-size: 40px;
+        font-family: Arial, Helvetica, sans-serif;
+        background: url(../example/images/check.jpg);
+        color: transparent;
+        /* -webkit-表示該屬性還未標準化，部分瀏覽器可能不支援 */
+        -webkit-background-clip: text;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box border"></div>
+    <div class="box padding"></div>
+    <div class="box content"></div>
+    <h1>Hello World</h1>
+  </body>
+</html>

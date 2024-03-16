@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        padding: 10px;
+        border: 10px dashed #aaa;
+        margin: 10px;
+        background: url(../example/images/check.jpg) no-repeat left top;
+      }
+      /* 設定背景原點依據 */
+      .border {
+        background-origin: border-box;
+      }
+      .padding {
+        background-origin: padding-box;
+      }
+      .content {
+        background-origin: content-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box border"></div>
+    <div class="box padding"></div>
+    <div class="box content"></div>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @keyframes change-color {
+            0%{
+                background: palevioletred;
+            }
+            50%{
+                background: orange;
+            }
+            100%{
+                background: red;
+            }
+        }
+        @keyframes change-length {
+            0%{
+                width: 120px;
+            }
+            50%{
+                width: 200px;
+
+            }
+            100%{
+                width: 120px;
+            }
+        }
+        .box{
+            width: 120px;
+            height: 120px;
+            background: palevioletred;
+            animation: change-color 2s infinite alternate, change-length 1s infinite alternate cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .box:hover{
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

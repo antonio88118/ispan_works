@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Border Radius</title>
+    <style>
+        .box{
+            width: 120px;
+            height: 120px;
+            background: rgb(127, 232, 255);
+            margin: 10px;
+            float: left;
+        }
+        .rectangle{
+            width: 200px;
+        }
+        .border-radius1{
+            border-radius: 20px;
+        }
+        .border-radius2{
+            /* 可用於製作橢圓，參數設定50% */
+            border-radius: 30%;
+        }
+        .border-radius3{
+            border-radius: 0px 10px 20px 40px;
+        }
+        .border-radius4{
+            border-radius: 0px 10px 20px;
+        }
+        .border-radius5{
+            border-radius: 0px 100%;
+        }
+        .border-radius6{
+            border-radius: 0 100% 0 0;
+        }
+        .border-radius7{
+            border-radius: 50%;
+        }
+        .border-radius8{
+            /* 短軸/長軸 */
+            border-radius: 20px/50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box border-radius1">
+        box border-radius1
+    </div>
+    <div class="box border-radius2">
+        box border-radius2
+    </div>
+    <div class="box rectangle border-radius1">
+        box border-radius1 rectangle
+    </div>
+    <div class="box rectangle border-radius2">
+        box border-radius2 rectangle
+    </div>
+    <div class="box border-radius3">
+        box border-radius3
+    </div>
+    <div class="box border-radius4">
+        box border-radius4
+    </div>
+    <div class="box border-radius5">
+        box border-radius5
+    </div>
+    <div class="box border-radius6">
+        box border-radius6
+    </div>
+    <div class="box border-radius7">
+        box border-radius7
+    </div>
+    <div class="box border-radius7 rectangle">
+        box border-radius7 rectangle
+    </div>
+    <div class="box border-radius8 ">
+        box border-radius8
+    </div>
+</body>
+</html>

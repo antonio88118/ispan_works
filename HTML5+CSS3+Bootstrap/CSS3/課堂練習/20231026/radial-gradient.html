@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radial Gradient</title>
+    <style>
+        .box{
+            height: 120px;
+        }
+        .gra1{
+            background: radial-gradient(red, yellow);
+        }
+        .gra2{
+            background: radial-gradient(rgb(255, 71, 71),rgb(251, 187, 68),rgb(130, 255, 95),rgb(134, 203, 255));
+        }
+        .gra3{
+            background: radial-gradient(deeppink, yellow 25%, hotpink 60%, deeppink 100%);
+        }
+        .gra4{
+            /* 從中心點開始100px */
+            background: radial-gradient(circle, red, yellow 100px);
+        }
+        /* 設定放射圓心位置，at 200px設定x軸，bottom設定y軸 */
+        .gra5{
+            background: radial-gradient(circle at 200px bottom, red, yellow 150px);
+        }
+        .gra6{
+            background: repeating-radial-gradient(circle, red,pink,red 100px);
+        }
+        h1{
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(yellow, red);
+            color: transparent;
+            -webkit-background-clip: text;
+        }
+        h2{
+            font-family: Arial, Helvetica, sans-serif;
+            background:repeating-radial-gradient(circle, red,pink,red 100px);
+            color: transparent;
+            -webkit-background-clip: text;
+        }
+    </style>
+</head>
+<body>
+    <div class="box gra1"></div>
+    <div class="box gra2"></div>
+    <div class="box gra3"></div>
+    <div class="box gra4"></div>
+    <div class="box gra5"></div>
+    <div class="box gra6"></div>
+    <h1>Hello World</h1>
+    <h2>Hello World</h2>
+</body>
+</html>

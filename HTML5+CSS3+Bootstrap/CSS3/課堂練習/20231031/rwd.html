@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 從尺寸大寫到小，不須寫下限 */
+        body{
+            background: pink;
+            transition: .4s;
+        }
+        /* 寬度992px以下時會變成淺藍色，此區塊必須在body下，否則會被後宣告的蓋過 */
+        /* 992以上:粉  992~768:藍  768以下:黃 */
+        @media screen and (max-width: 992px) and (min-width: 768px){
+            body{
+                background: lightblue;
+                color: blueviolet;
+            }
+        }
+        @media screen and (max-width: 768px){
+            body{
+                background: yellow;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello RWD</h1>
+</body>
+</html>

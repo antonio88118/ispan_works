@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 300px;
+            height: 300px;
+            border: 1px solid #aaa;
+            /* X Y軸都可自由調整 */
+            resize: both;
+            overflow: auto;
+        }
+        textarea{
+            /* 取消textarea可自由調整大小的預設 */
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+</body>
+</html>

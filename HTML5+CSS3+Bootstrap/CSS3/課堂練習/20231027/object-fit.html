@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 160px;
+        height: 160px;
+        border: 2px solid #ccc;
+        float: left;
+        margin: 10px;
+      }
+      .box img {
+        /* 指定object大小 */
+        width: 100%;
+        height: 100%;
+      }
+      .fill {
+        /* 預設值 */
+        object-fit: fill;
+      }
+      .cover {
+        object-fit: cover;
+      }
+      .contain {
+        /* 可以呈現完整圖片 */
+        object-fit: contain;
+      }
+      .none {
+        /* 效果與overflow類似，但會水平+垂直置中，overflow的起始點在左上角。可使用object-position重新定位基準點 */
+        object-fit: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <img class="fill" src="../example/images/ironman.jpg" alt="" />
+    </div>
+    <div class="box">
+      <img class="cover" src="../example/images/ironman.jpg" alt="" />
+    </div>
+    <div class="box">
+      <img class="contain" src="../example/images/ironman.jpg" alt="" />
+    </div>
+    <div class="box">
+      <img class="none" src="../example/images/ironman.jpg" alt="" />
+    </div>
+  </body>
+</html>

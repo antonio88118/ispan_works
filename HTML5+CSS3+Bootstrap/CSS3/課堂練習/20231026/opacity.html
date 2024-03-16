@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Opacity</title>
+    <style>
+      .box {
+        width: 400px;
+        height: 250px;
+        border: 1px solid #ccc;
+        background: url(../example/images/map.png);
+        background-size: cover;
+      }
+      .box h2 {
+        opacity: 0.6;
+      }
+      .box:hover {
+        opacity: 0.6;
+      }
+      .opacity {
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h2>U.S.A.</h2>
+    </div>
+    <div class="box opacity">
+      <!-- h2透明度=父層*子層=0.8*0.6=0.48 -->
+      <h2>U.S.A.</h2>
+    </div>
+  </body>
+</html>

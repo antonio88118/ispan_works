@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Opacity2</title>
+    <style>
+      .box-wrap {
+        width: 500px;
+        margin: 0 auto;
+        position: relative;
+      }
+      .box {
+        width: 500px;
+        height: 300px;
+        margin: 0 auto;
+        background: url(../example/images/slide1.jpeg);
+        background-size: cover;
+        transition: 0.4s;
+      }
+      /* 同一個父層下的元素hover可以用後代選取器分開設定 */
+      .box-wrap:hover .box {
+        opacity: 0.6;
+      }
+      .box-wrap h2 {
+        margin: 0;
+        color: #fff;
+        opacity: 0.3;
+        background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8) 60%);
+        text-align: center;
+        position: absolute;
+        /* 為了使text-align作用，position後須重新設定寬度，使其與父層同寬 */
+        width: 100%;
+        /* 設定上下padding */
+        padding-block: 10px;
+        left: 0;
+        bottom: 0;
+        transition: 0.4s;
+      }
+      .box-wrap:hover h2 {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box-wrap">
+      <div class="box"></div>
+      <h2>高雄總圖</h2>
+    </div>
+  </body>
+</html>

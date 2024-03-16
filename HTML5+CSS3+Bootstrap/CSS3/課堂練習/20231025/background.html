@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        height: 300px;
+        background: url(../example/images/1.png) no-repeat left center,
+          url(../example/images/4.png) no-repeat right center,
+          url(images/map.png);
+        /* 固定長/寬+auto維持圖片原比例 */
+        background-size: 120px auto, 180px 180px, auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+  </body>
+</html>

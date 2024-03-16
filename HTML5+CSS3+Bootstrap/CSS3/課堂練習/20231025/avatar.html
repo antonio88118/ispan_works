@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .avatar{
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .avatar img{
+            /* 佔滿<figure>容器，因為使用的圖片是縱向長條，把其短邊(寬)作為邊長 */
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <figure class="avatar">
+        <img src="images/batman.jpg" alt="batman">
+    </figure>
+</body>
+</html>

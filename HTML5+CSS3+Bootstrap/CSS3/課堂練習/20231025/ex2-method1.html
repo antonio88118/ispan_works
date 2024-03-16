@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ex2</title>
+    <style>
+      body {
+        background-color: rgb(202, 202, 202);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .card {
+        width: 240px;
+        /* height: 325px; */
+        background-color: white;
+        border-radius: 3px;
+        box-shadow: 0 3px 6px rgb(66, 66, 66);
+        /* padding: 20px; */
+        /* inline設定左右 */
+        margin-inline: auto;
+        /* block設定上下 */
+        margin-block: 20px;
+        text-align: center;
+        overflow: hidden;
+      }
+      .banner {
+        height: 120px;
+        background: url(../example/images/light.jpg) center center;
+        background-size: cover;
+      }
+      .card h3 {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid grey;
+      }
+      .avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: -60px auto;
+        /* position: relative;
+            bottom: 50px;
+            z-index: 5; */
+      }
+      .avatar img {
+        width: 100%;
+      }
+      .content {
+        border: 20px solid transparent;
+        border-image: url(../example/images/border-image2.png) 20 round;
+        padding: 30px;
+      }
+      p {
+        color: grey;
+        /* border-top: 1.5px solid grey; */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="banner"></div>
+      <figure class="avatar">
+        <img src="images/batman.jpg" alt="" />
+      </figure>
+      <div class="content">
+        <h3>Batman</h3>
+        <p>Hello, I'm Batman.</p>
+      </div>
+    </div>
+  </body>
+</html>

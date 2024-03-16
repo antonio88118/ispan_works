@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            /* margin,border,padding會往內增加，使整個元素維持預設的長寬 */
+            /* 可以確保不會爆版，是少數適合對全域設定的屬性 */
+            box-sizing: border-box;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+            padding: 20px;
+            border: 2px solid #aaa;
+            background: pink;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="box"></div>
+</body>
+</html>

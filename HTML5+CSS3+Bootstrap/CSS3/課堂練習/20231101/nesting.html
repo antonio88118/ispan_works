@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-size: 1.6rem;
+        }
+        /* 舊版寫法 */
+        /* .nesting{
+            color: hotpink;
+        }
+        .nesting > .is{
+            color: rebeccapurple;
+        }
+        .nesting > .is > .awesome{
+            color: orange;
+        } */
+
+        /* 巢狀寫法 */
+        .nesting{
+            color: hotpink;
+            .is{
+                color: rebeccapurple;
+                .awesome{
+                    color: orange;
+                }
+            }
+        }
+        .demo{
+            .circle{
+                color: palevioletred;
+            }
+        }
+        /* 對象為標籤時須加上"& "，表示限定為.demo內；class可加可不加 */
+        .card{
+            font-family: Arial, Helvetica, sans-serif;
+            & h2{
+                color: red;
+                margin: 0;
+                padding: 0;
+            }
+            & p{
+                color: #ccc;
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+        .box{
+            background: pink;
+            /* 中間無空格，表示會在該元素本身同時使用box和active作用 */
+            &:hover, &.active{
+                background: red;
+                color: #fff;
+            }
+        }
+        /* .box.active{
+            background: red;
+            color: #fff;
+        } */
+        .rwd{
+            background: lightblue;
+            padding: 10px;    
+            @media screen and (max-width: 768px) {
+                background: pink;
+            }
+        }
+        /* @media screen and (max-width: 768px) {
+            .rwd{
+
+            }
+        } */
+    </style>
+</head>
+<body>
+    <div class="nesting">
+        first level
+        <div class="is">
+            content in is
+            <div class="awesome">
+                content in awesome
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="demo">
+        demo content
+        <div class="circle">
+            circle in demo
+        </div>
+    </div>
+    <hr>
+    <div class="card">
+        <h2>title in card</h2>
+        <p>This is content.</p>
+    </div>
+    <hr>
+    <div class="box">
+        box
+    </div>
+    <div class="box active">
+        box
+    </div>
+    <hr>
+    <div class="rwd">
+        rwd content
+    </div>
+</body>
+</html>

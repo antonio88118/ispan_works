@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            margin: 0;
+        }
+        .wrap{
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ccc;
+            /* 頁面高-footer高=wrap div高 */
+            min-height: calc(100vh - 58.4px);
+        }
+        .clearfix::after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .box{
+            /* 原先期望的25%會因為加上padding而被撐開，使用clac讓寬能維持25%長度，並且保留固定padding */
+            width: calc(25% - 16px * 2);
+            height: 200px;
+            background: palevioletred;
+            float: left;
+            /* 10+5+1=16 */
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #333;
+        }
+        footer{
+            text-align: center;
+            padding-block: 20px;
+            background: #333;
+            color: #eee;
+        }
+        
+        .con::before{
+            content: "123";
+        }
+        .con::after{
+            content: "789";
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap clearfix">
+        <div class="box">box1</div>
+        <div class="box">box2</div>
+        <div class="box">box3</div>
+        <div class="box">box4</div>
+    </div>
+    <!-- <div class="con">
+        456
+    </div> -->
+    <footer>footer</footer>
+</body>
+</html>

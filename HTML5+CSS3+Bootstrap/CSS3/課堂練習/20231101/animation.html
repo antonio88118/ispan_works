@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* @keyframes後面接animation-name */
+        @keyframes change{
+            from{
+                background: palevioletred;
+            }
+            to{
+                background: lightblue;
+                width: 200px;
+            }
+        }
+        @keyframes change2 {
+            0%{
+                background: palevioletred;
+            }
+            50%{
+                background: orange;
+                width: 200px;
+                height: 200px;
+                border-radius: 10px;
+            }
+            100%{
+                background: palevioletred;
+            }
+        }
+        .box{
+            width: 120px;
+            height: 120px;
+            background: palevioletred;
+            /* animation-name: change;
+            animation-duration: 1s;
+            animation-delay: .5s; */
+            /* change只有設定0~100%，alternate會自動補上100~0%的動畫 */
+            /* animation-direction: alternate;
+            animation-iteration-count: infinite; */
+            /* 停在動畫最後的狀態(lightblue) */
+            /* animation-fill-mode: both;
+            animation-timing-function: steps(3, start); */
+            animation: change 1s infinite alternate;
+        }
+        .box:hover{
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

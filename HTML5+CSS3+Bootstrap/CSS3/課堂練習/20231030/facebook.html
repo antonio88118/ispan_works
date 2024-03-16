@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>facebook</title>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        :root{
+            --primary-color:#3b5998;
+            --primary-color-hover:#8b9dc3;
+            --default-border-radius: 10px;
+        }
+        body{
+            background: #f7f7f7;
+        }
+        a{
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        a:hover{
+            color: var(--primary-color-hover);
+        }
+        
+        /* ---------------共用模組---------------- */
+        /* 居中 */
+        .wrapper{
+            max-width: 960px;
+            margin-inline: auto;
+        }
+        .list-unstyled{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        .object-fit-cover{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* ----------------------------------- */
+        .main-header{
+            background: #fff;
+            padding: 15px 30px;
+        }
+        .main-header>div{
+            display: flex;
+            justify-content: space-between;
+        }
+        .logo{
+            width: 68px;
+        }
+        @media screen and (max-width: 576px){
+            .main-header{
+                padding-inline: 15px;
+            }
+        }
+        /* ---------------導覽列---------------- */
+        .main-nav{
+            background-color: var(--primary-color);
+
+        }
+        .main-nav ul{
+            display: flex;
+        }
+        .main-nav ul a{
+            color: #fff;
+            padding: 15px 17px;
+            /* 行內元素沒有上下margin & padding，需改成區塊元素 */
+            /* 設定在a比li好，因為能擴大a的反應區塊，提升用戶體驗 */
+            display: block;
+        }
+        @media screen and (max-width: 576px) {
+            .main-nav ul li{
+                flex: 1 0 0;
+            }
+            .main-nav ul a{
+                padding-inline: 0;
+                text-align: center;
+            }
+        }
+        .main-nav ul a:hover, .main-nav ul li.active a{
+            background: var(--primary-color-hover);
+        }
+        /* ----------------主區塊--------------- */
+        .main-block{
+            display: flex;
+            margin-top: 14px;
+        }
+       
+        /* 左側邊欄 */
+        .aside-left{
+
+        }
+        .avatar{
+            margin: 0;
+            --width: 180px;
+            width: var(--width);
+            height: var(--width);
+            border: 1px solid #aaa;
+            border-radius: var(--default-border-radius);
+            overflow: hidden;
+        }
+        .aside-nav{
+            margin-top: 17px;
+        }
+        .aside-nav a{
+            display: block;
+            padding: 10px 18px;
+            color: #000;
+            border-left: 6px solid transparent;
+        }
+        .aside-nav a:hover, .aside-nav li.active a{
+            border-left: 6px solid var(--primary-color);
+            background: #fff;
+        }
+        /* 內容區塊 */
+        .main-content{
+            flex-grow: 1;
+            margin-inline: 20px;
+        }
+        .main-content article{
+            background: #fff;
+            padding: 25px 25px;
+            border: 1px solid #aaa;
+            border-radius: var(--default-border-radius);
+        }
+        .main-content article time{
+            display: block;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 14px;
+        }
+        .main-content article p{
+            margin-top: 0;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            text-align: justify;
+        }
+        .main-content h1{
+            margin: 0;
+        }
+        /* 右側邊欄 */
+        .aside-right{
+            display: flex;
+            align-items: flex-end;
+        }
+        
+        .aside-right img{
+            width: 180px;
+        }
+        @media screen and (max-width: 576px){
+            /* 方法一 */
+            /* .main-block{
+                flex-direction: column;
+                padding-inline: 15px;
+            }  */
+            /* 方法二 */
+            .main-block{
+                flex-wrap: wrap;
+                padding-inline: 15px;
+            }
+            .aside-left{
+                width: 100%;
+            }
+            .avatar{
+                margin-inline: auto;
+            }
+            .aside-nav ul{
+                display: flex;
+                margin-bottom: 7px;
+                margin-inline: -15px;
+            }
+            .aside-nav ul li{
+                flex: 1 0 0;
+            }
+            .aside-nav a{
+                padding-inline: 0px;
+                text-align: center;
+                border-left: none;
+                border-bottom: 6px solid transparent;
+
+            }
+            .aside-nav a:hover, .aside-nav li.active a{
+                border-left: none;
+                border-bottom: 6px solid var(--primary-color);
+            }
+        }
+        @media screen and (max-width: 576px){
+            .aside-right img{
+                display: none;
+            }
+        }
+        /* ----------------footer--------------- */
+        .main-footer{
+            text-align: center;
+            padding-block: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="">
+            <a href="">
+                <img class="logo" src="../example/images/fb-logo.png" alt="">
+            </a>
+            <div>
+                <a href="">Log in</a> | <a href="">Sign up</a>
+            </div>
+        </div>    
+    </header>
+    <nav class="main-nav">
+        <div class="wrapper">
+            <div >
+                <ul class="list-unstyled">
+                    <li class="active"><a href="">Home</a></li>
+                    <li><a href="">Product</a></li>
+                    <li><a href="">Story</a></li>
+                    <li><a href="">Contact</a></li>
+                    <li><a href="">About</a></li>
+                </ul>
+            </div>
+            
+        </div>
+    </nav>
+    <main class="wrapper">
+        <div class="main-block">
+            <aside class="aside-left">
+                <figure class="avatar">
+                    <img src="../example/images/logo.jpg" class="object-fit-cover" alt="">
+                </figure>
+                <nav class="aside-nav">
+                    <ul class="list-unstyled">
+                        <li class="active"><a href="">Post</a></li>
+                        <li><a href="">About</a></li>
+                        <li><a href="">Photos</a></li>
+                        <li><a href="">Flims</a></li>
+                    </ul>
+                </nav>
+            </aside>
+            <div class="main-content">
+                <article>
+                    <h1>CSS</h1>
+                    <time>2023/10/31</time>
+                    <p>階層式樣式表（英語：Cascading Style Sheets，縮寫：CSS；又稱串樣式列表、級聯樣式表、串接樣式表、階層式樣式表）是一種用來為結構化文件（如HTML文件或XML應用）添加樣式（字型、間距和顏色等）的電腦語言，由W3C定義和維護。CSS3現在已被大部分現代瀏覽器支援，而下一版的CSS4仍在開發中。</p>
+                    <p>CSS不僅可以靜態地修飾網頁，還可以配合各種手稿語言動態地對網頁各元素進行格式化。CSS 能夠對網頁中元素位置的排版進行像素級精確控制，支援幾乎所有的字型字號樣式，擁有對網頁對象和模型樣式編輯的能力。</p>
+                    <p>CSS不能單獨使用，必須與HTML或XML一起協同工作，為HTML或XML起裝飾作用。本文主要介紹用於裝飾HTML網頁的CSS技術。其中HTML負責確定網頁中有哪些內容，CSS確定以何種外觀(大小、粗細、顏色、對齊和位置)展現這些元素。CSS可以用於設定頁面布局、設定頁面元素樣式、設定適用於所有網頁的全域樣式。CSS可以零散地直接添加在要應用樣式的網頁元素上，也可以集中化內建於網頁、連結式引入網頁以及匯入式引入網頁。</p>
+                </article>
+            </div>
+            <div class="aside-right">
+                <img src="../example/images/girl_acg2.png" alt="">
+            </div>
+        </div>
+    </main>
+    <footer class="main-footer">
+        ©Facebook
+    </footer>
+</body>
+</html>

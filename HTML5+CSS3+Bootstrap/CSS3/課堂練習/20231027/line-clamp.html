@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-overflow</title>
+    <style>
+        .card{
+            width: 260px;
+            float: left;
+            margin: 0 10px 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .card h2{
+            white-space: nowrap;
+            overflow: hidden;
+            /* 沒有前面兩行無法作用，會把多出的文字內容顯示...，只能顯示成單行 */
+            text-overflow: ellipsis;
+        }
+        .card p{
+            /* 多行省略顯示 */
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            /* 顯示行數 */
+            -webkit-line-clamp: 3;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- 加上title讓使用者可瀏覽完整標題 -->
+        <h2 title="警員被開槍擊中頭部...竟4天才公布">警員被開槍擊中頭部...竟4天才公布</h2>
+    </div>
+    <div class="card">
+        <h2>AI不會成為影視終結者？好萊塢編劇工會明文規管AI，美國勞資首開先例
+        </h2>
+        <p>好萊塢編劇工會（WGA）向資方電影電視製片協會（AMPTP）爭取到的新版團體協約（MBA），日前得到99%會員投票同意通過，待最後資方簽署，這次好萊塢史上最久罷工行動就可以正式落幕。與好萊塢各大工會一樣，這個團體協約每3年與與資方換約，為影視業的文化工作者設定勞動權益的樓地板：個別工作者在與資方（委託方）談案子時，即可以按團體協約寫入的勞動項目與雙方權責為框架，以協約載明的勞動條件為基準向上議定。WGA的協約特別明訂編劇的合理工作天數、工作期的最低給付額，作品首映的給付額，以及後續在各平台通路重映衍生的資方收益分配，也明訂資方的給付期限，為平時分散獨立工作的創作者保障基本生活條件，讓編劇作為個人職業可長可久。由於這些項目事關編劇勞動所得與資方利潤，向來是雙方拉扯的重中之重。</p>
+    </div>
+</body>
+</html>

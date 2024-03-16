@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 120px;
+            height: 120px;
+            background: palevioletred;
+            /* transition-property: background;
+            transition-duration: .4s; */
+            /* transition: .4s .5s; */
+            /* 分別指定變形屬性&時間，屬性間用 , 隔開 */
+            transition: background .4s .2s, width .4s .4s, border-radius .4s;
+            /* 後面秒數表示隔幾秒才開始 */
+        }
+        .box:hover{
+            background: red;
+            width: 200px;
+            border-radius: 20px;
+        }
+        .wrap{
+            width: 200px;
+        }
+        .bar{
+            width: 120px;
+            height: 60px;
+            margin-block: 10px;
+            background: plum;
+            transition: .4s;
+        }
+        .wrap:hover .bar{
+            width: 200px;
+        }
+        .ease{
+            transition-timing-function: ease;
+        }
+        .linear{
+            /* ease變形會加速，linear等速 */
+            transition-timing-function: linear;
+        }
+        .ease-in{
+            transition-timing-function: ease-in;
+        }
+        .ease-out{
+            transition-timing-function: ease-out;
+        }
+        .ease-in-out{
+            transition-timing-function: ease-in-out;
+        }
+        .cubic-bezier{
+            transition-timing-function: cubic-bezier(.76,-0.01,1,.28);
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="wrap">
+        <div class="bar ease">ease</div>
+        <div class="bar linear">linear</div>
+        <div class="bar ease-in">ease-in</div>
+        <div class="bar ease-out">ease-out</div>
+        <div class="bar ease-in-out">ease-in-out</div>
+        <div class="bar cubic-bezier">cubic-bezier</div>
+    </div>
+</body>
+</html>

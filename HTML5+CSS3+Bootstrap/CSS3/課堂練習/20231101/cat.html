@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @keyframes catwalk {
+            from{
+                background-position: left 0;
+            }
+            to{
+                background-position: 3150px 0;
+            }
+        }
+        .cat{
+            width: 350px;
+            height: 380px;
+            margin-inline: auto;
+            /* 從圖的中間開始跑 */
+            background: url(../example/images/cat.png) 0px top;
+            animation: catwalk .6s infinite steps(9);
+        }
+        .cat:hover{
+            animation-duration: .3s;
+        }
+        .cat:active{
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body>
+    <div class="cat"></div>
+</body>
+</html>
