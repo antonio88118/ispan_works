@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        fieldset{
+            width: 500px;
+            border: 1px solid rgb(0, 102, 255);
+            margin: 15px auto;
+            border-radius: 10px;
+            background-repeat: no-repeat;
+            background-image: linear-gradient(rgb(255, 255, 255), rgba(255, 0, 0, 0)), url(images/600x400/red-herbras-flower.jpg);
+            background-size: cover;
+        }
+        legend{
+            border: 1px solid rgb(0, 200, 255);
+            border-radius: 5px;
+            padding: 5px 15px;
+        }
+        /* 強調字 */
+        em{
+            color: red;
+        }
+        /* 區塊樣式 */
+        .st{
+            width: 450px;
+            margin: 20px;
+            /* 450+20*2=490未超過表單大小500 */
+            border-bottom: 1px dotted rgb(178, 224, 253);
+            padding-bottom: 10px;
+        }
+        /* label樣式 */
+        .title{
+            width: 100px;
+            float: left;
+            text-align: right;
+            padding-right: 3px;
+        }
+        .submitBtn{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form action="後端程式" method="post">
+       <!-- 亦可用div，但使用<fieldset>能讓搜尋引擎知道該區塊為表單 -->
+        <fieldset>
+            <legend>個人資料<em>(*必填)</em></legend>
+            <!-- label for必須和input id相同，以建立關聯；name則表示資料庫存取的欄位名稱； -->
+            <div class="st">
+                <label for="account" class="title"><em>*</em>姓名:</label>
+                <input type="text" name="account" id="account" size="15" placeholder="請輸入真實姓名" maxlength="10">
+            </div>
+            
+            <div class="st">
+                <label for="password" class="title"><em>*</em>密碼:</label>
+                <input type="password" name="password" id="password" size="25" placeholder="請輸入10~16字英數字混合密碼" maxlength="16">
+            </div>
+            
+            <!-- value為回傳值 -->
+            <div class="st">
+                <label for="gender" class="title"><em>*</em>性別:</label>
+                <input type="radio" name="gender" value="male" id="gender">男
+                <input type="radio" name="gender" value="female" id="gender">女
+            </div>
+            
+            <div class="st">
+                <label for="livingCity" class="title"><em>*</em>居住地區:</label>
+                <select name="livingCity" id="livingCity">
+                    <option value="preset">-請選擇-</option>
+                    <option value="TPE">台北</option>
+                    <option value="TPH">新北</option>
+                    <option value="TYC">桃園</option>
+                    <option value="HSC">新竹</option>
+                </select>
+            </div>
+            
+            <div class="st">
+                <label for="hobby" class="title"><em>*</em>興趣:</label>
+                <input type="checkbox" name="hobby" value="music" id="hobby">音樂
+                <input type="checkbox" name="hobby" value="movie" id="hobby">電影
+                <input type="checkbox" name="hobby" value="sport" id="hobby">運動
+                <input type="checkbox" name="hobby" value="travel" id="hobby">旅遊
+            </div>
+            
+            <div class="st">
+                <label for="feedback" class="title">意見:</label>
+                <textarea name="feedback" id="feedback" cols="30" rows="10">        
+                </textarea>
+            </div>
+            
+            <div class="st submitBtn">
+                <input type="reset" value="清除重填">
+                <input type="submit" value="送出">
+            </div>
+        </fieldset>
+    </form>
+</body>
+</html>

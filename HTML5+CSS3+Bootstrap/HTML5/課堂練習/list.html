@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li{
+            list-style: none;
+            list-style-image: url(images/16x16.jpg);
+            list-style-position: inside;
+        }
+        .bgp li{
+            list-style: none;
+            background: url(images/24x24.jpg) no-repeat left center;
+            /* 避免圖案被自蓋住 */
+            padding-left: 24px;
+            line-height: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>ITEM01</li>
+        <li>ITEM02</li>
+        <p>jifogjsodsjfgf</p>
+        <li>ITEM03</li>
+    </ul>
+    <ul class="bgp">
+        <li>ITEM01</li>
+        <li>ITEM02</li>
+        <p>jifogjsodsjfgf</p>
+        <li>ITEM03</li>
+    </ul>
+
+    <ol>
+        <li>ITEM01</li>
+        <li>ITEM02</li>
+        <li>ITEM03</li>
+    </ol>
+
+    <!-- dl>dt+dd*2 -->
+    <dl>
+        <dt>咖啡</dt>
+        <dd>美式</dd>
+        <dd>拿鐵</dd>
+    </dl>
+    <!-- dl>(dt+dd*2)*2 -->
+    <dl>
+        <dt>沙拉</dt>
+        <dd>和風</dd>
+        <dd>凱薩</dd>
+
+        <dt>主餐</dt>
+        <dd>牛</dd>
+        <dd>雞</dd>
+    </dl>
+
+</body>
+</html>

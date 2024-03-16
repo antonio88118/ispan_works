@@ -1,0 +1,36 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+p {
+  padding: 10px;
+  text-align: justify;
+  line-height: 25px;
+}
+h1,
+h2 {
+  padding: 20px;
+  text-align: center;
+}
+img {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+.wrap {
+  margin: auto;
+  width: 1000px;
+  border: 15px solid gray;
+}
+header div {
+  display: inline-block;
+}
+.a {
+  display: inline-block;
+}
+.a img {
+  width: 40%;
+}
+.a:hover {
+  background-color: bisque;
+}

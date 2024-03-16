@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 預設樣式，可省略為a
+        a:link{
+            text-decoration:none ;
+            color: rgb(0, 136, 255);
+        }
+        /* 已瀏覽過的連結樣式 */
+        /* a:visited{
+            color: rgb(255, 4, 0);
+        } */
+        /* 滑鼠移至上方 */
+        /* a:hover{
+            color: rgb(255, 221, 0);
+            text-decoration:underline ;
+        } */
+        /* 滑鼠按住 */
+        /* a:active{
+            color: rgb(0, 0, 0);
+        } */
+        /* ----------------------------------- */
+        /* 習慣以下兩兩一組設定 */
+        a, a:visited{
+            text-decoration: none;
+            color: rgb(0, 136, 255);
+        }
+        a:hover, a:active{
+            text-decoration: underline;
+            color: red;
+        }
+        /* ----------------------------------- */
+        /* 以class方式設定 */
+        a.test, a:visited.test{
+            text-decoration: none;
+            color: rgb(255, 213, 0);
+        }
+        a:hover.test, a:active.test{
+            text-decoration: underline;
+            color: rgb(0, 0, 0);
+        }
+
+    </style>
+</head>
+<body>
+    <a href="aa">first link</a><br>
+    <a href="">second link</a><br>
+    <!-- 套用class -->
+    <a href="" class="test">third link</a>
+</body>
+</html>

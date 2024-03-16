@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+/* 母版，常用wrap/wrapper/container */
+.wrap{
+    width: 960px;
+    /* 元素會把網頁撐開，不必寫高 */
+    background-color: antiquewhite;
+    margin: auto;
+    padding-top: 70px;
+}
+/* ---------------------------header---------------------------- */
+header{
+    height: 100px;
+    background-color: antiquewhite;
+}
+/* 使用後代選取器，避免所有圖片都float，也可以用class */
+header img{
+    float: left;
+}
+nav{
+    /* clear: left; */
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.582);
+    height: 70px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    line-height: 70px;
+}
+nav a{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 120, 120);
+    /* 按鈕間距 */
+    margin: 10px;
+    /* 按鈕大小(內邊界) */
+    padding: 4px 15px;
+    border-radius: 5px;
+}
+nav a:hover{
+    color: rgb(121, 121, 121);
+    background-color: rgb(255, 0, 0);
+}
+/* ----------------------------------------------------------- */
+section{
+    width: 620px;
+    height: 500px;
+    background-color: rgb(198, 229, 255);
+    float: left;
+    /* padding會造成爆，要把原寬660-20*2(左右)，改成620 */
+    padding: 20px;
+}
+section img{
+    float: left;
+    padding-right: 10px;
+}
+section{
+    text-align: justify;
+}
+
+aside{
+    width: 260px; /* 300-20*2 */
+    height: 500px;
+    background-color: rgb(255, 255, 120);
+    float: left;
+    /* <ul>的項目符號佔20px，因為*把內外邊界都取消，若不加回20，符號會跑到aside外面 */
+    padding: 20px;
+}
+footer{
+    height: 50px;
+    background-color: rgb(201, 255, 126);
+    /* 前面兩區塊浮動，footer將往上遞移至header下方，並被section, aside蓋在下層，須用clear清除浮動*/
+    clear: left;
+}
+footer p{
+    text-align: center;
+    line-height: 50px;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            color: #ff0051;
+            text-align: center;
+        }
+        p {
+            width: 300px;
+            margin: auto;
+            /* auto會把視窗大小-元素大小，剩餘空白放在兩側，結果上會置中 */
+        }
+        /* h1,p {
+            複數標籤選取器
+        } */
+
+        /* class選取器可重複使用 */
+        .back_color {
+            background-color: brown;
+        }
+        /* id選取器僅可使用一次，若違規會有警告 */
+        #back_color {
+            background-color: chartreuse;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="back_color">標題</h1>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis, aut ea illum earum facere quidem soluta iure nobis repellat reiciendis necessitatibus vel hic tempore magni consectetur porro impedit laborum sapiente.
+    </p>
+    <p class="back_color">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi, molestiae reiciendis! Nemo, tenetur iure! Reprehenderit quos sit accusantium? Vel, architecto iure dignissimos libero nulla non minus dolorum explicabo voluptate placeat?
+    </p>
+    <p id="back_color">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga itaque illo non alias impedit dolore mollitia aspernatur praesentium sunt necessitatibus placeat autem, tempora saepe assumenda minus aperiam fugiat soluta amet.
+    </p>
+    <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ut sunt voluptatibus repellat, quisquam, assumenda quia error sequi cupiditate tempora expedita quam magnam quae aliquam dolorem alias officia, est quibusdam.
+    </p>
+
+
+</body>
+</html>
