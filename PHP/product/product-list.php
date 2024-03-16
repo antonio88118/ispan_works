@@ -115,7 +115,7 @@ $rows=$result->fetch_all(MYSQLI_ASSOC);
                 <div class="card">
                     <a href="product.php?id=<?=$row["id"]?>">
                         <div class="ratio ratio-4x3">
-                            <img class="object-fit-cover card-img-top" src="/images/<?=$row["img"]?>" alt="<?=$row["name"]?>">
+                            <img class="object-fit-cover card-img-top" src="../images/<?=$row["img"]?>" alt="<?=$row["name"]?>">
                         </div>
                     </a>
                     <div class="card-body">

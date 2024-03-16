@@ -45,7 +45,7 @@ $userRow=$sqlUserResult->fetch_all(MYSQLI_ASSOC);
     </nav>
         <div class="row g-3">
             <div class="col-md-6">
-                <img class="img-fluid" src="/images/<?=$row["img"]?>" alt="">
+                <img class="img-fluid" src="../images/<?=$row["img"]?>" alt="">
             </div>
             <div class="col-md-6">
                 <h1><?=$row["name"]?></h1>
