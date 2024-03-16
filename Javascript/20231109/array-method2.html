@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr1=["a", "b", "c"];
+        let arr2=["d", "e", "f"];
+
+        // 合併陣列
+        let arr3=arr1.concat(arr2);
+        console.log(arr3);
+
+        // 以每個" "為斷點，切割字串並儲存成陣列
+        let str="The quick brown fox jumps over the lazy dog.";
+        let strArr=str.split(" ");
+        console.log(strArr);
+        // 把每個字母拆開
+        let strArr2=str.split("");
+        console.log(strArr2);
+
+        console.log("join");
+        let fruit = ["apple", "banana", "mango", "peach", "orange"];
+        // 陣列轉字串
+        console.log(fruit.toString());
+        // join()，預設自動加入,
+        console.log(fruit.join());
+        console.log(fruit.join(" & "));
+
+        // 根據元素第一個字母，照順序重新排序
+        console.log("sort");
+        console.log(fruit);
+        fruit.sort();
+        console.log(fruit);
+
+        // 反轉陣列
+        console.log("reverse");
+        fruit.reverse();
+        console.log(fruit);
+    </script>
+</body>
+</html>

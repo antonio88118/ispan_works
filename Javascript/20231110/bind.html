@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bind</title>
+</head>
+<body>
+    <script>
+        var objA={
+            name: "A"
+        }
+        var objB={
+            name: "B",
+            writeName: function(age){
+                console.log(this.name + " is " + age + " years old.");
+            }
+        }
+
+        objB.writeName(20);
+        //objA-->有相同key的value會取代objB，賦予固定參數12
+        var func1=objB.writeName.bind(objA, 12);
+        func1();
+
+        var func2=objB.writeName.bind(objA);
+        func2(16);
+        func2(18);
+    </script>
+</body>
+</html>

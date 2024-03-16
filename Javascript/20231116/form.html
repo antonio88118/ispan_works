@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>form</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="py-2">
+            <button type="button" class="btn btn-primary" id="getVal">get Value</button>
+            <button type="button" class="btn btn-primary" id="setVal">set Value</button>
+        </div>
+        <input type="text" class="form-control" id="input">
+        <hr>
+        <div class="row mb-3">
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control form-control-sm" id="name">
+            </div>
+          </div>
+        Hello, <span id="showName"></span>
+        <hr>
+        <select class="form-select" name="" id="cities">
+            <option value="0">請選擇縣市</option>
+            <option value="1">台北</option>
+            <option value="2">新北</option>
+            <option value="3">桃園</option>
+            <option value="4">台中</option>
+        </select>
+        <div class="py-2">
+            包含鄉鎮市(區): <span id="showTowns"></span>
+        </div>
+    </div>
+
+    <script>
+        const getVal=document.querySelector("#getVal");
+        const setVal=document.querySelector("#setVal");
+        const input=document.querySelector("#input");
+
+        getVal.addEventListener("click", function(){
+            let inputContent=input.value;
+            console.log("getVal: "+inputContent);
+        })
+
+        setVal.addEventListener("click", function(){
+            input.value="new content";
+        })
+
+        input.addEventListener("change", function(){
+            let inputContent=this.value;
+            console.log("input: "+inputContent);
+        })
+
+        const name=document.querySelector("#name");
+        const showName=document.querySelector("#showName");
+        const showTowns=document.querySelector("#showTowns")
+
+        name.addEventListener("keyup", function(){
+            let inputName=this.value;
+            showName.innerText=inputName;
+        })
+
+        let towns=[
+            {
+                cityId: 1,
+                cityName: "台北市",
+                list:[{
+                    name: "大安區"
+                },{
+                    name: "中正區"
+                },{
+                    name: "松山區"
+                }]
+            },{
+                cityId: 2,
+                cityName: "新北市",
+                list:[{
+                    name: "板橋區"
+                },{
+                    name: "中和區"
+                },{
+                    name: "淡水區"
+                }]
+            },{
+                cityId: 3,
+                cityName: "桃園市",
+                list:[{
+                    name: "桃園區"
+                },{
+                    name: "中壢區"
+                },{
+                    name: "八德區"
+                }]
+            },{
+                cityId: 4,
+                cityName: "台中市",
+                list:[{
+                    name: "台中區"
+                },{
+                    name: "北屯區"
+                },{
+                    name: "沙鹿區"
+                }]
+            }
+        ]
+
+        cities.addEventListener("change", function(){
+            let value=this.value;
+            // towns>city(個別物件)
+            let selectedCity=towns.find(function(city){
+                return city.cityId==value;
+            })
+            let townList=[];
+            // 從
+            for(let town of selectedCity.list){
+                townList.push(town.name);
+            }
+            console.log(townList);
+            showTowns.innerText=townList;
+        })
+    </script>
+</body>
+
+</html>

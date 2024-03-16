@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>spread operator</title>
+</head>
+<body>
+    <script>
+        let number=[1, 2, 3, 4, 5];
+        // 展開運算子... 把陣列元素展開顯示
+        // 預期輸出:1 2 3 4 5
+        console.log(...number);
+
+        // 也可用於合併陣列
+        let arr1=["hello", "js", "go"];
+        let arr2=[1,2,...arr1];
+        console.log(arr2);
+
+        function count(a, b, c){
+            return a + b + c;
+        }
+        let numArr=[1, 3, 5]
+        // 把有三個元素的陣列展開，當作參數傳入count()
+        console.log(count(...numArr));
+    </script>
+</body>
+</html>

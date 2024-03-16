@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM travelsal</title>
+    <style>
+        .box{
+            background: pink;
+            padding: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div id="box" class="box">
+        <img id="img" src="/images/1.png" alt="">
+    </div>
+
+    <script>
+        const img=document.querySelector("#img");
+        // 取得img的母元素:div
+        const imgParent=img.parentNode;
+        console.log(imgParent);
+
+        const box=document.querySelector("#box");
+        const boxChild=box.childNodes;
+        // 會把<img>前後的空格視為child(回傳text)
+        console.log(boxChild);
+        // 只取得img
+        console.log(boxChild[1]);
+    </script>
+</body>
+</html>

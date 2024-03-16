@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RegExp</title>
+</head>
+<body>
+    <!-- <input type="text"> -->
+    <script>
+        const input="As I was going to Saint Ives";
+        console.log("--starstWith--");
+        console.log(input.startsWith("As"));
+
+        console.log("--endsWith--");
+        console.log(input.endsWith("Ives"));
+
+        console.log("--includes--");
+        console.log(input.includes("going"));
+
+        console.log("--indexOf--");
+        console.log(input.indexOf("going"));
+        
+        console.log("--replace--");
+        let output=input.replace("going", "walking");
+        console.log(output);
+    </script>
+</body>
+</html>

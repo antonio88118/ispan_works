@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>date</title>
+</head>
+<body>
+    <script>
+        // 建立新的Date物件
+        let now=new Date();
+        console.log(now);
+        // 日期
+        // console.log(now.getDate());
+        // 星期天~六 index[0]~[6]
+        // console.log(now.getDay());
+
+        let year=now.getFullYear();
+        // month跟day要+1
+        let month=now.getMonth()+1;
+        let date=now.getDate();
+        let weekDayArr=["日", "一", "二", "三", "四", "五", "六"];
+        let weekDay=weekDayArr[now.getDay()];
+        let hour=now.getHours();
+        let minute=now.getMinutes();
+        let second=now.getSeconds();
+
+        console.log(`${year}/${month}/${date}(${weekDay}) ${hour}:${minute}:${second}`);
+    </script>
+</body>
+</html>

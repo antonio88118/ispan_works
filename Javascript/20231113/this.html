@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this</title>
+</head>
+<body>
+    <script>
+        console.log(this); // 指向window物件
+        this.a=37;
+        console.log(a);
+
+        console.log("--var--");
+        var b=27;
+        // 因為全域變數屬於window物件，下列三種寫法全部同意
+        console.log("b",b);
+        console.log("window.b",window.b);
+        console.log("this.b",this.b);
+
+        console.log("--let--");
+        let c=7;
+        console.log("c", c);
+        // 下列兩者會顯示undeifned，因為let宣告的變數不屬於window物件
+        console.log("window.c", window.c);
+        console.log("this.c", this.c);
+
+        console.log("--function--");
+        var name="Jason";
+        function callName(){
+            console.log(this.name);
+        }
+        var user={
+            name: "May",
+            callName(){
+                console.log(this.name);
+            }
+        }
+        callName();
+        user.callName();
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event dom2</title>
+</head>
+<body>
+    <button id="button">Show</button>
+    <button id="removeEvent">remove event</button>
+    <script>
+        // const buttonElem=document.querySelector("button");
+        const button=document.querySelector("#button");
+        const removeEvent=document.querySelector("#removeEvent");
+        // buttonElem.addEventListener("click", function(){
+        //     console.log("button click");
+        // })
+
+        // button.addEventListener("click", function(){
+        //     console.log("id click");
+        // })
+        
+        // button.addEventListener("click", function(){
+        //     console.log("id click 2");
+        // })
+
+        function showMessage(){
+            console.log("click event");
+        }
+        button.addEventListener("click", showMessage);
+
+        removeEvent.addEventListener("click", function(){
+            button.removeEventListener("click", showMessage);
+        })
+    </script>
+</body>
+</html>

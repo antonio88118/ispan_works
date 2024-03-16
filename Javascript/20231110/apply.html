@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>call</title>
+</head>
+<body>
+    <script>
+        function add(a, b){
+            return a+b;
+        }
+        console.log(add(3,5));
+        console.log(add.apply(null,[3,5]));
+
+        // var person="May";
+        // console.log(window.person);
+        // var role="nurse";
+        // console.log(window.role);
+
+        //this指向全域變數var person/role
+        console.log("greet");
+        function greet(){
+            var reply = [
+                this.person, "is an awesome", this.role
+            ].join(" ");
+            console.log(reply);
+        }
+
+        let obj={
+            person: "Jimmy Fox",
+            role: "Javascript Develpoer"
+        };
+        // greet();
+        greet.apply(obj);
+
+        let user={
+            person: "Joe",
+            role: "Driver",
+            greet(){
+                let reply=[this.person, 'is An Awesome', this.role].join(" ");
+                console.log(reply)
+            },
+            add(a, b){
+                console.log(a+b)
+            }
+        }
+        
+        user.greet();
+        user.greet.apply(obj);
+    </script>
+</body>
+</html>

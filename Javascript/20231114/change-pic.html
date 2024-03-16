@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>change pic</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+        .object-fit-cover{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .main-pic{
+            width: 240px;
+            & img{
+                width: 100%;
+            }
+        }
+        .pic{
+            width: 72px;
+            /* background: #ccc; */
+            border: 4px solid #ccc;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+  <div class="container">
+    <figure class="main-pic mx-auto">
+        <img id="mainPic" src="/images/1.png" alt="">
+    </figure>
+    <div class="thumb d-flex justify-content-center">
+        <div class="pic ratio ratio-1x1 mx-1"><img class="object-fit-cover" src="/images/1.png" alt=""></div>
+        <div class="pic ratio ratio-1x1 mx-1"><img class="object-fit-cover" src="/images/4.png" alt=""></div>
+        <div class="pic ratio ratio-1x1 mx-1"><img class="object-fit-cover" src="/images/7.png" alt=""></div>
+        <div class="pic ratio ratio-1x1 mx-1"><img class="object-fit-cover" src="/images/25.png" alt=""></div>
+    </div>
+  </div>
+
+  <script>
+    const mainPic=document.querySelector("#mainPic")
+    const pics=document.querySelectorAll(".pic"); //Nodelist
+    console.log(pics);
+    for(let i=0;i<pics.length;i++){
+        // pics[i].onclick=function(){
+        //     console.log("click");
+        // }
+        // addEventListener(事件, 執行函式)
+        pics[i].addEventListener("click", function(){
+            console.log("click");
+            // div.pic>img>src
+            let imgUrl=pics[i].childNodes[0].src;
+            // console.log(imgUrl);
+            mainPic.src=imgUrl;
+        })
+    }
+  </script>
+</body>
+
+</html>

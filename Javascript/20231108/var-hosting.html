@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 變數提升:
+        // 若在宣告變數前呼叫該變數，javascript會自動產生宣告(但未定義)
+        // ex: var user
+        console.log(user)
+        var user = "Joe"
+        console.log(user)
+
+        // let沒有變數提升
+        // Identifier 'user' has already been declared
+        // console.log(user)
+        // let user = "Mary"
+        // console.log(user)
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>checkUser</title>
+</head>
+<body>
+    <script>
+        let users=["Joe", "Peter", "May", "Jack", "Andy", "Tina", "Sue", "Iris", "Justin", "Danny"];
+
+        function checkUser(name){
+            for(let i=0; i<users.length; i++){
+                if(users[i]==name){
+                    console.log(`${name} 存在`);
+                    break;
+                }else if(users[i]!=name && i==users.length-1){
+                    console.log(`${name} 不存在`);
+                }
+            }
+        }
+        console.log(users);
+        checkUser("Roland");
+        checkUser("Tina");
+        checkUser("Weenie");
+        checkUser("May");
+    </script>
+</body>
+</html>

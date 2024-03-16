@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scope let</title>
+</head>
+<body>
+    <script>
+        let name="Joe";
+
+        console.log(name);
+
+        // let是區域變數
+        if(true){
+            let fruit="apple";
+            console.log(`${fruit} inside {}`);
+        }
+        // callName(`${fruit} outside {}`);
+
+        // function callName2(){
+        //     let name2="Mike";
+        //     console.log(`local name: ${name2}`);
+        // }
+        // callName2();
+
+        function callName3(){
+            // 區域變數
+            let name="Peter";
+            console.log(`local name in callName3: ${name}`);
+        }
+        // 使用區域變數
+        callName3();
+        // 使用全域變數
+        console.log(`global name after callName3: ${name}`);
+
+        function callName4(){
+            name="May";
+            console.log(`global name in callName4: ${name}`);
+        }
+        // 把先前定義的全域變數Joe改成May
+        callName4();
+        console.log(`global name after callName4: ${name}`);
+
+        function callName5(){
+            name3="Sue";
+            console.log(name3);
+        }
+        callName5();
+        // 沒有var或let，預設為全域變數
+        console.log(`name3 outside callName5: ${name3}`);
+        
+    </script>
+</body>
+</html>

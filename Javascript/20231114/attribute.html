@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>attribute</title>
+</head>
+<body>
+    <div>
+        <button id="getImg">getImg</button>
+        <button id="setImg">setImg</button>
+    </div>
+    <img id="img" src="/images/1.png" alt="妙蛙種子">
+    <hr>
+    <div>
+        <button id="getLink">getLink</button>
+        <button id="setLink">setLink</button>
+    </div>
+    <a id="link" href="https://www.google.com/">google</a>
+
+    <script>
+        const getImg=document.querySelector("#getImg");
+        const setImg=document.querySelector("#setImg");
+        const img=document.querySelector("#img");
+        
+        const getLink=document.querySelector("#getLink");
+        const setLink=document.querySelector("#setLink");
+        const link=document.querySelector("#link");
+
+        getImg.onclick=function(){
+            // 物件.屬性名稱
+            let src=img.src;
+            let alt=img.alt;
+            console.log("src",src);
+            console.log("alt",alt);
+        }
+        setImg.onclick=function(){
+            img.src="/images/4.png";
+            img.alt="小火龍";
+        }
+
+        getLink.onclick=function(){
+            let linkUrl=link.href;
+            console.log(linkUrl);
+        }
+        setLink.onclick=function(){
+            link.href="https://www.facebook.com/?locale=zh_TW";
+            link.innerText="facebook";
+        }
+    </script>
+</body>
+</html>

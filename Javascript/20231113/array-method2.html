@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>array method 2</title>
+</head>
+<body>
+    <script>
+        // every()會測試陣列中的所有元素是否都通過給定之函式的條件
+        console.log("--every--");
+        let arr1=[12, 5 ,8 ,130, 44];
+        let arr2=[12, 54, 18, 130, 44];
+        let arr3=[2, 4, 8, 3, 5];
+
+        function isBigEnough(number){
+            return number>=10; // true/false
+        }
+
+        // let isBigEnough1=arr1.every(function(number){
+        //     return number>=10;
+        // });
+        let isBigEnough1=arr1.every(isBigEnough);
+        console.log(isBigEnough1);
+        console.log(arr2.every(isBigEnough));
+
+        // some()會測試陣列所有元素中，是否存在符合條件之元素，存在即回傳true
+        console.log("--some--");
+        console.log(arr1.some(isBigEnough));
+        console.log(arr3.some(isBigEnough));
+    </script>
+</body>
+</html>

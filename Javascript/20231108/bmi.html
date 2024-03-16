@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let height = 171;
+        let weight = 70;
+        // 方法一
+        // let bmi = weight/((height/100)**2);
+        // console.log(bmi);
+
+        // 方法二 呼叫函式
+        let bmi = weight/Math.pow((height/100), 2);
+
+        let bmiDescription = "";
+
+        if(bmi<18.5){
+            bmiDescription = "過輕";
+        } else if(bmi>=18.5 && bmi<24){
+            bmiDescription = "正常";
+        } else if(bmi>=24 && bmi<30){
+            bmiDescription = "過胖"
+        }
+        console.log(bmiDescription);
+    </script>
+</body>
+</html>

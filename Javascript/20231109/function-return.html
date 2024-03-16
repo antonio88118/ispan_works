@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function callName(name="Jay"){
+            // return; 會中止function
+            return name;
+            // console.log(name);
+        }
+        // callName("Tom");
+        let userName=callName("Tom");
+        console.log(userName);
+        // 雖會print，但沒有變數儲存May
+        console.log(callName("May"));
+
+        function callName2(name="Jay"){
+            let intro=`Hello ${name}.`;
+            return intro;
+        }
+        console.log(callName2(userName));
+    </script>
+</body>
+</html>

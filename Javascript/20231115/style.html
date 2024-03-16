@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>style</title>
+    <style>
+        .box{
+            width: 120px;
+            height: 120px;
+            background: pink;
+            transition: .6s;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button id="getBg">getBg</button>
+        <button id="setBg">setBg</button>
+    </div>
+    <div class="box" style="background: pink;">
+
+    </div>
+    <script>
+        const getBg=document.querySelector("#getBg");
+        const setBg=document.querySelector("#setBg");
+        const box=document.querySelector(".box");
+
+        // .style只能抓到inline style
+        getBg.addEventListener("click", function(){
+            let bgValue=box.style.background;
+            console.log(bgValue);
+        })
+        setBg.addEventListener("click", function(){
+            box.style.background="red";
+        })
+    </script>
+</body>
+</html>

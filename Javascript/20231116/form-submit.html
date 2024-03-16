@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>form submit</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <!-- 用BS實作DOM彈出式訊息框，預設invisible -->
+    <div class="modal fade" tabindex="-1" id="infoModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">提示訊息</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p id="info"></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-info" data-bs-dismiss="modal">關閉</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <form action="">
+            <div class="mb-2">
+                <label for="name">Account</label>
+                <input type="text" class="form-control" name="name" id="name">
+                <div class="text-muted">請輸入 4~12 個字元的帳號</div>
+            </div>
+            <div class="mb-2">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" name="email" id="email">
+            </div>
+            <input type="button" class="btn btn-info" value="送出" id="send">
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+    </script>
+
+    <script>
+        const form=document.querySelector("form");
+        const send=document.querySelector("#send");
+        const name=document.querySelector("#name");
+        const email=document.querySelector("#email");
+        const emailReg=/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+        // {option}
+        const infoModal=new bootstrap.Modal(document.getElementById('infoModal'), {})
+        const info=document.querySelector("#info");
+        send.addEventListener("click", function(){
+            let nameVal=name.value;
+            let emailVal=email.value;
+            if(nameVal==""){
+                // alert("請輸入姓名");
+                info.innerText="請輸入帳號"
+                infoModal.show();
+                return;
+            }
+            if(nameVal.length<4 || nameVal.length>12){
+                info.innerText="請輸入4~12個字元的帳號"
+                infoModal.show();
+                return;
+            }
+            if(emailVal==""){
+                // alert("請輸入姓名");
+                info.innerText="請輸入email"
+                infoModal.show();
+                return;
+            }
+            if(emailReg.test(emailVal)==false){
+                info.innerText="email格式錯誤，請重新輸入";
+                infoModal.show();
+                return;
+            }
+            form.submit();
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>class list</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background: pink;
+            transition: .6s;
+        }
+        .box.active{
+            background: red;
+            border-radius: 10%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="py-2">
+            <button class="btn btn-info" id="getClass">get class</button>
+            <button class="btn btn-info" id="addClass">add class</button>
+            <button class="btn btn-info" id="removeClass">remove class</button>
+            <button class="btn btn-info" id="toggleClass">toggle class</button>
+        </div>
+        <div class="box"></div>
+    </div>
+
+    <script>
+        const getClass=document.querySelector("#getClass");
+        const addClass=document.querySelector("#addClass");
+        const removeClass=document.querySelector("#removeClass");
+        const toggleClass=document.querySelector("#toggleClass");
+        const box=document.querySelector(".box");
+
+        getClass.addEventListener("click", function(){
+            let classList=box.classList;
+            // 回傳陣列:
+            // DOMTokenList(n) ["class 1", "class 2", ..., "class n", value: "class 1 class 2 ... class n"]
+            console.log(classList);
+        })
+
+        addClass.addEventListener("click", function(){
+            box.classList.add("active");
+        })
+        removeClass.addEventListener("click", function(){
+            box.classList.remove("active");
+        })
+        toggleClass.addEventListener("click", function(){
+            box.classList.toggle("active");
+        })
+
+        box.addEventListener("click", function(){
+            if(box.classList.contains("active")){
+                alert("yes");
+            }else{
+                alert("no");
+            }
+        })
+    </script>
+</body>
+
+</html>

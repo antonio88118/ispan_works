@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modify dom</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background: palevioletred;
+        }
+    </style>
+</head>
+<body>
+    <div id="content"></div>
+    <hr>
+    <div>
+        <button id="remove">remove</button>
+    </div>
+    <div class="box"></div>
+    <script>
+        const content=document.querySelector("#content");
+        const btn=document.createElement("button");
+        let buttonText=document.createTextNode("click");
+        btn.appendChild(buttonText);
+        content.appendChild(btn);
+
+        const removeBtn=document.querySelector("#remove");
+        const box=document.querySelector(".box");
+        removeBtn.addEventListener("click", function(){
+            box.remove();
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM travelsal2</title>
+    <style>
+        li.first{
+            background: lightblue;
+        }
+        li.last{
+            background: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <ul><li>ITEM1</li>
+        <li>ITEM2</li>
+        <li>ITEM3</li>
+        <li>ITEM4</li>
+        <li>ITEM5</li></ul>
+
+    <script>
+        const ul=document.querySelector("ul");
+        const ulChildren=ul.childNodes;
+        console.log(ulChildren);
+
+        // 修改class內容
+        ul.firstChild.className="first";
+        ul.firstChild.innerText="first item"
+        ul.lastChild.className="last";
+        ul.lastChild.innerText="last item";
+        console.log(ul.firstChild);
+    </script>
+</body>
+</html>

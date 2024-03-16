@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>callback function</title>
+</head>
+<body>
+    <script>
+        let funA=function(callback){
+            // setTimeout(函式, 時間)，3000ms後再執行
+            setTimeout(function(){
+                console.log("function A");
+                //  宣告一函式作為變數
+                callback();
+            }, 3000);
+        }
+        let funB=function(){
+            console.log("function B");
+        }
+        // funB當函式變數，即funA中的callback()
+        funA(funB);
+        // funB();
+    </script>
+</body>
+</html>

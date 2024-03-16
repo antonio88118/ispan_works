@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RegExp</title>
+</head>
+<body>
+
+    <script>
+        console.log("--phone--");
+        const phoneReg=/^09\d{8}$/; // ^字串$;\d{8}:匹配任何數字8次
+        const phone="0922333123";
+        console.log(phoneReg.test(phone));
+
+        console.log("--id number--");
+        const idReg=/^[A-Z]{1}[1-2]{1}[0-9]{8}$/;
+        const idNumber="A123456789";
+        console.log(idReg.test(idNumber));
+
+        console.log("--email--");
+        const emailReg=/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+        const email="joe@test.com"
+        console.log(emailReg.test(email));
+    </script>
+</body>
+</html>

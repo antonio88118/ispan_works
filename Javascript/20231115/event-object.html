@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>event object</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+        .area{
+            height: 400px;
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="py-2">
+            <button class="btn btn-info" id="button">event</button>
+        </div>
+        <div class="py-1">
+            offsetX: <span id="offsetX">0</span>
+            offsetY: <span id="offsetY">0</span>
+        </div>
+        <div class="py-2">
+            <div class="area" id="area"></div>
+            x: <span id="moveX">0</span>y: <span id="moveY">0</span>
+        </div>
+    </div>
+    
+    <script>
+        const button=document.querySelector("#button");
+        const offsetX=document.querySelector("#offsetX");
+        const offsetY=document.querySelector("#offsetY");
+
+        // event:事件物件
+        button.addEventListener("click", function(event){
+            console.log(event);
+            console.log(event.offsetX, event.offsetY);
+            offsetX.innerText=event.offsetX;
+            offsetY.innerText=event.offsetY;
+        })
+
+        const area=document.querySelector("#area"),
+        moveX=document.querySelector("#moveX"),
+        moveY=document.querySelector("#moveY");
+
+        area.addEventListener("mousemove", function(event){
+            // console.log("move");
+            moveX.innerText=event.offsetX;
+            moveY.innerText=event.offsetY;
+        })
+    </script>
+</body>
+
+</html>

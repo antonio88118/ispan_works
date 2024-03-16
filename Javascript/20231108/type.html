@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        // boolean
+        let exist = false;
+        console.log(exist)
+        if(exist==true){
+            console.log("yes")
+        } else{
+            console.log("no")
+        }
+        // number
+        let num1 = 20;
+        let num2 = 30;
+        let num3 = "21";
+        console.log(num1);
+        num1 = 30;
+        console.log(num1);
+
+        // string
+        let user = "May";
+        let admin = "Peter";
+        console.log("Hello, I'm "+ user +".")
+        // 跳脫字元\
+        console.log("Hello "+ user + ', I\'m ' +admin+ ".")
+        // 樣板字串(Template string)` ${variable} `
+        console.log("樣板字串(Template string)");
+        console.log(`Hello ${user}, I'm ${admin}.`);
+        console.log(`${num1} + ${num2} = ${num1 + num2}`);
+        // 字串+數字
+        console.log(user+num1);
+        console.log(num2+num3);
+    </script>
+</body>
+</html>

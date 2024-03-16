@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM2</title>
+    <style>
+        .btn{
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    <button id="button">click</button>
+    <button>button</button>
+    <button class="btn">button</button>
+    <button class="btn">button</button>
+
+    <script>
+        // 根據id
+        const button=document.querySelector("#button");
+        button.onclick=function(){
+            console.log("click");
+        }
+        // 根據標籤
+        const buttons=document.querySelectorAll("button");
+        console.log(buttons);
+
+        // 前面的id事件會被後面的事件覆蓋
+        for(let i=0; i<buttons.length; i++){
+            buttons[i].onclick=function(){
+                console.log("buttons: "+i);
+            }
+        }
+
+        const btns=document.querySelectorAll(".btn");
+        for(let i=0; i<btns.length; i++){
+            btns[i].onclick=function(){
+                console.log("btns: "+i);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>find all less</title>
+</head>
+<body>
+    <script>
+        console.log("方法一 迴圈");
+        function findAllLessFor(arr, num){
+            let lessArr = [];
+            for(let i=0; i<arr.length; i++){
+                if(arr[i]<num){
+                    lessArr.push(arr[i]);
+                }
+            }
+            console.log("compare number: "+num);
+            console.log("input array: "+arr);
+            console.log("output array: "+lessArr);
+        }
+        findAllLessFor([1,2,3,5], 4);
+        findAllLessFor([4, 60, 55, 72, 104], 70);
+
+        console.log("-------------------------");
+
+        console.log("方法二 filter()");
+        function findAllLessFilter(arr, compareNum){
+            // filter(function(陣列內元素))
+            let lessArr = arr.filter(function(arrNum){ 
+                return arrNum<compareNum;
+            })
+            console.log("compare number: "+compareNum);
+            console.log("input array: "+arr);
+            console.log("output array: "+lessArr);
+        }
+        findAllLessFilter([4,7,9,10], 8);
+        findAllLessFilter([44, 69, 91, 102], 70);
+    </script>
+</body>
+</html>

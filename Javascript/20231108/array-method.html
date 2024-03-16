@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let fruit=["apple", "banana", "orange", "peach", "melon", "papaya"];
+
+        console.log("原始陣列");
+        console.log(fruit);
+
+        // 從最後加入元素
+        console.log("push");
+        fruit.push("kiwi");
+        console.log(fruit);
+
+        // 從最後刪除元素
+        console.log("pop");
+        fruit.pop();
+        console.log(fruit);
+
+        // 抽出陣列最前面的元素刪除
+        console.log("shift");
+        fruit.shift();
+        console.log(fruit);
+
+        // 從陣列最前面加入元素
+        console.log("unshift");
+        fruit.unshift("apple");
+        console.log(fruit);
+
+        // 回傳元素索引
+        console.log("indexof");
+        console.log(fruit.indexOf("banana"));
+        // 不存在於陣列 回傳-1
+        console.log(fruit.indexOf("mango"));
+
+        console.log("splice");
+        // 從fruit[2]開始(包括自己)，刪除一筆
+        fruit.splice(2, 1);
+        console.log(fruit);
+        // 從fruit[2]開始，不刪除元素(0)，加入兩項元素(fruit[2] fruit[3])
+        fruit.splice(2, 0, "orange", "strawberry");
+        console.log(fruit);
+
+        // 複製陣列，從fruit[1]開始~fruit[3]結束(不包括[3])
+        console.log("slice");
+        let fruit2 = fruit.slice(1, 3);
+        console.log(fruit2);
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>calculater</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row py-2">
+            <div class="col-auto">
+                <input type="number" class="form-control" value="0" id="num1">
+            </div>
+            <div class="col-auto">
+                <select name="" id="operator" class="form-select">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option value="*">*</option>
+                    <option value="/">/</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <input type="number" class="form-control" value="0" id="num2">
+            </div>
+            <div class="col-auto">
+                <button id="do" class="btn btn-primary">=</button>
+            </div>
+            <div class="col-auto">
+                <input type="number" class="form-control-plaintext" readonly value="0" id="result">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const num1=document.querySelector("#num1"), operator=document.querySelector("#operator"), num2=document.querySelector("#num2"), doCount=document.querySelector("#do"), result=document.querySelector("#result");
+
+        doCount.addEventListener("click", function(){
+            let num1Val=Number(num1.value);
+            let operatorVal=operator.value;
+            let num2Val=Number(num2.value);
+            let resultVal=0;
+            switch(operatorVal){
+                case "+":
+                    resultVal=num1Val+num2Val;
+                    break;
+                case "-":
+                    resultVal=num1Val-num2Val;
+                    break;
+                case "*":
+                    resultVal=num1Val*num2Val;
+                    break;
+                case "/":
+                    resultVal=num1Val/num2Val;
+                    break;
+            }
+            result.value=resultVal;
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arrow function</title>
+</head>
+<body>
+    <script>
+        // var sayHello=function(name){
+        //     return `Hello, ${name}`;
+        // }
+        // console.log(sayHello("Jay"));
+
+        let sayHello=(name)=>{
+            return `Hello, ${name}.`;
+        }
+        console.log(sayHello("Jay"));
+
+        // 只有一個參數，可省略()和return
+        let sayHello2=name=>
+        `Hello, ${name}.`;
+        console.log(sayHello2("May"));
+
+        // 沒有參數，仍要寫()
+        let sayHello3=()=>{
+            console.log("Hallo.");
+        }
+        sayHello3();
+
+        let sayHello4=(name="Tom", name2="Sue")=>{
+            console.log(`Hello, ${name}, I'm ${name2}.`);
+        }
+        sayHello4("Jack");
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let name = ["Mike", "Sue", "Jack"];
+        // let height = [171, 159, 177];
+        // let weight = [76, 50, 87];
+        let user={
+            name: "Mike",
+            height: 174,
+            weight: 76
+        };
+
+        function bmi(name, height, weight){
+            let bmi = weight/Math.pow((height/100), 2);
+            let bmiDescription = "";
+
+            if(bmi<18.5){
+                bmiDescription = "過輕";
+            } else if(bmi>=18.5 && bmi<24){
+                bmiDescription = "正常";
+            } else if(bmi>=24 && bmi<30){
+                bmiDescription = "過重"
+            }
+            console.log(name+"的BMI是: "+bmi+", statement: "+bmiDescription);
+        }
+        
+        // for(let i=0; i<name.length; i++){
+        //     bmi(name[i], height[i], weight[i]);
+        // }
+        bmi(user.name, user.height, user.weight);
+
+    </script>
+</body>
+</html>

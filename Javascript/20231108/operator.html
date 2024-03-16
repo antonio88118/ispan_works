@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let num1 = 26, num2 = 7;
+        console.log(`${num1} + ${num2} = ${num1+num2}`);
+        console.log(`${num1} - ${num2} = ${num1-num2}`);
+        console.log(`${num1} * ${num2} = ${num1*num2}`);
+        console.log(`${num1} / ${num2} = ${num1/num2}`);
+        console.log(`${num1} % ${num2} = ${num1%num2}`);
+
+        console.log("----------------------------");
+        let num3 = 3;
+        num3 = num3 + 3;
+        console.log(num3);
+        
+        num3++; //+1
+        console.log(num3);
+        ++num3;
+        console.log(num3);
+
+        console.log("++放前後的差別:");
+        console.log("console在+之前被執行: "+num3++);
+        console.log("再次concole才會出現+完的結果: "+num3);
+        console.log("----------------------------");
+        console.log(++num3);
+        console.log(num3);
+
+        num3 += 3;
+        console.log(num3);
+        num3 -= 5;
+        console.log(num3);
+        num3 *= 3;
+        console.log(num3);
+    </script>
+</body>
+</html>

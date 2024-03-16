@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>array method</title>
+</head>
+<body>
+    <script>
+        let people = [
+            {
+                name: 'Jay',
+                like: 'apple',
+                gender:'male',
+                age: 18
+            },
+            {
+                name: 'Sarah',
+                like: 'banana',
+                gender: 'female',
+                age: 24
+            },
+            {
+                name: 'Tom',
+                like: 'orange',
+                gender: 'male',
+                age: 1
+            },
+            {
+                name: 'Jacy',
+                like: 'orange',
+                gender: 'female',
+                age: 3
+            }
+        ];
+        console.table(people);
+
+        console.log("forEach");
+        // 此處的item即等於people，callback把使用foreach方法的陣列
+        people.forEach(function(user, index, array){
+            console.log(user.name, index, array);
+        });
+
+        console.log("--filter--");
+        let peopleAdult =  people.filter(function(user){
+            return user.age>=18;
+        })
+        console.log(peopleAdult);
+
+        let peopleFemale =  people.filter(function(user){
+            return user.gender=="female";
+        })
+        console.log(peopleFemale);
+
+        console.log("--find--");
+        let findJacy=people.find(function(user){
+            return user.name=="Jacy"
+        })
+        console.log(findJacy);
+
+        let findMay = people.find(function(user){
+            return user.name=="May";
+        })
+        console.log(findMay); //回傳undefined，因為變數findMay未被賦予值
+
+        // map把原陣列經callback func運算後的結果儲存成新的陣列
+        console.log("--map--");
+        let numbers=[2,6,12,5];
+        let twiceNumbers=numbers.map(function(number){
+            // 下列寫法，不符合條件也會回傳undefined
+            // if(number%2==0){
+            //     return number*2;
+            // }
+            return number*2;
+        })
+        console.log(twiceNumbers);
+
+        // 使用map新增節點
+        let peopleNew=people.map(function(user){
+            if(user.age>=18){
+                //令user物件新增成員adult
+                user.adult=true;
+            }else{
+                user.adult=false;
+            }
+            return user;
+        })
+        console.table(peopleNew);
+
+        let peopleLike=people.map(function(user){
+            return `${user.name} likes ${user.like}`;
+        })
+        console.log(peopleLike);
+    </script>
+</body>
+</html>

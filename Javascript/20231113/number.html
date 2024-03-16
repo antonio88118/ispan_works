@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>number</title>
+</head>
+<body>
+    <script>
+        console.log("--isNaN--");
+        console.log(isNaN(NaN));
+        console.log(isNaN("string"));
+        console.log(isNaN(21));
+        console.log(isNaN(true));
+        console.log(isNaN(null));
+
+        console.log("--toFixed--");
+        // 四捨五入至小數點後第n位，並顯示為字串
+        let numObj=12345.6789;
+        console.log(numObj.toFixed(2));
+        // 不足的位數會補0
+        console.log(numObj.toFixed(6));
+
+        let people = [
+            {
+                name: 'Jay',
+                like: 'apple',
+                gender:'male',
+                age: 18
+            },
+            {
+                name: 'Sarah',
+                like: 'banana',
+                gender: 'female',
+                age: 24
+            },
+            {
+                name: 'Tom',
+                like: 'orange',
+                gender: 'male',
+                age: 1
+            },
+            {
+                name: 'Jacy',
+                like: 'orange',
+                gender: 'female',
+                age: 3
+            }
+        ];
+        console.log(people);
+        // JSON.stringify() 物件轉字串，因為瀏覽器只能儲存字串
+        let peopleString=JSON.stringify(people);
+        console.log(peopleString);
+        // JSON.parse() 把字串轉回物件，提取字串中的物件資訊
+        let peopleParse=JSON.parse(peopleString);
+        console.log(peopleParse);
+
+        console.log("toLocalString");
+        // 返回一個字串，表示某數字在本地端電腦 (瀏覽器) 的地區設定環境下的表示法，不同地區可能會顯示不同的小數點或千分位分隔符號表示法
+        let price=1500;
+        console.log(price.toLocaleString());
+    </script>
+</body>
+</html>

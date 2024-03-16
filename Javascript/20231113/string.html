@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>string</title>
+</head>
+<body>
+    <script>
+        console.log("--toUpperCase(), toLowerCase()--");
+        let string="Hello World";
+        console.log(string.toUpperCase(string));
+        console.log(string.toLowerCase(string));
+
+        console.log("--charAt--");
+        // 回傳第一個字元
+        console.log(string.charAt(0));
+
+        console.log("--indexOf, lastIndexOf--");
+        let string2="Home sweet home"
+        // 取第一次出現ee的首個字元索引
+        console.log(string2.indexOf("ee"));
+        // 取最後一次出現me的首個字元索引
+        console.log(string2.lastIndexOf("me"));
+
+        // 擷取從索引2到索引7之前(=到索引6)的字串
+        console.log("--substring--");
+        console.log(string.substring(2,7));
+
+        // 取代內容，只會取代第一次出現的目標字元
+        console.log("--replace--");
+        let replaceString2=string2.replace("me", "w")
+        console.log(replaceString2);
+    </script>
+</body>
+</html>

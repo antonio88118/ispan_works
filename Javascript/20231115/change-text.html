@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>change text</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+        .circle{
+            --width: 64px;
+            margin-right: 10px;
+            width: var(--width);
+            height: var(--width);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="py-2">
+            <button class="btn btn-info" data-size="l">大</button>
+            <button class="btn btn-info" data-size="m">中</button>
+            <button class="btn btn-info" data-size="s">小</button>
+        </div>
+        <div class="d-flex py-2">
+            <div class="circle" style="background: red;"></div>
+            <div class="circle" style="background: green;"></div>
+            <div class="circle" style="background: blue;"></div>
+        </div>
+        <h1 id="target">Hello World</h1>
+    </div>
+
+    <script>
+        const btns=document.querySelectorAll(".btn");
+        const circles=document.querySelectorAll(".circle");
+        const target=document.querySelector("#target");
+
+        for(let i=0; i<btns.length; i++){
+            btns[i].addEventListener("click", function(){
+                // let size=this.innerText;
+                let size=this.dataset.size;
+                console.log(size);
+                switch(size){
+                    case "大":
+                    case "l":
+                        // clac +號兩側記得要有空格
+                        target.style.fontSize="calc(1.875rem + 1.5vw)"; 
+                        break;
+                    case "中":
+                    case "m":
+                        target.style.fontSize="calc(1.375rem + 1.5vw)"; 
+                        break;
+                    case "小":
+                    case "s":
+                        target.style.fontSize="calc(0.875rem + 1.5vw)"; 
+                        break;
+                }
+            })
+        }
+
+        for(let i=0; i<circles.length; i++){
+            circles[i].addEventListener("click", function(){
+                let color=this.style.background; //this==註冊事件監聽器的circles[i]
+                console.log(color);
+                target.style.color=color;
+            })
+        }
+    </script>
+</body>
+
+</html>

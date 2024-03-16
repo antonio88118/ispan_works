@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arrow funtion this</title>
+</head>
+<body>
+    <script>
+        // 箭頭函式的this會指向
+        var name="Jay";
+        var user={
+            name: "May",
+            // 一般函式指向同物件內的name
+            callName: function(){
+                console.log(this.name);
+            },
+            // 箭頭函式的this會指向父層(
+            callName2: ()=>{
+                console.log(this.name);
+            }
+        }
+        user.callName();
+        user.callName2();
+    </script>
+</body>
+</html>

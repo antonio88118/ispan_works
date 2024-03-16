@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>event type</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container">
+        <button class="btn btn-info" id="button">button</button>
+        <div class="py-2">
+            <input id="input" type="text" class="form-control">
+        </div>
+        <div class="py-2">
+            <select class="form-select" name="" id="cities">
+                <option value="1">台北市</option>
+                <option value="2">新北市</option>
+                <option value="3">桃園市</option>
+                <option value="4">台中市</option>
+            </select>
+        </div>
+    </div>
+
+  <script>
+      const button=document.querySelector("#button");
+      const input=document.querySelector("#input");
+      const cities=document.querySelector("#cities");
+      // 單擊
+      button.addEventListener("click", function(){
+          console.log("click");
+      });
+      // 雙擊
+      button.addEventListener("dblclick", function(){
+          console.log("double click");
+      });
+      // 滑鼠移入
+      button.addEventListener("mouseenter", function(){
+          console.log("mouse enter");
+      });
+      // 滑鼠移出
+      button.addEventListener("mouseleave", function(){
+          console.log("mouse leave");
+      });
+
+      // 點擊輸入欄
+      input.addEventListener("focus", function(){
+        console.log("focus");
+      });
+      // 離開輸入欄
+      input.addEventListener("blur", function(){
+        console.log("blur");
+      });
+      // 改變輸入欄內容並離開
+      input.addEventListener("change", function(){
+        console.log("change");
+      });
+      // 按下鍵盤按鍵
+      input.addEventListener("keydown", function(){
+        console.log("keydown");
+      });
+      // 按住同一顆按鍵並持續輸入
+      input.addEventListener("keypress", function(){
+        console.log("keypress");
+      });
+      // 放開鍵盤按鍵
+      input.addEventListener("keyup", function(){
+        console.log("keyup");
+      });
+
+      cities.addEventListener("change", function(){
+        console.log("change");
+      });
+  </script>
+</body>
+
+</html>

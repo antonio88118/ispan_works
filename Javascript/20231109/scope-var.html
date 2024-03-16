@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scope var</title>
+</head>
+<body>
+    <script>
+        //全域變數
+        var name="Joe";
+
+        console.log(name);
+        function callName(){
+            console.log(`global name: ${name}`);
+        }
+        callName();
+
+        function callName2(){
+            var name2="Mike";
+            console.log(`local name: ${name2}`);
+        }
+        callName2();
+        // 外部無法取得函式內定義的變數
+        // console.log(name2);
+    </script>
+</body>
+</html>

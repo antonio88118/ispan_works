@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>math</title>
+</head>
+<body>
+    <script>
+        console.log("--PI--");
+        console.log(Math.PI);
+        
+        // 四捨五入
+        console.log("--round--");
+        let number=4.7;
+        console.log(Math.round(number));
+        // 無條件進位
+        console.log("--ceil--");
+        console.log(Math.ceil(number));
+        //無條件捨去
+        console.log("--floor--");
+        console.log(Math.floor(number));
+        // 四捨五入至小數點第3位
+        let number2=12.351245;
+        console.log(Math.round(number2*1000) / 1000);
+
+        // 次方計算
+        console.log("--pow--");
+        console.log(Math.pow(2,5));
+        console.log(Math.pow(2,10));
+
+        // 取平方根
+        console.log("--sqrt--");
+        console.log(Math.sqrt(64));
+        console.log(Math.sqrt(60));
+
+        // 絕對值
+        console.log("--abs--");
+        console.log(Math.abs(-10));
+        
+        // 最大值
+        console.log("--max--");
+        console.log(Math.max(0, 150, 30, 20, -8, -200));
+        // 最小值
+        console.log("--min--");
+        console.log(Math.min(0, 150, 30, 20, -8, -200));
+
+        console.log("--random--");
+        console.log(Math.random());
+        // 取隨機整數(0~5，0.99*6 < 6)
+        let randomInt=Math.floor(Math.random()*6);
+        console.log(randomInt);
+
+        let people=["Jack", "ROse", "May", "Sue"];
+        // 上限4(people.length)，產生範圍0~3的隨機整數
+        let randomIndex=Math.floor(Math.random()*people.length);
+        console.log(randomIndex);
+        console.log(people[randomIndex]);
+
+    </script>
+</body>
+</html>

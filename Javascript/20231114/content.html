@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>content</title>
+    <style>
+        span{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button id="getContent">get textContent</button>
+        <button id="setContent">set textContent</button>
+        <button id="getText">get text</button>
+        <button id="setText">set text</button>
+        <button id="getHtml">get html</button>
+        <button id="setHtml">set html</button>
+    </div>
+    <h1 id="target">Hello <span>World</span></h1>
+
+    <script>
+        // querySelector只會選擇符合條件的第一個元素
+        const getContent=document.querySelector("#getContent");
+        const setContent=document.querySelector("#setContent");
+        const getText=document.querySelector("#getText");
+        const setText=document.querySelector("#setText");
+        const getHtml=document.querySelector("#getHtml");
+        const setHtml=document.querySelector("#setHtml");
+
+        const target=document.querySelector("h1");
+        // console.log(target);
+
+        // textContent獲取h1內的文字內容
+        // let content=target.textContent;
+        // console.log(content);
+
+        // target.textContent="New content"
+        // console.log(target.textContent);
+
+        // 獲得和頁面顯示不同的實際內容(含有空格)
+        getContent.onclick=function(){
+            let content=target.textContent;
+            console.log(content);
+        }
+        setContent.onclick=function(){
+            target.textContent="New    content";
+        }
+
+        // 獲得和頁面顯示相同的內容
+        getText.onclick=function(){
+            let content=target.innerText;
+            console.log(content);
+        }
+        setText.onclick=function(){
+            target.innerText="New content";
+        }
+
+        // 取得h1標籤內的html內容(標籤+文字)
+        getHtml.onclick=function(){
+            let content=target.innerHTML;
+            console.log(content);
+        }
+        // 修改包含標籤在內的html內容
+        setHtml.onclick=function(){
+            let newContent="New <span>Content</span>";
+            target.innerHTML=newContent;
+        }
+    </script>
+</body>
+</html>

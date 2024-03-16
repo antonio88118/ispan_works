@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>call by reference</title>
+</head>
+<body>
+    <script>
+        let c={
+            greeting: "Hello"
+        };
+        //物件型別會傳址，c和d會互相影響
+        let d=c;
+        console.log(`c is`, c);
+        console.log(`d is`, d);
+        d.greeting="Hi";
+        console.log(`d is`, d);
+        console.log(`c is`, c);
+    </script>
+</body>
+</html>

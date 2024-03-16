@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RegExp</title>
+</head>
+<body>
+    <!-- <input type="text"> -->
+    <script>
+        const input="As I was going to Saint Ives going";
+        
+        const re1=/going/g; // g代表全域，捕捉所有going
+        const re2=new RegExp("going");
+
+        console.log("--match-- 只會回傳第一個going");
+        console.log(input.match(re1));
+
+        console.log("--search-- 回傳索引");
+        console.log(input.search(re1));
+
+        console.log("--test-- 回傳boolean");
+        console.log(re1.test(input));
+
+        console.log("--exec-- 回傳陣列");
+        console.log(re1.exec(input));
+
+        console.log("--replace--");
+        let output=input.replace(re1, "walking");
+        console.log(output);
+    </script>
+</body>
+</html>

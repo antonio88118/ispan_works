@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>object2</title>
+</head>
+<body>
+    <script>
+        let users=[
+            {
+                name: "Mike",
+                height: 174,
+                weight:76
+            },
+            {
+                name: "Sue",
+                height: 159,
+                weight: 50
+            },
+            {
+                name: "Jack",
+                height: 177,
+                weight: 87
+            }
+        ]
+        for(let i=0; i<users.length; i++){
+            console.log(`${users[i].name}'s height is ${users[i].height}cm, weight is ${users[i].weight}kg.`);
+        }
+        console.log("for of");
+        for(let user of users){
+            console.log(`${user.name}'s height is ${user.height}cm, weight is ${user.weight}kg.`);
+        }
+        
+    </script>
+</body>
+</html>

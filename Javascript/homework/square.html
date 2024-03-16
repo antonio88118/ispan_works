@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>square</title>
+</head>
+<body>
+    <script>
+        console.log("方法一 for");
+        function squareFor(arr){
+            let squareArr= [];
+            for(let i=0;i<arr.length;i++){
+                squareArr[i] = Math.pow(arr[i], 2);
+            }
+            console.log("input array: "+arr);
+            console.log("output array: "+squareArr);
+        }
+        squareFor([2,4,5]);
+        squareFor([10,22,17]);
+
+        console.log("-------------------------");
+
+        console.log("方法二 map()");
+        function squareMap(arr){
+            let squareArr= arr.map(function(num){
+                return Math.pow(num, 2)
+            })
+            console.log("input array: "+arr);
+            console.log("output array: "+squareArr);
+        }
+        squareMap([3,7,9]);
+        squareMap([11,21,16]);
+    </script>
+</body>
+</html>

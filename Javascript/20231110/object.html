@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>object</title>
+</head>
+<body>
+    <script>
+        // let user={};
+        // console.log(user);
+        // user.name="Joe"
+        // console.log(user);
+        // console.log(user.name);
+
+        // let user={
+        //     //key: value
+        //     name: "Joe",
+        //     height: 175,
+        //     weight: 71
+        // };
+        // console.log(user);
+        // delete user.weight;
+        // console.log(user);
+
+        let user={
+            name: "Joe",
+            nickname: "JOJO",
+            email: "joe@test.com",
+            height: 175,
+            weight: 71,
+            favorite: {
+                fruit: ["apple", "banana"],
+                movies: ["Lord of the Rings", "Avengers", "Catch me if you can"]
+            },
+            sayHello: function(){
+                //this = user
+                console.log(`Hello, I'm ${this.name}.`);
+            },
+            sayGoodbye(){
+                console.log("Goodbye");
+            },
+            bmi(){
+                let height = this.height/100;
+                let bmi=this.weight/(Math.pow(height, 2));
+                console.log(`BMI: ${bmi}`)
+            }
+        };
+        console.log(user);
+        // .與[]意義相同
+        console.log(user.favorite.fruit);
+        console.log(user["favorite"]["movies"]);
+        user.sayHello();
+        user.sayGoodbye();
+        user.bmi();
+    </script>
+</body>
+</html>

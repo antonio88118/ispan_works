@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM travelsal3</title>
+    <style>
+        .prev{
+            background: lightblue;
+        }
+        .next{
+            background: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <ul><li>ITEM1</li><li>ITEM2</li><li id="item">ITEM3</li><li>ITEM4</li><li>ITEM5</li></ul>
+
+    <script>
+        const item=document.querySelector("#item");
+        // 修改前一個手足元素的class
+        item.previousSibling.className="prev";
+        item.nextSibling.className="next";
+    </script>
+</body>
+</html>

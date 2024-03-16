@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>event phase</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="p-4 text-bg-info" id="outer">
+            outer
+            <div class="p-4 text-bg-warning" id="inner">inner
+                <button class="btn btn-primary" id="button">button</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const outer=document.querySelector("#outer");
+        const inner=document.querySelector("#inner");
+        const button=document.querySelector("#button");
+
+        //true->在capturing phase觸發；flase->在bubbling phase觸發
+        // bubbling phase
+        button.addEventListener("click", function(){
+            console.log("3 bubbling button click");
+        }, false);
+
+        inner.addEventListener("click", function(){
+            console.log("2 bubbling inner click");
+        }, false)
+
+        outer.addEventListener("click", function(){
+            console.log("1 bubbling outer click");
+        }, false)
+
+        // capturing phase
+        button.addEventListener("click", function(){
+            console.log("3 capturing button click");
+        }, true);
+
+        inner.addEventListener("click", function(){
+            console.log("2 capturing inner click");
+        }, true)
+
+        outer.addEventListener("click", function(){
+            console.log("1 capturing outer click");
+        }, true)
+
+    </script>
+</body>
+
+</html>
