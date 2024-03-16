@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel x ChatGPT 商業數據分析課程│新商業學校│實體上機</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;200;300;400;500;600;700;800;900&family=Oswald:wght@200;300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: 'Noto Sans TC', 'Roboto', '微軟正黑體', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            background-color: #322770;
+            /* 設定背景圖片 */
+            background-image: url(images/main-bg-01.jpg);
+            background-attachment: fixed;
+            position: relative;
+            background-position: 50% 0;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        div{
+            /* 固定為區塊元素 */
+            display: block;
+        }
+        a{
+            text-decoration: none;
+        }
+        img{
+            width: 100%;
+            /* 使line、inline-block、inline-table、table元素垂直對齊 */
+            vertical-align: middle;
+        }
+        table{
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td{
+            text-align: center;
+        }
+        .h3{
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .h4{
+            font-size: 1.375rem;
+            font-weight: 500;
+        }
+        .h6{
+            font-size: 1.125rem;
+            font-weight: 500;
+        }
+        .font-type1{
+            font-size: 2.25rem;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+        .unit-title{
+            padding-bottom: 3%;
+            color: #fff;
+        }
+        /* ----------------------頂部選單---------------------- */
+        header{
+            width: 100%;
+            background: #2c2c2c;
+            top: 0;
+            z-index: 999;
+            position: fixed;
+            display: block;
+            height: auto;
+        }
+        /* container子容器，包住logo跟menu */
+        .menuBar-container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            min-height: 70px;
+        }
+        /* 經理人logo */
+        .menuBar-logo img{
+            box-sizing: border-box;
+            max-width: 300px;
+            vertical-align: middle;
+        }
+        /* fb icon調整 */
+        .menuBar .btn img{
+            width: 100%;
+            max-width: 35px;
+        }
+        ul{
+            list-style: none;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+        .btn{
+            cursor: pointer;
+            border-radius: 10rem;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            background-color: transparent;
+            border: 1px solid transparent;
+            line-height: 1.5rem;
+        }
+        .btn-primary{
+            background-color: #ff7900;
+            border-color: #ff7900;
+        }
+        .menuBar .btn{
+            padding: 0.2rem 0.8rem;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1rem;
+            margin: 0 0.2rem;
+        }
+
+        /* ----------------------區塊基本設定---------------------- */
+        section{
+            background-position: 50% 50%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            word-wrap: break-word;
+            display: block;
+        }
+        .section-hidden{
+            overflow: hidden;
+        }
+        .info-section{
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+         /* section容器基本設定 */
+         .container {
+            width: 100%;
+            padding-inline: 15px;
+            margin-right: auto;
+            margin-left: auto;
+            word-wrap: break-word;
+            max-width: 1140px;
+         }
+        /* ----------------------元素位置相關class---------------------- */
+        /* 置中 */
+        .align-center{
+            text-align: center;
+        }
+        .margin_center{
+            margin: auto;
+        }
+        .row{
+            display: flex;
+            /* flex屬性元素塞滿時換行 */
+            flex-wrap: wrap;
+            margin-inline: -15px;
+        }
+        .justify-center{
+            justify-content: center;
+        }
+        .flex{
+            display: flex;
+            justify-content: center;
+            padding: 1rem 0;
+        }
+        .flex-100{
+            padding-inline: 15px;
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+        .flex-50{
+            padding-inline: 15px;
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+        .flex-33{
+            padding-inline: 15px;
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+        }
+        .box{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+        }
+        /* ----------------------section1 main---------------------- */
+        /* 整個section1 main的padding */
+        .top-section-main{
+            padding-top: 10rem;
+            padding-bottom: 3rem;
+            background-image: linear-gradient(#77d4e400 30%, #77d4e4b5 90%);
+        }
+        .main{
+            position: relative;
+            width: 100%;
+            padding-inline: 15px;
+        }
+        .main-img{
+            width: 100%;
+            max-width: 850px;
+        }
+        .main-text{
+            color: #fff;
+            padding: 2rem;
+            margin-bottom: 1.2rem;
+            font-weight: 400;
+            text-shadow: 0px 3px 2px black;
+        }
+        .main-date{
+            display: inline-block;
+            padding: 0.2rem 3rem;
+            margin: 0;
+            color: #fff;
+            background-image: linear-gradient(90deg, #ff790000, #ff7900 15%, #ff7900 85%, #ff790000);
+        }
+        /* ----------------------section2 開課時間---------------------- */
+        .time{
+            color: #fff;
+            background-color: #321b7b;
+            padding-block: 1rem;
+        }
+        .time h5{
+            font-size: 1.25rem;
+            padding: 0 1rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .time input{
+            background-color: #0000;
+            border: none;
+            color: #fff;
+            font-size: 2.2rem;
+            font-weight: 600;
+            text-align: center;
+            width: 100%;
+            max-width: 70px;
+            line-height: 1;
+            margin: 0 0.6rem;
+            overflow: visible;
+        }
+        .flex-countdown{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .time-t{
+            font-family: "Oswald", sans-serif;
+            font-weight: 800;
+        }
+        /* ----------------------section3 課程目標對象---------------------- */
+        .class-target{
+            background-color: black;
+            color: white;
+        }
+        .for-who{
+            max-width: 25%;
+            position: relative;
+            width: 100%;
+            padding-inline: 15px;
+        }
+        .for-who p{
+            margin-bottom: 1rem;
+        }
+        .class-target h3{
+            color: #76d4e4;
+            margin-top: 10px;
+            font-weight: 700;
+        }
+        /* ----------------------section4 目標需求---------------------- */
+        .target-demand{
+            background-color: #1101015c;
+            color: white;
+            backdrop-filter: blur(4px);
+        }
+        .target-demand img{
+            max-width: 700px;
+            padding-top: 1rem;
+        }
+        .box-top-margin{
+            margin-top: 4rem;
+        }
+        /* ----------------------section5 精彩議程---------------------- */
+        /* 設定表格標題平分整體寬度，內容元素也會遵隨 */
+        .agenda th{
+            width: 50%;
+        }
+        .agenda td{
+            padding: 1.8em 1rem;
+        }
+        .agenda img{
+            max-width: 380px;
+            padding: 5px;
+        }
+        /* 清單元素 */
+        .agenda ul{
+            display: block;
+             /* 圓形標題符號 */
+            list-style-type: disc;
+            margin-bottom: 0.5rem;
+            padding-inline-start: 40px;
+            text-align: left;
+        }
+        .agenda ul ul{
+            list-style-type: circle;
+            font-weight: 400;
+        }
+        .agenda li{
+            margin: 10px 0;
+        }
+        .agenda-padding{
+            width: 100%;
+            padding-inline: 15px;
+        }
+        
+        /* 左欄 */
+        .agenda-table-left-title{
+            background-image: linear-gradient(135deg, #76d4e4, #4894ec);
+            padding: 8px;
+        }
+        .left-introduce-column{
+            border-top: solid 2px #321b7b;
+            background-color: #fff;
+            vertical-align: top;
+        }
+        /* 右欄 */
+        .agenda-table-right-title{
+            background-image: linear-gradient(135deg, #ff7900, #ffb88e);
+            padding: 8px;
+        }
+        .right-introduce-column{
+            border-top: solid 2px #321b7b;
+            background-color: #ededed;
+            vertical-align: top;
+        }
+        /* 講者資訊 */
+        .speaker{
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 0;
+        }
+        .speaker img{
+            max-width: 90px;
+            padding: 0;
+            margin-right: 20px;
+        }
+        .align-left{
+            text-align: left;
+        }
+        /* ----------------------section6 課程資訊---------------------- */
+        .information{
+            background: #76d4e4;
+            color: #232323;
+        }
+        .information h3{
+            color: #232323;
+        }
+        .information h6{
+            margin-bottom: 0.5rem;
+        }
+        .information p{
+            margin-bottom: 0.2rem;
+            font-size: 1rem;
+            text-align: left;
+        }
+        .information a{
+            color: #fff;
+            font-weight: 400;
+        }
+        .information small{
+            font-size: 80%;
+            font-weight: 400;
+        }
+        .info-flex{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        /* 兩大容器寬度 */
+        .info-box1-basis{
+            flex-basis: 65%;
+        }
+        .info-box2-basis{
+            flex-basis: 30%;
+        }
+        /* 費用按鈕 */
+        .span-price{
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.125rem;
+            font-weight: 500;
+        }
+        .price-btn{
+            background-repeat: no-repeat;
+            background-position: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 3px;
+            margin-bottom: 0.5rem;
+        }
+        .price-btn:hover{
+            background: #6c757d;
+        }
+        .btn1-background{
+            background: #ff9800;
+        }
+        .btn2-background{
+            background: #2196f3;
+        }
+        .btn3-background{
+            background: #321b7b;
+        }
+        /* ----------------------section7 橫幅廣告---------------------- */
+        .banner{
+            backdrop-filter: blur(4px);
+        }
+        /* --------------------section8 相關學習文章-------------------- */
+        .learning-article{
+            backdrop-filter: blur(4px);
+        }
+        .learning-article h6{
+            color: #fff;
+            padding: 10px 0 15px 0;
+            margin-bottom: 0.5rem;
+            font-size: 1.125rem;
+            font-weight: 500;
+        }
+        .article-pic{
+            background-position: center center;
+            background-size: cover;
+            overflow: hidden;
+            width: 100%;
+            height: 180px;
+        }
+        /* --------------------section9 常見問題-------------------- */
+        .question{
+            background-color: #1101015c;
+            color: #fff;
+            backdrop-filter: blur(4px);
+        }
+        .question ul{
+            text-align: left;
+            display: block;
+        }
+        .question li{
+            margin-top: 10px;
+            margin-bottom: 2rem;
+        }
+        .question p{
+            margin-bottom: 1rem;
+        }
+        .question h3{
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .question a{
+            color: #ff7900;
+        }
+        /* --------------------footer-------------------- */
+        /* 直接用footer，padding參數會因為class權重被覆蓋 */
+        .footer{
+            background: #000;
+            padding-block: 18px;
+            color: #fff;
+            & ul{
+                font-weight: 700;
+                list-style-type: none;
+                line-height: .8;
+                font-size: 1.25rem;
+                margin-bottom: 0.5rem;
+                display: block;
+                & li{
+                    padding-inline: 5px;
+                    margin-block: 10px;
+                    display: inline-block;
+                }
+            }
+            & p{
+                font-weight: 300;
+                font-size: .875rem;
+                letter-spacing: 1px;
+                /* line-height: 1.5em; */
+                word-spacing: 1px;
+            }
+        }
+        .go-to-top{
+            background: #ff7900;
+            color: #fff;
+            opacity: .9;
+            width: 55px;
+            height: 55px;
+            font-size: 30px;
+            border-radius: 50%;
+            position: fixed;
+            right: 1%;
+            bottom: 1%;
+            z-index: 100;
+            & i{
+                vertical-align: middle;
+            }
+        }
+        .footer .container a{
+            color: #fff;
+            font-weight: 400;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="menuBar-container">
+                <div class="menuBar-logo">
+                    <a href="https://biz-school.bnextmedia.com.tw/business-manager?_gl=1*g0lktf*_ga*MTc0MjkyNDQ2OC4xNjk4MTM3MTIy*_ga_383SSRZR6Z*MTY5ODcxMzU1NC4xMi4xLjE2OTg3MTM1ODYuMjguMC4w*_ga_G9MHY2DC1W*MTY5ODcxMzU1NC4xMi4xLjE2OTg3MTM1ODYuMC4wLjA." target="_blank">
+                        <img src="images/mtschool-logo-21.png" alt="logo">
+                    </a>
+                </div>
+                <nav>
+                    <div class="menuBar">
+                        <ul>
+                            <li><a class="btn" href="#agenda">精彩議程</a></li>
+                            <li><a class="btn" href="#information">課程資訊</a></li>
+                            <li><a class="btn" href="https://school.bnextmedia.com.tw/groupticket/" target="_blank">課程團票</a></li>
+                            <li><a class="btn btn-primary" href="https://eventgo.bnextmedia.com.tw/event/view/e73385u64c247eb3868b?_gl=1*n1pqvt*_ga*MTc0MjkyNDQ2OC4xNjk4MTM3MTIy*_ga_383SSRZR6Z*MTY5ODcxMzU1NC4xMi4xLjE2OTg3MTM3MjUuNy4wLjA.*_ga_LJQ58J2DG7*MTY5ODcxMzU1NC4xMi4xLjE2OTg3MTM3MjUuNTIuMC4w*_ga_G9MHY2DC1W*MTY5ODcxMzU1NC4xMi4xLjE2OTg3MTM3MjUuMC4wLjA.&_ga=2.11895476.1024141850.1698626936-1742924468.1698137122" target="_blank">立即報名</a></li>
+                            <li>
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=https://edm.managertoday.com.tw/data/" class="btn" target="_blank">
+                                    <img src="images/fb.png" alt="fb">
+                                </a>    
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        
+    </header>
+
+    <section class="top-section-main" id="main">
+        <div class="container">
+            <div class="align-center row">
+                <div class="main">
+                    <img src="images/data.svg" class="main-img" alt="高速分析商業數據">
+                    <div class="h4 main-text">
+                        <p>資料整理太繁瑣，佔據過多工作時間？如何獲取需要數據，有效解決商業難題？ <br>打通「分析思維」與「實務操作」，善用AI翻倍效率，並掌握對的數字精準決策！</p>
+                    </div>
+                    <div class="main-date h4">
+                        <span style="font-family: 'Oswald', sans-serif">10/17</span>（二）<i class="fa-solid fa-location-dot"></i>
+                        張榮發基金會國際會議中心 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-hidden time">
+        <div class="container align-center">
+            <div class="row flex">
+                <h5>開課倒數</h5>
+                <form class="flex-countdown">
+                    <div>
+                        <input type="text" name="dd" size="3" class="time-t">
+                        <p>DAYS</p>
+                    </div>
+                    <div>
+                        <input type="text" name="hh" size="3" class="time-t">
+                        <p>HOURS</p>
+                    </div>
+                    <div>
+                        <input type="text" name="mm" size="3" class="time-t">
+                        <p>MINUTES</p>
+                    </div>
+                    <div>
+                        <input type="text" name="ss" size="3" class="time-t">
+                        <p>SECONDS</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section section-hidden class-target">
+        <div class="container">
+            <div class="row">
+                <div class="for-who align-center">
+                    <div class="font-type1">這堂課適合誰？</div>
+                </div>
+                <div class="for-who">
+                    <h3 class="h3">
+                        <i class="fa fa-check"></i>行政營運人員
+                    </h3>
+                    <p>從零上手學會樞紐工具，快速彙總統計資料，提升工作專業度</p>
+                </div>
+                <div class="for-who">
+                    <h3 class="h3">
+                        <i class="fa fa-check"></i>業務銷售人員
+                    </h3>
+                    <p>用數據佐證業績、提供解決方案，成功說服老闆和客戶</p>
+                </div>
+                <div class="for-who">
+                    <h3 class="h3">
+                        <i class="fa fa-check"></i>專業工作者
+                    </h3>
+                    <p>將數據管理工作導入AI協作，簡化資料處理，提升效率</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section section-hidden target-demand">
+        <div class="container">
+            <div class="box align-center">
+                <div class="font-type1">你是不是常常遇到老闆說...</div>
+                <img src="images/sketch.svg" alt="demand">
+            </div>
+            <div class="box box-top-margin align-center">
+                <div class="font-type1">但資料難整理、時間也不夠用？<br>
+                    <span style="color: #ff7900;">從資料整理到視覺化呈現，你都需要ChatGPT高速協作！</span>
+                </div>
+                <img src="images/box-01.png" alt="flow chart">
+            </div>
+        </div>
+    </section>
+    
+    <section class="info-section section-hidden agenda" id="agenda">
+        <div class="container">
+            <div class="unit-title align-center">
+                <div class="font-type1">精彩議程</div>
+            </div>
+            <div class="justify-center row">
+                <div class="agenda-padding">
+                    <table>
+                        <tbody>
+                            <!-- 圖片 -->
+                            <tr>
+                                <th class="agenda-table-left-title">
+                                    <img src="images/part1.svg" alt="">
+                                </th>
+                                <th class="agenda-table-right-title">
+                                    <img src="images/part2.svg" alt="">
+                                </th>
+                            </tr>
+                            <!-- 文字標題 -->
+                            <tr>
+                                <th class="agenda-table-left-title">
+                                    <h6 class="h6" style="color: #fff">強化分析思維與應用，讓數據有效解決商業難題</h6>
+                                </th>
+                                <th class="agenda-table-right-title">
+                                    <h6 class="h6" style="color: #fff">掌握函數與樞紐分析，解決85%的報表需求</h6>
+                                </th>
+                            </tr>
+                            <!-- 課程內容介紹 -->
+                            <tr>
+                                <td class="left-introduce-column">
+                                    <ul class="h4">
+                                        <li>數據應用的基礎思維</li>
+                                        <li>商業數據分析5大流程
+                                            <ul class="h6">
+                                                <li>挖掘商業問題-資料整理-數據分析-資料視覺化-打造故事</li>
+                                            </ul>
+                                        </li>
+                                        <li>資料視覺化與簡報呈現技巧</li>
+                                        <li>ChatGPT的優勢/限制與AI導入資料分析流程之方法</li>
+                                    </ul>
+                                </td>
+                                <td class="right-introduce-column">
+                                    <ul class="h4">
+                                        <li>ChatGPT指令與除錯技巧</li>
+                                        <li>資料整理與數據分析方法
+                                            <ul class="h6">
+                                                <li>基礎功能、函數統計、樞紐分析</li>
+                                            </ul>
+                                        </li>
+                                        <li>常見商用報表操作
+                                            <ul class="h6">
+                                                <li>業務銷售、金融財務、行政統計</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <!-- 主講人介紹 -->
+                            <tr>
+                                <td class="left-introduce-column align-left">
+                                    <div class="speaker">
+                                        <img src="images/s01.jpg" alt="">
+                                        <div class="speaker-info">
+                                            <h3 class="h3">彭其捷</h3>
+                                            <h6 class="h6">數據分析與視覺化專案經理/暢銷書作家</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="right-introduce-column align-left">
+                                    <div class="speaker">
+                                        <img src="images/s02.jpg" alt="">
+                                        <div class="speaker-info">
+                                            <h3 class="h3">張佑成</h3>
+                                            <h6 class="h6">資料檢索與Excel自動化專家</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section section-hidden information" id="information">
+        <div class="container">
+            <div class="unit-title align-center">
+                <div class="font-type1" style="color: #232323;">課程資訊</div>
+            </div>
+            <div class="info-flex">
+                <div class="row info-box1-basis">
+                    <div class="flex-100">
+                        <h3 class="h3">時間：2023/10/17（二）<small>09:30-16:30</small>
+                        </h3>
+                        <h3 class="h3">地點：張榮發基金會國際會議中心<small>（台北市中正區中山南路11號）</small>
+                        </h3>
+                        <h3 class="h3">票價費用：</h3>
+                    </div>
+                    <div class="flex-50 align-center">
+                        <div class="h6 price-btn btn1-background">
+                            <a href="https://eventgo.bnextmedia.com.tw/event/view/e73385u64c247eb3868b?_gl=1*vzlac6*_ga*MTc0MjkyNDQ2OC4xNjk4MTM3MTIy*_ga_383SSRZR6Z*MTY5ODczNjk0Ny4xNi4wLjE2OTg3MzY5NDcuNjAuMC4w*_ga_LJQ58J2DG7*MTY5ODczNjk0Ny4xNi4wLjE2OTg3MzY5NDcuNjAuMC4w*_ga_G9MHY2DC1W*MTY5ODczNjk0Ny4xNi4wLjE2OTg3MzY5NDcuMC4wLjA.&_ga=2.37725856.1024141850.1698626936-1742924468.1698137122" target="_blank">好評延長！10/13前單人早鳥<br>NT.<span class="span-price">4,320</span>/人</a>
+                        </div>
+                    </div>
+                    <div class="flex-50 align-center">
+                        <div class="h6 price-btn btn2-background">
+                            <a href="https://eventgo.bnextmedia.com.tw/event/view/e73385u64c247eb3868b?_gl=1*1j30zvp*_ga*MTc0MjkyNDQ2OC4xNjk4MTM3MTIy*_ga_383SSRZR6Z*MTY5ODc0MjIyMC4xNy4xLjE2OTg3NDIyMjMuNTcuMC4w*_ga_LJQ58J2DG7*MTY5ODc0MjIyMC4xNy4xLjE2OTg3NDIyMjQuNTYuMC4w*_ga_G9MHY2DC1W*MTY5ODc0MjIyMC4xNy4xLjE2OTg3NDIyMjQuMC4wLjA.&_ga=2.40715938.1024141850.1698626936-1742924468.1698137122" target="_blank">三人以上團票<br>NT.<span class="span-price">4,000</span>/人</a>
+                        </div>
+                    </div>
+                    <div class="flex-50 align-center">
+                        <div class="h6 price-btn btn3-background">
+                            <a href="https://eventgo.bnextmedia.com.tw/event/view/e73385u64c247eb3868b?_gl=1*1j30zvp*_ga*MTc0MjkyNDQ2OC4xNjk4MTM3MTIy*_ga_383SSRZR6Z*MTY5ODc0MjIyMC4xNy4xLjE2OTg3NDIyMjMuNTcuMC4w*_ga_LJQ58J2DG7*MTY5ODc0MjIyMC4xNy4xLjE2OTg3NDIyMjQuNTYuMC4w*_ga_G9MHY2DC1W*MTY5ODc0MjIyMC4xNy4xLjE2OTg3NDIyMjQuMC4wLjA.&_ga=2.40715938.1024141850.1698626936-1742924468.1698137122" target="_blank">一般票<br>NT.<span class="span-price">4,980</span>/人</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 圖片 -->
+                <div class="align-center info-box2-basis">
+                    <a href="https://eventgo.bnextmedia.com.tw/event/view/e73385u64c247eb3868b?_gl=1*nihj3a*_ga*MTc0MjkyNDQ2OC4xNjk4MTM3MTIy*_ga_383SSRZR6Z*MTY5ODczNjk0Ny4xNi4wLjE2OTg3MzY5NDcuNjAuMC4w*_ga_LJQ58J2DG7*MTY5ODczNjk0Ny4xNi4wLjE2OTg3MzY5NDcuNjAuMC4w*_ga_G9MHY2DC1W*MTY5ODczNjk0Ny4xNi4wLjE2OTg3MzY5NDcuMC4wLjA.&_ga=2.50758441.1024141850.1698626936-1742924468.1698137122" target="_blank">
+                        <img src="images/sp_1-01.png" alt="">
+                    </a>
+                </div>
+            </div>
+            <!-- 備註&聯絡資訊 -->
+            <p>※以上課程皆附贈《經理人月刊》雜誌6期（2023/11月號起送）</p>
+            <p>課程洽詢 (02)8773-9808#329 徐小姐
+                <a href="mailto:peiyu.hsu@bnext.com.tw" target="_blank" style="color: #ff7900;">peiyu.hsu@bnext.com.tw</a>
+            </p>
+            <p>客服專線：02-8771-6326　服務時間：週一到週五9:30~12:00；13:30~17:00</p>
+            <p>主辦單位保留活動及課程大綱異動之權利，更新資訊以活動網站內容為主。
+            <br><span style="color: #ff7900;">※注意事項：上課請自備「Windows系統筆電」。Mac電腦操作介面將與示範有差異，請避免使用以完整學習。</span></p>
+        </div>
+    </section>
+
+    <section class="info-section section-hidden banner">
+        <div class="container">
+            <div class="row">
+                <div class="flex-100">
+                    <a href="https://school.bnextmedia.com.tw/groupticket/" target="_blank">
+                        <img src="images/banner.gif" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="info-section section-hidden learning-article">
+        <div class="container">
+            <div class="align-center unit-title">
+                <div class="font-type1">相關學習文章</div>
+            </div>
+            <div class="row">
+                <div class="flex-33">
+                    <a href="https://www.managertoday.com.tw/articles/view/58356?_gl=1*258dq3*_ga*MTg5MDY2OTA1MS4xNjk4MTY4MzI4*_ga_LJQ58J2DG7*MTY5ODc2NzI4OS4xNy4xLjE2OTg3NjgwMzQuNjAuMC4w&amp;_ga=2.14248375.102771631.1698486234-1890669051.1698168328" target="_blank">
+                        <div class="article-pic" style="background-image: url(https://bnextmedia.s3.hicloud.net.tw/image/album/2019-09/img-1569310651-59915@900.jpg);">
+                        </div>
+                    <h6>別再一格格貼上！幫 Excel 報表的數值加單位，全部只要4步驟</h6>
+                    </a>
+                </div>
+                <div class="flex-33">
+                    <a href="https://www.managertoday.com.tw/articles/view/62266" target="_blank">
+                        <div class="article-pic" style="background-image: url(https://bnextmedia.s3.hicloud.net.tw/image/album/2021-01/img-1610094499-88643@900.jpg);">
+                        </div>
+                    <h6>如何用 Excel 分析 Google 問卷複選題？3 步驟快速整理複選資料</h6>
+                    </a>
+                </div>
+                <div class="flex-33">
+                    <a href="https://www.managertoday.com.tw/articles/view/51760" target="_blank">
+                        <div class="article-pic" style="background-image: url(https://3.bp.blogspot.com/-IlU0SNPVWpg/VnaXpaqsFQI/AAAAAAABpFg/4s_0Oiq_RNA/s1280/%25E6%25A8%259E%25E7%25B4%2590%25E5%2588%2586%25E6%259E%2590fb-01.png);">
+                        </div>
+                    <h6>Excel高手最愛用！3步驟學會超強大「樞紐分析」，資料處理再也不愁</h6>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="info-section section-hidden question">
+        <div class="container">
+            <div class="align-center unit-title">
+                <div class="font-type1">常見問題</div>
+            </div>
+            <div class="row">
+                <div class="flex-100">
+                    <ul>
+                        <li>
+                            <h3>Q. 我有購買課程團票方案，請問是否可以折抵於此課程？</h3>
+                            <p>可以的，提醒您，一人一堂課使用乙張票，恕不退還差價。</p>
+                        </li>
+                        <li>
+                            <h3>Q. 公司申請報帳有時間限制，付款後大概多久可以收到發票呢？</h3>
+                            <p>本公司採用電子發票，發票將在您付款完成後的兩週內由「綠界科技 ECPay」寄送電子發票開立通知至您報名時填寫的發票收件人email。
+                            </p>
+                        </li>
+                        <li>
+                            <h3>Q. 付款後若臨時有行程更動，可以退費嗎？</h3>
+                            <p>若無法出席課程，請於課前來電或來信告知，可為您保留名額半年，半年內若對其他課程有興趣可轉移至該堂課 (金額不夠須補差額，若低於保留金額恕不另退費，限轉移乙次)；如需申請退款請於課程日前 8 日辦理，我們將收取課程的一成費用以及銀行轉帳之手續費，逾期恕不受理。例：8/5 課程申請退票日於 7/29 23:59 截止。</p>
+                        </li>
+                        <li>
+                            <h3>Q. 我們公司同事超過2位一起報名，可以分不同月份接續下去收件嗎？</h3>
+                            <p>2人以上報名，我們會自動做雜誌接續處理 ，統一給訂購人收件，同時發票開立一張，如果有不同需求再來電告知，謝謝。</p>
+                        </li>
+                        <li>
+                            <h3>Q. 公司請款流程會超過三天，線上報名會逾期，該怎麼辦？</h3>
+                            <p>請填寫「<a href="https://www.surveycake.com/s/wGv4M" target="_blank">課程登記</a>」表單，並於付款後填寫「<a href="https://www.surveycake.com/s/Ywaxb" target="_blank">匯款完成</a>」表單，即算報名成功。</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="info-section align-center footer">
+        <a href="#main" class="go-to-top">
+            <i class="fa-solid fa-angle-up"></i>
+        </a>
+        <div class="container">
+            <ul>
+                <li>Bnext Media 媒體群</li>&nbsp;|
+                <li>
+                    <a href="https://www.bnext.com.tw/?_ga=2.207251731.102771631.1698486234-1890669051.1698168328&_gl=1*1xvzc5w*_ga*MTg5MDY2OTA1MS4xNjk4MTY4MzI4*_ga_LJQ58J2DG7*MTY5ODg1MTE0MC4yMS4xLjE2OTg4NTI0NDIuNTEuMC4w" target="_blank">數位時代</a>
+                </li>
+                <li>
+                    <a href="https://www.managertoday.com.tw/?_ga=2.5858739.102771631.1698486234-1890669051.1698168328&_gl=1*141lgwc*_ga*MTg5MDY2OTA1MS4xNjk4MTY4MzI4*_ga_LJQ58J2DG7*MTY5ODg1MTE0MC4yMS4xLjE2OTg4NTI0NDIuNTEuMC4w" target="_blank">經理人</a>
+                </li>
+                <li>
+                    <a href="https://www.shoppingdesign.com.tw/?_gl=1*141lgwc*_ga*MTg5MDY2OTA1MS4xNjk4MTY4MzI4*_ga_LJQ58J2DG7*MTY5ODg1MTE0MC4yMS4xLjE2OTg4NTI0NDIuNTEuMC4w" target="_blank">Shopping Design</a>
+                </li>
+                <li>
+                    <a href="https://meet.bnext.com.tw/?_gl=1*1vtcbo6*_ga*MTg5MDY2OTA1MS4xNjk4MTY4MzI4*_ga_LJQ58J2DG7*MTY5ODg1MTE0MC4yMS4xLjE2OTg4NTI0NDIuNTEuMC4w" target="_blank">創業小聚</a>
+                </li>
+                <li>
+                    <a href="https://fc.bnext.com.tw/?_gl=1*1vtcbo6*_ga*MTg5MDY2OTA1MS4xNjk4MTY4MzI4*_ga_LJQ58J2DG7*MTY5ODg1MTE0MC4yMS4xLjE2OTg4NTI0NDIuNTEuMC4w" target="_blank">未來商務</a>
+                </li>
+            </ul>
+            <p>© 2023 Business Next Media Corp. All Rights Reserved. 106 台北市大安區光復南路102號9樓</p>
+        </div>
+    </footer>
+</body>
+</html>

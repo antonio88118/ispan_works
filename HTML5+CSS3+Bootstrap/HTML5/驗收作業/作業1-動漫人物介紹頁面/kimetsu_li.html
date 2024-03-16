@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .wrap{
+            background-color: rgb(190, 190, 190);
+            width: 1200px;
+            padding: 20px 0px;
+            margin: auto;
+        }
+        /* 用float做文繞圖 */
+        header{
+            background-color: rgb(255, 255, 255);
+            /* w: 1200 - 15*2 */
+            width: 1170px;
+            /* h: img(236.55+15*2) + h1 62 = 328.55 */
+            height: 330px;
+            margin: auto;
+        }
+        h1,h2 {
+            text-align: center;
+            background-color: rgb(255, 255, 255);
+            padding: 10px;
+            /* total height: 
+                h1=42+10*2=62 ； h2=32+10*2=52 */
+        }
+        img{
+            float: left;
+            /* 在li容器內，應拉開"外邊界"距離 */
+            margin: 15px;
+        }
+
+        p{
+            padding: 15px;
+            /* 左右對齊 */
+            text-align: justify;
+            /* 行高 */
+            line-height: 20px;
+        }
+
+        section{
+            background-color: white;
+            width: 1170px;
+            /* h: img(154.38+15*2)*4 + h2 52 = 789.52 */
+            height: 789.52px;
+            margin: auto;
+            
+        }
+        /* 設定名字外觀 */
+        section span{
+            color: #006eff;
+            font-weight: bolder;
+        }
+        section img{
+            width: 275px;
+        }
+
+        /* list做法 */
+        section li{
+            background-color: white;
+            /* 使圖片和清單浮到同一平面/區塊 */
+            float: left;
+            /* 清除項目符號 */
+            list-style-type: none;
+        }
+        section li:hover{
+            background-color: rgb(176, 237, 255);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <h1>鬼滅之刃</h1>
+            <div>
+                <img src="images/kimetsu/50264978082_99d33410fd_c.jpg" alt="main_picture" width="380px">
+                <p>
+                《鬼滅之刃》（日語：鬼滅の刃），簡稱《鬼滅》，是日本漫畫家吾峠呼世晴所創作的奇幻漫畫作品，描述主角炭治郎為了尋求讓被變成鬼的妹妹復原的方法，踏上斬鬼之旅的和風刀劍奇譚[1]。於2016年2月15日至2020年5月18日在《週刊少年Jump》連載[2]，全205話。漫畫改編電視動畫第一季「竈門炭治郎 立志篇」於2019年4月至9月播放，並於2020年10月16日上映續集電影《鬼滅之刃劇場版 無限列車篇》[3]。動畫第二季「鬼滅之刃 遊郭篇」預定於2021年播放[4]。
+                該漫畫系列在Oricon公信榜的統計中為2020年日本國內最暢銷漫畫，年銷量超過8000萬冊（僅有2020年為最暢銷）[5]。截至2021年2月，漫畫的累積發行量（含電子版）已達1.5億冊[6]。
+                </p>
+            </div>
+        </header>
+        
+        <section>
+            <h2>人物介紹</h2>
+            <ul>
+                <li>
+                    <img src="images/kimetsu/Tanjirou.jpg" alt="Tanjirou">
+                    <p>
+                        <span>竈門炭治郎</span>（竈門 炭治郎／かまど たんじろう Kamado Tanjirou ?）配音：花江夏樹（日本）；錢欣郁（台灣）；星潮（中國大陸）；張振熙（香港）；Zach Aguilar（美國）一名善良的少年，具有敏銳的嗅覺，能在與鬼的戰鬥中聞出破綻的氣味。為了將變成鬼的妹妹變回人類、並為死去的家人報仇，加入了專門狩獵惡鬼的組織「鬼殺隊」。
+                    </p>
+                </li>
+                <li>
+                    <img src="images/kimetsu/Nezuko.jpg" alt="Nezuko">
+                    <p>
+                        <span>竈門禰豆子</span>（竈門 禰豆子／かまど ねずこ Kamado Nezuko ?）配音：鬼頭明里（日本）；連婉鈞（台灣）；沈念如（中國大陸）；楊婉潼（香港）；Abby Trott（美國）炭治郎的妹妹，在與其他家人一同被鬼襲擊時，因為傷口沾染鬼舞辻無慘的血液，於瀕死之際被變化成鬼，總是在危難時保護炭治郎，並與其他人行動。
+                    </p>    
+                </li>
+                <li>
+                    <img src="images/kimetsu/Zenitsu.jpg" alt="Zenitsu">
+                    <p>
+                        <span>我妻善逸</span>（我妻 善逸／あがつま ぜんいつ Agatsuma Zenitsu ?）配音：下野紘（日本）；江志倫（台灣）；李蘭陵（中國大陸）；杜景煜（香港）；Aleks Le（美國）自己極度沒有自信的少年，常常說出自嘲的發言。擁有極佳聽覺，能分別出鬼和人類的聲音。極度恐懼時會陷入沉睡，並激發出強勁的實力。
+                    </p>    
+                </li>
+                <li>
+                    <img src="images/kimetsu/Inosuke.jpg" alt="Inosuke">
+                    <p>
+                        <span>嘴平伊之助</span>（嘴平 伊之助／はしびら いのすけ Hashibira Inosuke ?）配音：松岡禎丞（日本）；陳彥鈞（台灣）；皇貞季（中國大陸）；陳啟織（香港）；Bryce Papenbrook（美國）
+                        經常戴著野豬頭套，頭套下是個美少年，性格極為好戰。因為在山林中成長而有著銳利的觸覺，能精確捕捉到尚未進入視野的對象之所在位置。
+                    </p>    
+                </li>
+            </ul>
+        </section>
+    </div>
+</body>
+</html>
