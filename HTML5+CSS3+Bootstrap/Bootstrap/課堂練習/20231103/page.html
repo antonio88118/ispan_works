@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+        /* header, nav, main, aside, footer{
+            border: 1px solid #ccc;
+        } */
+        .object-fit-cover{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .user-avatar{
+            width: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            header
+        </header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#"></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">景點</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Dropdown
+                    </a>    
+                  </li>  
+                </ul>
+                <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+        </nav>
+        <div class="row">
+            <main class="col-md-9">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">首頁</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">桃園市</li>
+                    </ol>
+                </nav>
+                <article>
+                    <h1>桃園市</h1>
+                    <dl class="row">
+                        <dt class="col-sm-3">面積</dt>
+                        <dd class="col-sm-9">1,220.9540 平方公里</dd>
+                        <dt class="col-sm-3">人口</dt>
+                        <dd class="col-sm-9">2,311,870人</dd>
+                        <dt class="col-sm-3">網站</dt>
+                        <dd class="col-sm-9"><a target="_blank" href="https://www.tycg.gov.tw/">https://www.tycg.gov.tw/</a></dd>
+                    </dl>
+                    <figure class="figure">
+                        <img src="/images/library.jpg" class="figure-img img-fluid rounded" alt="...">
+                        <figcaption class="figure-caption text-center">桃園市總圖書館</figcaption>
+                    </figure>
+                    <p>桃園市，通稱桃園（排灣語：Tuying；臺灣話：Thô-hn̂g；客家話：toˇ ienˇ；閩東語：桃園，平話字：Tò̤-huòng；莆仙語：Tó-hói），簡稱「桃」，為中華民國直轄市，臺灣六都之一，位於臺灣西北部。[4][5][6][7]在部分商業投資中，也被認為是大台北地區的組成之一[8][9]。桃園市全市面積1,220平方公里[10][11]。其西面臺灣海峽、東臨宜蘭縣、北接新北市、南與新竹縣為界[12]，全市設籍人口約230萬人，為中華民國境內第五大直轄市。</p>
+                    <p>桃園市的地名源自於桃園區，其與中壢區並列為桃園雙核心都市，以桃園區為核心的地區稱為北桃園、以中壢區為核心的地區則稱為南桃園[13]。</p>
+                    <p>由於毗鄰臺北都會區及多項重大公共建設、許多投資皆位於桃園，再加上擁有臺灣規模最大的國際機場，使得桃園市近年來發展迅速，吸引大量外縣市人口移入、形成桃園中壢都會區。桃園呈現為閩、客、外省及原住民族等多族群融合之貌，桃園為台灣工業重鎮，也因為工業發達，既是臺灣引入來自東南亞外籍勞工人數最多的直轄市，同時也是越南裔新住民最多的城市[14]。</p>
+                </article>
+                <h2>留言</h2>
+                <ul class="list-unstyled">
+                    <li class="d-flex">
+                        <!-- 文字區塊設定flex-grow，會被分配到所有剩餘空間，為避免內容太多擠壓圖片，須設定圖片flex-shrink-0固定大小 -->
+                        <figure class="user-avatar ratio ratio-1x1 bg-dark rounded-circle overflow-hidden flex-shrink-0"><img src="/images/batman.jpg"  class="object-fit-cover"></figure>
+                        <div class="flex-grow-1 ms-3">Hello, Taoyuan.Hello, Taoyuan.Hello, Taoyuan.Hello, Taoyuan.Hello, Taoyuan.Hello, Taoyuan.Hello, Taoyuan.Hello, Taoyuan.Hello, Taoyuan.</div>
+                    </li>
+                </ul>
+            </main>
+            <aside class="col-md-3">
+                <h2>景點</h2>
+                <ul class="list-unstyled">
+                    <li class="py-2 border-bottom">
+                        桃園市總圖書館
+                    </li>
+                    <li class="py-2 border-bottom">
+                        大溪慈湖
+                    </li>
+                </ul>
+            </aside>
+        </div>
+    </div>    
+        <footer class="py-4 text-center text-bg-secondary">
+            footer
+        </footer>
+      
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>

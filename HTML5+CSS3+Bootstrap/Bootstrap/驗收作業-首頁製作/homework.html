@@ -1,0 +1,771 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>NinjaMail</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Raleway:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+    :root{
+        --main-color: #4BA87D;
+        --main-hover-color: #157347;
+    }
+    .btn-success {
+        --bs-btn-bg: var(--main-color);
+        --bs-btn-border-color: var(--main-color);
+    }
+    .border-success {
+    --bs-border-opacity: 1;
+    border-color: rgba(76, 169, 126,var(--bs-border-opacity))!important;
+    }
+    body{
+        font-family: 'Raleway', serif;
+        background-image: url(images/BG_stuff.png);
+        background-position-y: 96px;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        @media screen and (max-width:576px){
+            background-image: url(images/BG_stuff_mobile.png);
+            background-position-y: 350px;
+            
+        }
+    }
+    a{
+        text-decoration: none;
+        color: #000;
+    }
+    .object-fit-cover{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .title-font-family{
+        font-family: 'Playfair Display', serif;
+    }
+    .flex-equal{
+        flex: 1 1 0;
+    }
+    /* ---------------------------------------------------- */
+    .logo{
+        color: #000;
+        font-size: 35px;
+        font-weight: 900;
+        line-height: 41px;
+        & img{
+            max-width: 129px;
+            margin-right: -20px;
+        }
+        @media screen and (max-width:576px){
+            font-size: 22px;
+            line-height: 26px;
+            & img{
+            max-width: 84px;
+            margin-inline: -15px;
+            }
+        }
+    }
+    .nav-btn-moblie button{
+        font-size: 11px;
+        line-height: 13px;
+        letter-spacing: 0.825px;
+    }
+    .nav-li-flex{
+        /* navbar項目等寬 */
+        flex-basis: 25%;
+        font-weight: 800;
+        transition: .15s;
+        & a:hover{
+            border-bottom: 5px solid var(--main-hover-color) !important;
+            color: #2b2b2bb7 !important;
+        }
+    }
+    .nav-letter-spacing{
+        letter-spacing: 1.275px;
+    }
+     /* ---------------------------------------------------- */
+     main{
+        margin-top: 109px;
+        margin-bottom: 345px;
+        margin-inline: 104px;
+        & span{
+            font-size: 59px;
+            line-height: 71px;
+            margin-bottom: 23px;
+        }
+        & p{
+            font-size: 19px;
+            line-height: 26px;
+            font-weight: 500;
+            width: 43%;
+        }
+        @media screen and (max-width:576px){
+            margin: 0;
+            margin-bottom: 40px;
+            & span{
+                font-size: 36px;
+                line-height: 46px;
+                margin-bottom: 0;
+            }
+            & p{
+                font-size: 14px;
+                line-height: 16px;
+                width: 100%;
+            }
+        }
+     }
+    .hero-img{
+        z-index: -1;
+        position: absolute;
+        top: 0;
+        right: 0;
+        @media screen and (max-width:576px){
+            position: absolute;
+            top: 51px;
+        }
+    }
+    .hero-img-mobile{
+        position: relative;
+        z-index: -1;
+        top: -82px;
+    }
+    .hero-position{
+        @media screen and (max-width:576px){
+            margin-top: -66px;
+        }
+    }
+    .hero-btn-area{
+        width: 445px;
+        @media screen and (max-width:576px){
+            width: 100%;
+        }
+    }
+    .hero-btn{
+        font-size: 21px;
+        font-weight: 800;
+        letter-spacing: 1.05px;
+        line-height: 25px;
+        @media screen and (max-width:576px){
+            font-size: 13px;
+            letter-spacing: 0.65px;
+            line-height: 15px;
+        }
+    }
+    .demo-btn{
+        background: #fff;
+        color: var(--main-color);
+        border: 3px solid var(--main-color);
+        transition: .15s;
+        &:hover{
+            color: var(--main-hover-color);
+            border: 3px solid var(--main-hover-color);
+        }
+    }
+    /* ---------------------------------------------------- */
+    .video-sec{
+        margin-bottom: 98px;
+        @media screen and (max-width:576px){
+            margin-bottom: 33px;
+        }
+    }
+    .video-img img{
+        max-width: 944px;
+    }
+    .video-text{
+        margin-top: -32px;
+        margin-bottom: 61px;
+        text-wrap: nowrap;
+        font-size: 60px;
+        line-height: 80px;
+        @media screen and (max-width:576px){
+            font-size: 22px;
+            line-height: 29px;
+            margin-top: 16px;
+            margin-bottom: 20px;
+        }
+     }
+    .learn-btn{
+        background: #fff;
+        color: var(--main-color);
+        border: 1px solid transparent;
+        font-size: 21px;
+        font-weight: 800;
+        letter-spacing: 1.05px;
+        transition: .15s;
+        &:hover{
+            color: var(--main-hover-color);
+        }
+        @media screen and (max-width:576px){
+            font-size: 6px;
+            line-height: 7px;
+            letter-spacing: 0.3px;
+        }
+    }
+    /* ---------------------------------------------------- */
+    .introduce-sec{
+        height: 533px;
+        margin-bottom: 130px;
+        @media screen and (max-width:576px){
+            margin-bottom: 47px;
+            height: 823px;
+        }
+    }
+    .card-size{
+        max-width: 320px;
+        padding-bottom: 13px;
+        & img{
+            max-height: 253px;
+        }
+        @media screen and (max-width:576px){
+            max-width: 209px;
+            padding-bottom: 0;
+            & img{
+                max-height: 155px;
+            }
+        }
+    }
+    .card-text{
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 26px;
+        padding:8px 14px 0px;
+        @media screen and (max-width:576px){
+            padding: 0;
+            font-size: 12px;
+            line-height: 16px;
+        }
+    }
+    .card-link{
+        color: var(--main-color);
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 19px;
+        padding-left: 14px;
+        & i{
+            font-size: 13px;
+        }
+        &:hover{
+            color: var(--main-hover-color);
+        }
+        @media screen and (max-width:576px){
+            padding: 0;
+            font-size: 12px;
+            line-height: 14px;
+            & i{
+                font-size: 10px;
+            }
+        }
+    }
+    .introduce-title-text{
+        max-width: 365px;
+        font-size: 44px;
+        line-height: 48px;
+        @media screen and (max-width:576px){
+            max-width: 232px;
+            font-size: 28px;
+            line-height: 31px;
+            
+        }
+    }
+    .introduce-content-text{
+        max-width: 322px;
+        font-size: 19px;
+        font-weight: 500;
+        line-height: 26px;
+        @media screen and (max-width:576px){
+            max-width: 203px;
+            font-size: 12px;
+            line-height: 16px;
+        }
+    }
+    /* ---------------------------------------------------- */
+    .user-sec{
+        margin-bottom: 75px;
+        @media screen and (max-width:576px){
+            margin-bottom: 54px;
+        }
+    }
+    .user-img-box{
+        width: 342px;
+        height: 239px;
+        @media screen and (max-width:576px){
+            width: 223px;
+            height: 157px;
+        }
+    }
+    .user-img1{
+        background: linear-gradient(0deg, #000 -32.5%, rgba(84, 84, 84, 0.00) 67.78%),url(images/user_frankie.jpg);
+        background-size: cover;
+    }
+    .user-img2{
+        background: linear-gradient(0deg, #000 -32.5%, rgba(84, 84, 84, 0.00) 67.78%),url(images/user_camile.jpg);
+        background-size: cover; 
+    }
+    .user-img3{
+        background: linear-gradient(0deg, #000 -32.5%, rgba(84, 84, 84, 0.00) 67.78%),url(images/user_elayne.jpg);
+        background-size: cover;
+    }
+    .user-img-text{
+        color: #fff;
+        bottom: 3px;
+        left: 27px;
+        & span{
+            font-size: 34px;
+            font-weight: 800;
+            line-height: 40px;
+            margin-bottom: 5px;
+        }
+        & p{
+            font-size: 19px;
+            font-weight: 600;
+            line-height: 22px;
+        }
+        @media screen and (max-width:576px){
+            bottom: 0;
+            left: 17px;
+            & span{
+                font-size: 22px;
+                font-weight: 800;
+                line-height: 26px;
+                margin-bottom: 4px;
+            }
+            & p{
+                font-size: 12px;
+                font-weight: 600;
+                line-height: 14px;
+                margin-bottom: 13px;
+            }
+        }
+    }
+    .user-text{
+        max-width: 904px;
+        margin-block: 40px 45px;
+        text-align: center;
+        font-size: 44px;
+        line-height: 48px;
+        @media screen and (max-width:576px){
+            max-width: 239px;
+            margin-top: 59px;
+            margin-bottom: 1rem;
+            font-size: 26px;
+            line-height: 36px;
+        }
+    }
+    .user-input-area{
+        max-width: 668px;
+        & p{
+            color: var(--main-color);
+            font-size: 21px;
+            font-weight: 400;
+            line-height: 25px;
+            letter-spacing: 1.05px;
+        }
+        & span{
+            color: var(--main-color);
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 14px;
+            letter-spacing: 0.6px;
+            margin-block: 6px 7px;
+        }
+        & button{
+            font-size: 21px;
+            font-weight: 800;
+            line-height: 25px;
+            letter-spacing: 1.05px;
+        }
+        @media screen and (max-width:576px){
+            max-width: 223px;
+            & input{
+                max-height: 42px;
+            }
+            & label{
+                font-size: 13px;
+                font-weight: 400;
+                line-height: 7px;
+                letter-spacing: 0.65px;
+            }
+            & button{
+                font-size: 13px;
+                font-weight: 800;
+                line-height: 15px;
+                letter-spacing: 0.65px;
+                padding-block: 13px 14px;
+                padding-inline: 22px;
+            }
+        }
+    }
+    /* ---------------------------------------------------- */
+    .brands-sec{
+        margin-bottom: 146px;
+        @media screen and (max-width:576px){
+            margin-bottom: 58px;
+        }
+    }
+    .brands-text{
+        margin-bottom: 67px;
+        font-size: 44px;
+        line-height: 48px;
+        @media screen and (max-width:576px){
+            margin-bottom: 25px;
+            font-size: 26px;
+            line-height: 36px;
+        }
+    }
+    .brands-img-area{
+        margin: auto;
+        max-width: 926px;
+        @media screen and (max-width:576px){
+            max-width: 237px;
+        }
+    }
+    .brands-img-box{
+        max-height: 48px;
+        object-fit: contain;
+        flex-shrink: 1;
+        @media screen and (max-width:576px){
+            max-height: 29px;
+            flex-basis: auto;
+        }
+    }
+    /* ---------------------------------------------------- */
+    .start-sec{
+        margin-bottom: 73px;
+        @media screen and (max-width:576px){
+            margin-bottom: 50px;
+        }
+    }
+    .start-box{
+        height: 366px;
+        @media screen and (max-width:576px){
+            height: 290px;
+        }
+    }
+    .start-text{
+        text-align: center;
+        font-size: 60px;
+        line-height: 80px;
+        padding-bottom: 28px;
+        @media screen and (max-width:576px){
+            font-size: 42px;
+            line-height: 48px;
+            padding-bottom: 34px;
+        }
+    }
+    .pick-btn{
+        background: #fff;
+        color: var(--main-color);
+        border: 1px solid transparent;
+        font-size: 21px;
+        font-weight: 800;
+        letter-spacing: 1.05px;
+        transition: .15s;
+        &:hover{
+            color: var(--main-hover-color);
+        }
+        @media screen and (max-width:576px){
+            font-size: 13px;
+            line-height: 15px;
+            letter-spacing: 0.65px;
+        }
+    }
+    /* ---------------------------------------------------- */
+    .footer-padding-inline{
+        padding-inline: 108px;
+        @media screen and (max-width:576px){
+            padding-inline: 12px;
+        }
+    }
+    footer .nav-link, li{
+        color: #000;
+        font-size: 19px;
+        font-weight: 700;
+        line-height: 22px;
+        & a:hover{
+            color: #2b2b2bb7;
+        }
+        @media screen and (max-width:576px){
+            font-size: 12px;
+            line-height: 14px;
+        }
+    }
+    .footer-logo{
+        font-size: 26px;
+        font-weight: 900;
+        line-height: 31px;
+        & img{
+            max-width: 92px;
+            margin-right: -1rem;
+        }
+        &:hover{
+            color: #000;
+        }
+        @media screen and (max-width:576px){
+            font-size: 16px;
+            line-height: 19px;
+            margin-left: -16px;
+            & img{
+                max-width: 60px;
+                margin-right: -10px;
+            }
+        }
+    }
+    .footer-copyright{
+        & p,a{
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 18px;
+        }
+        @media screen and (max-width:576px){
+            & p{
+                font-size: 9px;
+                line-height: 19px;
+                max-width: 186px;
+                margin-bottom: 29px;
+            }
+            & a{
+                font-size: 9px;
+                line-height: 11px;
+                padding-bottom: 9px;
+            }
+            & ul{
+                max-width: 84px;
+            }
+        }
+    }
+</style>
+</head>
+
+<body>
+    <header class="pt-1 pb-2">
+          <nav class="navbar navbar-expand-md">
+            <div class="container-fluid mx-0 mx-sm-5">
+                <a class="navbar-brand logo" href="#">
+                    <img src="images/ninjaMail_logo.svg" alt="Bootstrap">NinjaMail
+                </a>
+                <div class="collapse navbar-collapse justify-content-end align-items-end nav nav-letter-spacing" id="navbarNav">
+                    <!-- 為了讓navbar等寬，設定容器寬度50% -->
+                    <ul class="navbar-nav text-center align-items-end" style="width: 560px;">
+                        <li class="nav-item mx-2 nav-li-flex">
+                            <!-- <a>內的文字要用link-color指定顏色 -->
+                            <a class="nav-link link-dark border-bottom border-5 border-success pb-1" href="#">FEATURES</a>
+                        </li>
+                        <li class="nav-item mx-2 nav-li-flex">
+                            <a class="nav-link link-dark border-bottom border-5 border-success pb-1" href="#">PRICING</a>
+                        </li>
+                        <li class="nav-item mx-2 nav-li-flex">
+                            <a class="nav-link link-dark border-bottom border-5 border-success pb-1" href="#">SERVICES</a>
+                        </li>
+                        <li class="nav-item mx-2 nav-li-flex">
+                            <a class="nav-link link-dark border-bottom border-5 border-success pb-1" href="#">PARTNERS</a>
+                        </li>
+                    </ul>
+                    <div class="ms-3">
+                        <button type="button" class="btn btn-success fw-bolder rounded-0 px-4 py-2 text-nowrap nav-letter-spacing">SIGN UP FREE</button>
+                    </div>
+                </div>
+                <div class="d-sm-none nav-letter-spacing nav-btn-moblie">
+                    <button type="button" class="btn btn-success fw-bolder rounded-0 px-2 py-2">SIGN UP FREE</button>
+                </div>
+            </div>
+          </nav>    
+    </header>
+    <div class="container">
+        <main class="position-relative">
+            <div class="hero-img shadow d-sm-block d-none">
+                <img class="w-100" src="images/hero.png" alt="">
+            </div>
+            <div class="position-relative">
+                <div class="text-break row col-sm-6">
+                    <span class="title-font-family d-block">Create Stunning Email Campaigns</span>
+                </div>
+                <div class="hero-img-mobile shadow d-sm-none d-block">
+                    <img class="w-100" src="images/hero.png" alt="">
+                </div>
+                <div class="hero-position">
+                    <div class="text-break fw-medium pb-sm-3">
+                        <p class="fw-medium d-block">Create and launch email campaigns that captivate your customers in just a few clicks.</p>
+                    </div>
+                    <div class="hero-btn-area d-flex justify-content-start">
+                        <button type="button" class="btn btn-success rounded-0 p-sm-3 py-2 me-sm-5 me-2 text-nowrap hero-btn flex-equal">TRY NOW</button>
+                        <button type="button" class="p-sm-3 text-nowrap hero-btn demo-btn flex-equal">GET A DEMO</button>
+                    </div>
+                </div>
+                
+            </div>    
+        </main>
+
+        <section class="video-sec">
+            <div class="video-img d-flex justify-content-center position-relative">
+                <div class="position-relative">
+                    <img class="w-100" src="images/video.jpg" alt="">
+                </div>
+                <div class="position-absolute top-50 start-50 translate-middle d-flex flex-wrap justify-content-center">
+                    <p class="video-text title-font-family text-light">Reach More Customers</p>
+                    <button type="button" class="px-sm-4 px-2 py-sm-3 py-2 text-nowrap learn-btn">LEARN HOW</button>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="introduce-sec d-flex justify-content-center align-items-center flex-sm-row flex-column">
+                <div class="card card-size rounded-0 border-0 shadow mx-sm-4 align-self-start">
+                    <img src="images/intro_img1.jpg" class="card-img-top rounded-0 object-fit-cover" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Launch campaigns but also find new customers. Our unique platform handles campaigns from start to end.</p>
+                        <a href="#" class="card-link">Learn More <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="card card-size rounded-0 border-0 shadow mx-sm-4 mt-3 align-self-end">
+                    <img src="images/intro_img2.jpg" class="card-img-top rounded-0 object-fit-cover" alt="...">
+                    <div class="card-body">
+                        <p class="card-text mb-sm-3 mb-0">Start building and sharing with your team today. NinjaMail is renowned for its industry leading team collaboration tools.</p>
+                        <a href="#" class="card-link">Learn More <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="d-flex flex-column mx-sm-3 mt-sm-5 mt-3">
+                    <p class="introduce-title-text title-font-family">The source for proven, engaging email campaigns</p>
+                    <p class="introduce-content-text mt-sm-2">Whether you’re a startup, small business, e-commerce store, or want to promote your app, NinjaMail has the feature set tailored for your business.</p>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="user-sec">
+            <div class="d-flex justify-content-center flex-sm-nowrap flex-wrap">
+                <div class="mx-sm-3 mx-5 mb-sm-0 mb-4 position-relative">
+                    <a href="">
+                        <div class="user-img-box user-img1"></div>
+                        <div class="user-img-text position-absolute">
+                            <span>Frankie</span>
+                            <p>Member since 2016</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="mx-sm-3 mx-5 mb-sm-0 mb-4 position-relative">
+                    <a href="">
+                        <div class="user-img-box user-img2"></div>
+                        <div class="user-img-text position-absolute">
+                            <span>Camile</span>
+                            <p>Member since 2012</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="mx-sm-3 mx-5 position-relative">
+                    <a href="">
+                        <div class="user-img-box user-img3"></div>
+                        <div class="user-img-text position-absolute">
+                            <span>Elayne</span>
+                            <p>Member since 2018</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="user-join-area d-flex justify-content-center flex-wrap">
+                <p class="title-font-family user-text mx-4">Learn how others are reaching their audience easier than ever before.</p>
+                <div class="user-input-area d-flex justify-content-sm-between justify-content-center flex-wrap mx-3">
+                    <div class="form-floating flex-grow-1 me-sm-4">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">Enter your email</label>
+                    </div>
+                    <span class="d-sm-none">Thanks! Email received.</span>
+                    <button type="button" class="btn btn-success rounded-0 px-sm-4 py-sm-3 text-nowrap">JOIN OUR LIST</button>
+                    <!-- 換行 -->
+                    <div class="w-100"></div>
+                    <p class="mt-sm-3 ms-sm-4 d-sm-block d-none">Thanks! Email received.</p>
+                </div>    
+            </div>
+        </section>
+
+        <section class="brands-sec">
+            <div class="brands-text title-font-family text-center">All the best brands<br>already use us.</div>
+            <div class="brands-img-area row row-cols-sm-5 row-cols-2 flex-sm-nowrap flex-wrap justify-content-center align-items-center">
+                <img class="brands-img-box col order-sm-1 order-3 mx-sm-3 my-sm-0 my-2" src="images/brand_logo1.png" alt="">
+                <img class="brands-img-box col order-sm-2 order-1 mx-sm-3 my-sm-0 my-2" src="images/brand_logo2.png" alt="">
+                <img class="brands-img-box col order-sm-3 order-5 mx-sm-3 mt-sm-0 mt-2" src="images/brand_logo3.png" alt="">
+                <img class="brands-img-box col order-4 mx-sm-3 my-sm-0 my-2" src="images/brand_logo4.png" alt="">
+                <img class="brands-img-box col order-sm-5 order-2 mx-sm-3 my-sm-0 my-2" src="images/brand_logo5.png" alt="">
+            </div>
+        </section>
+    </div>
+    
+    <div class="start-sec container-fluid" style="background: var(--main-color);">    
+        <div class="d-flex start-box justify-content-center align-items-center flex-wrap">
+            <div class="">
+                <p class="title-font-family start-text text-light">Get started today!</p>
+                <div class="text-center"><button type="button" class="px-4 py-3 text-nowrap pick-btn">PICK A PLAN</button></div>
+            </div>
+        </div>    
+    </div>
+
+    <div class="container footer-padding-inline">
+        <footer class="row row-cols-2 row-cols-sm-6">
+            <div class="col mb-2">
+            <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none footer-logo">
+                <img src="images/ninjaMail_logo.svg" alt="Bootstrap">NinjaMail
+            </a>
+            </div>
+
+            <div class="col"></div>
+
+            <div class="col order-1">
+                <ul class="nav flex-column mt-sm-1">
+                    <li class="mb-2">Features</li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Services</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Partners</a></li>
+                </ul>
+            </div>
+
+            <div class="col order-sm-2 order-3">
+                <ul class="nav flex-column mt-sm-1">
+                    <li class="mb-2">About Us</li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Tutorials</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Resources</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Help Center</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Templates</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Case Studies</a></li>
+                </ul>
+            </div>
+
+            <div class="col order-sm-3 order-2">
+                <ul class="nav flex-column mt-sm-1">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Medium</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Twitter</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Facebook</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Instagram</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">LinkedIn</a></li>
+                </ul>
+            </div>
+
+            <div class="col order-4">
+                <ul class="nav flex-column mt-sm-1">
+                    <li class="mb-2">Contact Us</li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Slack</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Jobs</a></li>
+                </ul>
+            </div>
+
+        </footer>
+
+        <div class="footer-copyright d-flex flex-column flex-sm-row justify-content-around align-items-sm-center pt-sm-5 py-4 my-4 border-top border-2">
+            <p class="m-sm-0">NinjaMail is a sample for Quest AI. &copy; 2019 Quest AI, All rights reserved.</p>
+            <ul class="list-unstyled d-flex flex-wrap m-sm-0">
+                <li class="ms-sm-3 ms-0"><a class="link-body-emphasis" href="#">Terms & Conditions</a></li>
+                <li class="ms-sm-3 ms-0"><a class="link-body-emphasis" href="#">Privacy Policy</a></li>
+            </ul>    
+        </div>
+    </div>
+</body>
+
+</html>
