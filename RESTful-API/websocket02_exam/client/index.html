@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <title>多人連線 - 悄悄話</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      .main .down {
+        height: 55px;
+      }
+      .main .up {
+        height: calc(100% - 55px);
+      }
+      .main .right {
+        width: 170px;
+      }
+      .main .left {
+        width: calc(100% - 170px);
+        overflow-y: scroll;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="container-lg h-100 bg-primary-subtle p-2 main d-flex flex-column"
+    >
+      <div class="up d-flex">
+        <!-- 訊息區塊 -->
+        <div class="left bg-warning-subtle me-1 p-1"></div>
+        <!-- 使用者名單區塊 -->
+        <div class="right bg-secondary-subtle h-100 rounded-1 p-1"></div>
+      </div>
+      <div class="input-group input-group-lg my-2 down">
+        <input type="text" class="form-control" name="msg" />
+        <div class="btn btn-primary input-group-text btn-send">送出訊息</div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const divRight = document.querySelector(".right");
+      const divLeft = document.querySelector(".left");
+      const btnSend = document.querySelector(".btn-send");
+      const msgInput = document.querySelector("[name=msg]");
+
+      const ws = new WebSocket("ws://localhost:8080");
+      const userID = new Date().getTime().toString();
+      let clientList = [];
+      let targetUserID = "";
+
+      // 建立連線時，傳送註冊物件到後端
+      ws.addEventListener("open", () => {
+        divLeft.innerHTML += `<div>歡迎來到XXX聊天室，${userID}</div>`;
+        let params = {
+          type: "register",
+          userID,
+        };
+        ws.send(JSON.stringify(params));
+      });
+
+      ws.addEventListener("message", async (e) => {
+        // 把字串轉回JSON
+        let result = JSON.parse(e.data);
+        // 把建立連線的使用者加入連線名單
+        if (result.type === "register") {
+          clientList = result.otherClients;
+          setClients();
+        }
+        if (result.type === "disconnected") {
+          clientList = result.otherClients;
+          setClients();
+        }
+        if (result.type === "message") {
+          let fromID = result.fromID;
+          if (fromID === userID) {
+            fromID = "我自己";
+          }
+          let action = `<span class="badge text-bg-primary">說</span>`;
+          if (result.private) {
+            action = `<span class="badge text-bg-danger">悄悄說</span>`;
+          }
+          let msg = result.message;
+          divLeft.innerHTML += `<div>${fromID} ${action}: ${msg}</div>`;
+        }
+      });
+
+      divRight.addEventListener("click", (e) => {
+        let target = e.target;
+        if (target.classList.contains("btn")) {
+          let idn = e.target.getAttribute("idn");
+
+          // 沒有targetUserID=>公開聊天狀態；targetUserID != idn => 點選了另外一個使用者
+          if (targetUserID && targetUserID != idn) {
+            return false;
+          }
+
+          // 自己以外的id點了才有反應
+          if (userID !== idn) {
+            console.log(idn);
+            if (!target.classList.contains("btn-danger")) {
+              target.classList.add("btn-danger");
+              targetUserID = idn;
+              // console.log(targetUserID);
+            } else {
+              target.classList.remove("btn-danger");
+              targetUserID = "";
+            }
+          }
+        }
+      });
+
+      btnSend.addEventListener("click", () => {
+        sendMessage();
+      });
+
+      msgInput.addEventListener("keyup", (e) => {
+        if (e.key === "Enter") {
+          sendMessage();
+        }
+      });
+
+      function sendMessage() {
+        let msg = msgInput.value;
+        let params = {
+          type: "message",
+          message: msg,
+          userID,
+        };
+        // 如果是私聊，加上對象ID
+        if (targetUserID) {
+          params.targetUserID = targetUserID;
+        }
+        ws.send(JSON.stringify(params));
+        msgInput.value = "";
+
+        if (targetUserID) {
+          let fromID = "我自己"
+          let action = `悄悄對 <span class="badge text-bg-danger">${targetUserID} 說</span>`;
+          divLeft.innerHTML += `<div>${fromID} ${action}: ${msg}</div>`;
+        }
+      }
+
+      function setClients() {
+        let nodes = "";
+        clientList.forEach((client) => {
+          // 若是自己的userID，為該區塊加上 .myself
+          let myself = client === userID ? "btn-primary" : "btn-secondary";
+          let node = `<div idn="${client}" class="btn ${myself} btn-sm w-100 mb-1 ${myself}">${client}</div>`;
+          nodes += node;
+        });
+        divRight.innerHTML = nodes;
+      }
+    </script>
+  </body>
+</html>

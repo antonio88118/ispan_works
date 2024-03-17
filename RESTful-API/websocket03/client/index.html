@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <title>多人連線 - 悄悄話</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      .main .down {
+        height: 92px;
+      }
+      .main .up {
+        height: calc(100% - 92px);
+      }
+      .main .right {
+        width: 200px;
+      }
+      .main .left {
+        width: calc(100% - 200px);
+        overflow-y: scroll;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="container-lg h-100 bg-primary-subtle p-2 main d-flex flex-column"
+    >
+      <div class="up d-flex">
+        <div class="left bg-warning-subtle me-1 p-2">
+          <h3>聊天大廳</h3>
+          <div class="list"></div>
+        </div>
+        <div class="right bg-secondary-subtle h-100 rounded-1 p-2">
+          <h3>聊天室列表</h3>
+          <div class="list"></div>
+        </div>
+      </div>
+      <div class="down my-1">
+        <div class="input-group input-group-lg mb-1">
+          <input
+            type="text"
+            class="form-control"
+            name="msg"
+            placeholder="輸入聊天訊息"
+          />
+          <div class="btn btn-primary input-group-text btn-send">送出訊息</div>
+        </div>
+        <div class="input-group input-group-lg">
+          <input
+            type="text"
+            class="form-control"
+            name="roomName"
+            placeholder="輸入小房間名稱"
+          />
+          <div class="btn btn-primary input-group-text btn-croom">建立房間</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const divRight = document.querySelector(".right .list");
+      const titleRight = document.querySelector(".right h3");
+      const divLeft = document.querySelector(".left .list");
+      const titleLeft = document.querySelector(".left h3");
+      const btnSend = document.querySelector(".btn-send");
+      const btnRoom = document.querySelector(".btn-croom");
+      const msgInput = document.querySelector("[name=msg]");
+      const roomNameInput = document.querySelector("[name=roomName]");
+
+      const ws = new WebSocket("ws://localhost:8080");
+      const userID = new Date().getTime().toString();
+
+      let clientList
+      let targetUserID
+      let roomList
+      let roomID
+      let roomName
+
+      // 建立連線時，傳送註冊物件到後端
+      ws.addEventListener("open", () => {
+        divLeft.innerHTML += `<div>歡迎來到XXX聊天室，${userID}</div>`;
+        let params = {
+          type: "register",
+          userID,
+        };
+        ws.send(JSON.stringify(params));
+      });
+
+      ws.addEventListener("message", async (e) => {
+        let data =  await e.data;
+        // 把字串轉回JSON
+        let result = JSON.parse(data);
+        // 把建立連線的使用者加入連線名單
+        if (result.type === "register") {
+          clientList = result.otherClients;
+          roomList = result.allRooms;
+          // console.log(roomList);
+          // setClients();
+          setRooms();
+        }
+        if (result.type === "disconnected") {
+          clientList = result.otherClients;
+          setClients();
+        }
+        if (result.type === "message") {
+          let fromID = result.fromID;
+          if (fromID === userID) {
+            fromID = "我自己";
+          }
+          let action = `<span class="badge text-bg-primary">說</span>`;
+          if (result.private) {
+            action = `<span class="badge text-bg-danger">悄悄說</span>`;
+          }
+          let msg = result.message;
+          divLeft.innerHTML += `<div>${fromID} ${action}: ${msg}</div>`;
+        }
+
+        if (result.type === "newRoom") {
+          roomList = result.allRooms;
+          setRooms();
+        }
+
+        if (result.type === "joinRoom") {
+          clientList = result.clientList;
+          setClients();
+          return false;
+        }
+
+        if (result.type === "leaveRoom") {
+          clientList = result.clientList;
+          setClients();
+          return false;
+        }
+      });
+
+      divRight.addEventListener("click", (e) => {
+        let target = e.target;
+        if (target.classList.contains("member")) {
+          let idn = target.getAttribute("idn");
+
+          // 自己以外的id點了才有反應
+          if (userID !== idn) {
+            // 沒有targetUserID=>公開聊天狀態；targetUserID != idn => 點選了另外一個使用者
+            if (targetUserID && targetUserID != idn) {
+              return false;
+            }
+            if (!target.classList.contains("btn-danger")) {
+              target.classList.add("btn-danger");
+              targetUserID = idn;
+              // console.log(targetUserID);
+            } else {
+              target.classList.remove("btn-danger");
+              targetUserID = undefined;
+            }
+          }
+        } else if (target.classList.contains("room")) {
+          roomID = target.getAttribute("idn");
+          roomName = target.getAttribute("roomName");
+          let params = {
+            type: "joinRoom",
+            roomID,
+            userID,
+          };
+          ws.send(JSON.stringify(params));
+          titleRight.innerHTML = "成員列表";
+          titleLeft.innerHTML = `${roomName} 聊天室`;
+          divRight.innerHTML = "空房間，等待其他成員加入";
+          divLeft.innerHTML = "";
+          btnRoom.innerHTML = "離開房間";
+          btnRoom.classList.remove("btn-primary");
+          btnRoom.classList.add("btn-danger");
+        }
+      });
+
+      btnSend.addEventListener("click", () => {
+        sendMessage();
+      });
+
+      btnRoom.addEventListener("click", () => {
+        createRoom();
+      });
+
+      msgInput.addEventListener("keyup", (e) => {
+        if (e.key === "Enter") {
+          sendMessage();
+        }
+      });
+
+      //  建立&離開房間
+      function createRoom() {
+        // 離開聊天室
+        if (roomID) {
+          let params = {
+            type: "leaveRoom",
+            userID,
+            roomID,
+          };
+          ws.send(JSON.stringify(params));
+          titleRight.innerHTML = "聊天室列表";
+          titleLeft.innerHTML = `聊天大廳`;
+
+          // 更新房間列表
+          let nodes = "";
+          roomList.forEach((room) => {
+            let clientRoomID = room.id;
+            let clientRoomName = room.name;
+            let node = `<div roomName=${clientRoomName} idn="${clientRoomID}" class="room btn btn-primary btn-sm w-100 mb-1">${clientRoomName}</div>`;
+            nodes += node;
+          });
+          divRight.innerHTML = nodes;
+          // divRight.innerHTML = "更新中...";
+
+          divLeft.innerHTML += `<div>歡迎來到XXX聊天室，${userID}</div>`;
+          btnRoom.innerHTML = "建立房間";
+          btnRoom.classList.remove("btn-danger");
+          btnRoom.classList.add("btn-primary");
+          roomID = undefined;
+          roomName = undefined;
+          return false;
+        }
+        // 建立聊天室
+        roomID = "r" + new Date().getTime().toString();
+        roomName = roomNameInput.value;
+        let params = {
+          type: "createRoom",
+          userID, // 建立者
+          roomID,
+          roomName,
+        };
+        ws.send(JSON.stringify(params));
+        roomNameInput.value = "";
+        titleRight.innerHTML = "成員列表";
+        titleLeft.innerHTML = `${roomName} 聊天室`;
+        divRight.innerHTML = "空房間，等待其他成員加入";
+        divLeft.innerHTML = "";
+        btnRoom.innerHTML = "離開房間";
+        btnRoom.classList.remove("btn-primary");
+        btnRoom.classList.add("btn-danger");
+      }
+
+      // 發送訊息
+      function sendMessage() {
+        let msg = msgInput.value;
+        let params = {
+          type: "message",
+          message: msg,
+          userID,
+        };
+        // 如果是私聊，加上對象ID
+        if (targetUserID) {
+          params.targetUserID = targetUserID;
+        }
+        // 開始設定只有聊天室成員看得到訊息
+        if (roomID) {
+          params.roomID = roomID;
+        }
+        ws.send(JSON.stringify(params));
+        msgInput.value = "";
+
+        if (targetUserID) {
+          let fromID = "我自己";
+          let action = `悄悄對 <span class="badge text-bg-danger">${targetUserID} 說</span>`;
+          divLeft.innerHTML += `<div>${fromID} ${action}: ${msg}</div>`;
+        }
+      }
+
+      // 設定房間
+      function setRooms() {
+        if (roomID) {
+          return false;
+        }
+        let nodes = "";
+        roomList.forEach((room) => {
+          let clientRoomID = room.id;
+          let clientRoomName = room.name;
+          // 若是自己的userID，為該區塊加上 .myself
+          let node = `<div roomName=${clientRoomName} idn="${clientRoomID}" class="room btn btn-primary btn-sm w-100 mb-1">${clientRoomName}</div>`;
+          nodes += node;
+        });
+        divRight.innerHTML = nodes;
+      }
+
+      // 設定使用者樣式
+      function setClients() {
+        let nodes = "";
+        clientList.forEach((client) => {
+          // 若是自己的userID，為該區塊加上 .myself
+          let myself = client === userID ? "btn-primary" : "btn-secondary";
+          let node = `<div idn="${client}" class="member btn ${myself} btn-sm w-100 mb-1">${client}</div>`;
+          if(targetUserID && targetUserID === client) {
+            node = `<div idn="${targetUserID}" class="member btn btn-danger btn-sm w-100 mb-1">${targetUserID}</div>`;
+          }
+          nodes += node;
+        });
+        divRight.innerHTML = nodes;
+      }
+    </script>
+  </body>
+</html>

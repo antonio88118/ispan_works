@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多人連線 - 使用者名單</title>
+    <style>
+        * {
+            font-family: sans-serif;
+        }
+        .myself::after {
+            content: " <= 我自己";
+            color: rgb(0, 113, 194)
+        }
+    </style>
+</head>
+<body>
+    <div class="list"></div>
+    <!-- <div>12312214214242</div>
+    <div class="myself">346346246521421</div> -->
+
+    <script>
+        const divList = document.querySelector(".list");
+        const ws = new WebSocket("ws://localhost:8080");
+        const userID = new Date().getTime().toString();
+        let clientList = [];
+
+        // 建立連線時，傳送註冊物件到後端
+        ws.addEventListener("open", () => {
+            let params = {
+                type: "register",
+                userID
+            }
+            ws.send(JSON.stringify(params));
+        });
+
+        ws.addEventListener("message", async e => {
+            // 把字串轉回JSON
+            let result = JSON.parse(e.data);
+            // 把建立連線的使用者加入連線名單
+            if(result.type === "register") {
+                clientList = result.otherClients;
+                setClients();
+            }
+            if(result.type === "disconnected") {
+                clientList = result.otherClients;
+                setClients();
+            }
+        });
+
+        function setClients() {
+            let nodes = "";
+            clientList.forEach(client => {
+                // 若是自己的userID，為該區塊加上 .myself
+                let myself = client === userID ? "myself" : "";
+                let node = `<div class="${myself}">${client}</div>`
+                nodes += node;
+            })
+            divList.innerHTML = nodes;
+        }
+    </script>
+</body>
+</html>
