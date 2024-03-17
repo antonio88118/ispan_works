@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>飛機動畫 純js+css</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 600px;
+        }
+
+        .row {
+            font-size: 24px;
+            padding: 10px;
+            border-radius: 10px;
+            min-height: 30px;
+            margin-bottom: 10px;
+        }
+
+        .row1 {
+            background-color: #e7ef9c;
+
+        }
+
+        .plane {
+            position: relative;
+            height: 72px;
+            width: 60px;
+            bottom: 10px;
+            left: 0;
+            top: 0;
+        }
+
+        .plane::before {
+            position: absolute;
+            left: 16px;
+            top: 14px;
+            content: attr(data-n);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgb(255, 255, 255, 0.8);
+            z-index: 1;
+            text-align: center;
+        }
+
+        .plane img {
+            transform: rotate(90deg);
+        }
+
+        .plane img.left {
+            transform: rotate(-90deg);
+        }
+
+        .toRight{
+            animation-name: toRightAni;
+            animation-duration: 2s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+            animation-timing-function: linear;
+        }
+
+        .turnBack{
+            animation-name: turnBackAni;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-fill-mode: forwards;
+            animation-timing-function: linear;
+        }
+
+        .pause{
+            animation-play-state: paused;
+        }
+
+        @keyframes toRightAni{
+            0% { left: 0; }
+            100% { left: calc(100% - 62px); }
+        }
+
+        @keyframes turnBackAni{
+            0% {
+                left: 0;
+                transform: scaleX(1);
+            }
+            49% {
+                left: calc(100% - 62px);
+                transform: scaleX(1);
+            }
+            50% {
+                left: calc(100% - 62px);
+                transform: scaleX(-1);
+            }
+            100% {
+                left: 0;
+                transform: scaleX(-1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row row2">
+            <button id="btn1">1 號動</button>
+            <button id="btn2">2 號動</button>
+            <button id="btn3">2 號停</button>
+            <button id="btn4">3 啟動</button>
+            <button id="btn5">4-6 依序動</button>
+        </div>
+        <div class="row row1">
+            <div class="plane" data-n="1">
+                <img src="https://sagedaben.com/iSpan/images/plane.png" alt="">
+            </div>
+            <div class="plane" data-n="2">
+                <img src="https://sagedaben.com/iSpan/images/plane.png" alt="">
+            </div>
+            <div class="plane" data-n="3">
+                <img src="https://sagedaben.com/iSpan/images/plane.png" alt="">
+            </div>
+            <div class="plane" data-n="4">
+                <img src="https://sagedaben.com/iSpan/images/plane.png" alt="">
+            </div>
+            <div class="plane" data-n="5">
+                <img src="https://sagedaben.com/iSpan/images/plane.png" alt="">
+            </div>
+            <div class="plane" data-n="6">
+                <img src="https://sagedaben.com/iSpan/images/plane.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let btn1 = document.querySelector("#btn1");
+        let btn2 = document.querySelector("#btn2");
+        let btn3 = document.querySelector("#btn3");
+        let btn4 = document.querySelector("#btn4");
+        let btn5 = document.querySelector("#btn5");
+
+        let plane1 = document.querySelectorAll(".plane")[0];
+        let plane2 = document.querySelectorAll(".plane")[1];
+        let plane3 = document.querySelectorAll(".plane")[2];
+        let plane4 = document.querySelectorAll(".plane")[3];
+        let plane5 = document.querySelectorAll(".plane")[4];
+        let plane6 = document.querySelectorAll(".plane")[5];
+
+        btn1.addEventListener("click", ()=>{
+            plane1.classList.add("toRight");
+        });
+
+
+        btn2.addEventListener("click", ()=>{
+            plane2.classList.add("turnBack");
+            if(plane2.classList.contains("pause")){
+                plane2.classList.remove("pause");
+            }
+        });
+
+
+        btn3.addEventListener("click", ()=>{
+            plane2.classList.add("pause");
+        });
+
+
+        btn4.addEventListener("click", ()=>{
+            plane3.classList.add("turnBack");
+        });
+        plane3.addEventListener("mouseenter", ()=>{
+            plane3.classList.add("pause");
+        });
+        plane3.addEventListener("mouseleave", ()=>{
+            plane3.classList.remove("pause");
+        });
+
+        btn5.addEventListener("click", ()=>{
+            plane4.classList.add("toRight");
+        });
+        plane4.addEventListener("animationend", ()=>{
+            plane5.classList.add("toRight");
+        });
+        plane5.addEventListener("animationend", ()=>{
+            plane6.classList.add("toRight");
+        });
+    </script>
+</body>
+
+</html>

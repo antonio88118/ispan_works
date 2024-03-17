@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>操作 DOM 的其他方法</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row row1">1</div>
+        <div class="row row2">2</div>
+        <div class="row row3">3</div>
+        <div class="row row4">4</div>
+        <div class="row row5">5</div>
+    </div>
+
+    <script>
+        // console.log($(".row3").index());
+        // console.log($(".row").toArray());
+        // console.log($(".row").get());
+        // console.log($(".row").get(2));
+        // console.log($(".row").eq(2));
+
+        // let xmlString = "<bookstore><book><title>Book 1</title></book><book><title>Book 2</title></book></bookstore>";
+        // let xmlDoc = $.parseXML(xmlString);
+        // console.log(xmlDoc);
+        // $(xmlDoc).find("book").each((index, elm)=>{
+        //     console.log(elm);
+        // });
+
+        // let ary = ['sky', 'maplet', 'car', 'mapper', 'dog', 'maple'];
+        // .grep()，就是原生 JavaScript 中的 .filter()
+        // let newAry = $.grep(ary, (elm, index)=>{
+        //     return elm.indexOf("map") != -1;
+        // });
+        // let newAry = $.grep(ary, elm=>elm.indexOf("map") != -1);
+        // console.log(newAry);
+        // let newAry2 = ary.filter(elm=>elm.indexOf("map") != -1);
+        // console.log(newAry2);
+
+        // 存在，回傳0；不存在，回傳-1
+        // console.log($.inArray("ssky", ary));
+        // console.log(ary.indexOf("sky"));
+        // 存在，回傳true
+        // console.log(ary.includes("sky"));
+        // console.log($(".row"));
+        // 抓到 .row 的集合體物件，是類陣列，不是陣列
+        // console.log($.isArray($(".row")));
+        // console.log($.isArray($.makeArray($(".row"))));
+
+        // let ary2 = [ "a", "b", "c", "d", "e" ];
+        // $.map(ary2, (elm, index)=>{
+        //     console.log(elm);
+        // });
+
+        let ary1 = [1,2,3];
+        let ary2 = [4,5,6];
+        let ary3 = [7,8,9];
+        // merge()只能合併兩個陣列
+        // let ary = $.merge(ary1, ary2, ary3);
+        // console.log(ary);
+        console.log([].concat(ary1, ary2, ary3));
+        console.log([...ary1, ...ary2, ...ary3]);
+
+        let str = "<b>TEST</b>test123";
+        $("body").append($.parseHTML(str));
+        $("body").append($(str));
+
+        let ary5 = [1,2,3,2,1];
+        console.log(ary5);
+        // 此方法在現在的版本，只能操作dom物件
+        console.log($.unique(ary5));
+        // a-b(a到b): 升冪；b-a: 降冪
+        console.log(ary5.sort((a,b)=>a-b));
+        console.log(ary5.sort((a,b)=>b-a));
+        console.log([...new Set(ary5)]);
+        console.log(ary5.filter((item, index, ary)=>ary.indexOf(item) === index));
+
+        // data("key") = JS dataset的key
+    </script>
+</body>
+</html>

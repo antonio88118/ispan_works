@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="/js/jquery.pause.min.js"></script>
+    <title>飛機動畫</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 600px;
+        }
+
+        .row {
+            font-size: 24px;
+            padding: 10px;
+            border-radius: 10px;
+            min-height: 30px;
+            margin-bottom: 10px;
+        }
+
+        .row1 {
+            background-color: #e7ef9c;
+
+        }
+
+        .plane {
+            position: relative;
+            height: 72px;
+            width: 60px;
+            bottom: 10px;
+            left: 0;
+            top: 0;
+        }
+
+        .plane::before {
+            position: absolute;
+            left: 16px;
+            top: 14px;
+            content: attr(data-n);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgb(255, 255, 255, 0.8);
+            z-index: 1;
+            text-align: center;
+        }
+
+        .plane img {
+            transform: rotate(90deg);
+        }
+
+        .plane img.left {
+            transform: rotate(-90deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row row2">
+            <button id="btn1">1 號動</button>
+            <button id="btn2">2 號動</button>
+            <button id="btn3">2 號停</button>
+            <button id="btn4">3 啟動</button>
+            <button id="btn5">4-5 依序動</button>
+        </div>
+        <div class="row row1">
+            <div class="plane" data-n="1">
+                <img src="https://sagedaben.com/iSpan/images/plane.png" alt="">
+            </div>
+            <div class="plane" data-n="2">
+                <img src="https://sagedaben.com/iSpan/images/plane.png" alt="">
+            </div>
+            <div class="plane" data-n="3">
+                <img src="https://sagedaben.com/iSpan/images/plane.png" alt="">
+            </div>
+            <div class="plane" data-n="4">
+                <img src="https://sagedaben.com/iSpan/images/plane.png" alt="">
+            </div>
+            <div class="plane" data-n="5">
+                <img src="https://sagedaben.com/iSpan/images/plane.png" alt="">
+            </div>
+            <div class="plane" data-n="6">
+                <img src="https://sagedaben.com/iSpan/images/plane.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $("#btn1").on("click", ()=>{
+            $(".plane").eq(0).animate({
+                left: $(".row1").width() - $(".plane").eq(0).width()
+            }, {
+                duration: 2000,
+                easing :"linear"
+            });
+        });
+
+        // 2號飛機開始移動
+        $("#btn2").on("click", ()=>{
+            p2Right(1);
+        });
+
+        // 2號飛機停止
+        $("#btn3").on("click", ()=>{
+            $(".plane").eq(1).stop();
+        });
+
+        // 3號飛機開始移動
+        $("#btn4").on("click", ()=>{
+            p2Right(2);
+        });
+
+        // 滑鼠移到3號飛機暫停，移開繼續動作
+        $(".plane").eq(2)
+            .on("mouseenter", (e)=>{
+                // e.currentTarget = this
+                $(e.currentTarget).pause();
+            })
+            .on("mouseleave", (e)=>{
+                $(e.currentTarget).resume();
+            })
+
+        $("#btn5").on("click", ()=>{
+            p2Right2(3);
+        });
+
+        // 往左飛
+        function p2Left(n){
+            // 飛機掉頭
+            $(".plane").eq(n).find("img").addClass("left");
+            $(".plane").eq(n).animate({
+                left: 0
+            },{
+                duration: 2000,
+                easing: "linear",
+                // 完成時，執行函式p2Right
+                complete: ()=>{
+                    p2Right(n)
+                }
+            })
+        }
+
+        // 往右飛
+        function p2Right(n){
+            $(".plane").eq(n).find("img").removeClass("left");
+            $(".plane").eq(n).animate({
+                left: $(".row1").width() - $(".plane").eq(1).width()
+            },{
+                duration: 2000,
+                easing: "linear",
+                // 完成時，執行函式p2Right
+                complete: ()=>{
+                    p2Left(n)
+                }
+            })
+        }
+
+        // 往又飛到底後，下一架飛機開始移動，同時自己往回飛
+        function p2Right2(n){
+            // $(".plane").eq(n)存在時，length = 1
+            if($(".plane").eq(n).length === 0){
+                return false;
+            }
+            $(".plane").eq(n).find("img").removeClass("left");
+            $(".plane").eq(n).animate({
+                // 移動距離
+                left: $(".row1").width() - $(".plane").eq(1).width()
+            },{
+                duration: 2000,
+                easing: "linear",
+                // 完成時，執行函式p2Right
+                complete: ()=>{
+                    p2Right2(n+1)
+                    p2Left(n)
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>表單事件 送出</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 600px;
+        }
+
+        .row {
+            display: flex;
+            padding: 10px;
+            background-color: #c6c5c5;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .active {
+            background-color: #f6b46d;
+        }
+
+        .empty {
+            background-color: #e34a0d;
+            color: #fff;
+        }
+
+        label {
+            min-width: 50px;
+            padding-left: 5px;
+            padding-right: 20px;
+        }
+
+        input[type=text],
+        select {
+            width: 100%;
+            border: none;
+        }
+
+        select {
+            font-size: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 50px;
+            border: none;
+        }
+
+        .row1 {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        button {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form action="aaa.php">
+            <div class="row row1">
+                <button type="submit">送出按鈕</button>
+                <input type="submit" value="送出input">
+            </div>
+            <div class="row row2">
+                <label for="inpu1" name="input1">inpu1</label>
+                <input id="inpu1" type="text">
+            </div>
+            <div class="row row3">
+                <input id="inpu2_1" type="checkbox" name="input2" value="c1" class="input2">
+                <label for="inpu2_1">inpu2_1</label>
+                <input id="inpu2_2" type="checkbox" name="input2" value="c2" class="input2">
+                <label for="inpu2_2">inpu2_2</label>
+                <input id="inpu2_3" type="checkbox" name="input2" value="c3" class="input2">
+                <label for="inpu2_3">inpu2_3</label>
+                <input id="inpu2_4" type="checkbox" name="input2" value="c4" class="input2">
+                <label for="inpu2_4">inpu2_4</label>
+            </div>
+            <div class="row row4">
+                <input id="inpu3_1" type="radio" name="input3" value="r1">
+                <label for="inpu3_1">inpu3_1</label>
+                <input id="inpu3_2" type="radio" name="input3" value="r2">
+                <label for="inpu3_2">inpu3_2</label>
+                <input id="inpu3_3" type="radio" name="input3" value="r3">
+                <label for="inpu3_3">inpu3_3</label>
+                <input id="inpu3_4" type="radio" name="input3" value="r4">
+                <label for="inpu3_4">inpu3_4</label>
+            </div>
+            <div class="row row4">
+                <label for="input4">input4</label>
+                <textarea name="input4" id="input4"></textarea>
+            </div>
+            <div class="row row5">
+                <label for="input5">input5</label>
+                <select name="input5" id="input5">
+                    <option value disabled selected>請選擇</option>
+                    <option value="1">input5_1</option>
+                    <option value="2">input5_2</option>
+                    <option value="3">input5_3</option>
+                    <option value="4">input5_4</option>
+                    <option value="5">input5_5</option>
+                </select>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        $(".row")
+            .on("focusin", function(){
+                $(this).addClass("active");
+            })
+            .on("focusout", function(){
+                $(this).removeClass("active");
+            });
+        
+        $("[type=submit]").on("click", (e)=>{
+            // 阻止送出
+            e.preventDefault();
+            let submitCheck = true;
+            // reset
+            $("input").closest(".row").removeClass("empty");
+            $("textarea").closest(".row").removeClass("empty");
+            $("select").closest(".row").removeClass("empty");
+            
+            // check start
+            if($("input[type=text]").val() == ""){
+                submitCheck = false;
+                $("input[type=text]").closest(".row").addClass("empty");
+            }
+            if($("textarea").val() == ""){
+                submitCheck = false;
+                $("textarea").closest(".row").addClass("empty");
+            }
+            // checkbox送出的結果是陣列
+            if($("input[type=checkbox]:checked").length == 0){
+                submitCheck = false;
+                $("input[type=checkbox]").closest(".row").addClass("empty");
+            }
+            if($("input[type=radio]:checked").length == 0){
+                submitCheck = false;
+                $("input[type=radio]").closest(".row").addClass("empty");
+            }
+            if($("select").val() === null){
+                submitCheck = false;
+                $("select").closest(".row").addClass("empty");
+            }
+
+            // check end
+            if(submitCheck == true){
+                $("form").submit();
+            }
+        });
+        
+        
+        document.querySelector("#inpu1").addEventListener("keyup", function(){
+            if(this.value !== ""){
+                this.closest(".row").classList.remove("empty");
+            }else{
+                this.closest(".row").classList.add("empty");
+            }
+        });
+
+
+        document.querySelector("#input4").addEventListener("keyup", function(){
+            if(this.value !== ""){
+                this.closest(".row").classList.remove("empty");
+            }else{
+                this.closest(".row").classList.add("empty");
+            }
+        });
+
+
+        let checkboxs = document.querySelectorAll("[type=checkbox]");
+        for(let i=0; i<checkboxs.length; i++){
+            checkboxs[i].addEventListener("change", function(){
+                if(document.querySelectorAll("[type=checkbox]:checked").length !== 0){
+                    checkboxs[i].closest(".row").classList.remove("empty");
+                }else{
+                    checkboxs[i].closest(".row").classList.add("empty");
+                }
+            });
+        }
+
+
+        // radio 選完後只能換選項，無法取消
+        document.querySelectorAll("[type=radio]").forEach(radio => radio.addEventListener("change", function(){
+            this.closest(".row").classList.remove("empty");
+        }));
+        
+
+        let selectBox = document.querySelector("select");
+        selectBox.addEventListener("change", function(){
+            // console.log(selectBox.value);
+            if(selectBox.value !== null){
+                selectBox.closest(".row").classList.remove("empty");
+            }else{
+                selectBox.closest(".row").classList.add("empty");
+            }
+        });
+        
+    </script>
+</body>
+
+</html>

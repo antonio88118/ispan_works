@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>書單</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .container{
+            .row{
+                display: flex;
+                padding: 4px;
+                &:hover{
+                    background-color: lightgray;
+                }
+                align-items: center;
+            }
+            .col:nth-child(1){
+                width: 20px;
+            }
+            .col:nth-child(2){
+               flex: 1;
+            }
+            .col:nth-child(3){
+                width: 100px;
+                & img{
+                    width: 100%;
+                    aspect-ratio: 1/1;
+                    object-fit: cover;
+                }
+            }
+            .col:nth-child(4){
+                width: 100px;
+            }
+            .cover{
+                position: fixed;
+                width: 100%;
+                height: 100vh;
+                background-color: rgba(0, 0, 0, 0.5);
+                display: none;
+                .left{
+                    width: calc(100% / 2);
+                    padding: 10px;
+                    & img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                    }
+                }
+                .right{
+                    flex: 1;
+                    color: #fff;
+                    padding-right: 20px;
+                }
+            }
+            .active{
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cover">
+            <div class="left">
+                <img src="https://www.books.com.tw/img/001/086/35/0010863501.jpg" alt="">
+            </div>
+            <div class="right">
+
+            </div>
+        </div>
+        <!-- <div class="row">
+            <div class="col">1</div>
+            <div class="col">哈利波特1 神秘的魔法石</div>
+            <div class="col">
+                <img src="https://www.books.com.tw/img/001/086/35/0010863501.jpg" alt="">
+            </div>
+            <div class="col">JK羅琳</div>
+        </div> -->
+    </div>
+    <script>
+        let url1 = "https://sagedaben.com/iSpan/api/list.php";
+        let url2 = "https://sagedaben.com/iSpan/api/detail.php";
+
+        $(".cover").on("click", (e)=>{
+            $(".cover").removeClass("active");
+        });
+
+        $.getJSON(url1, function(datas){
+            console.log(datas);
+            datas.forEach((data, index)=>{
+                // console.log(data);
+                let template = `
+                <div class="row" data-n="${data.id}">
+                    <div class="col">${index+1}</div>
+                    <div class="col">${data.title}</div>
+                    <div class="col">
+                        <img src="${data.cover}" alt="">
+                    </div>
+                    <div class="col">${data.auth}</div>
+                </div>`;
+                $(".container").append(template);
+            }); 
+            $(".row").on("click", (e)=>{
+                let that = e.currentTarget;
+                // data-n
+                showBig(parseInt($(that).data("n")));
+            });
+        });
+
+        function showBig(n){
+            let params = {id: n};
+            $.post(url2, JSON.stringify(params), function(data){
+                data = JSON.parse(data);
+                console.log(data);
+                $(".cover img").attr("src", data.data.cover);
+                $(".cover .right").html(data.data.descd);
+                $(".cover").addClass("active");
+            });
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <title>作業4</title>
+    <style>
+        body{
+            margin: 0;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        body > *{
+            box-sizing: border-box;
+        }
+
+        .container{
+            .row{
+                display: flex;
+                padding: 4px;
+                &:hover{
+                    background-color: lightgray;
+                }
+                align-items: center;
+            }
+
+            .head{
+                position: sticky;
+                top: 0;
+                background-color: #fff;
+                display: flex;
+                padding: 4px;
+                align-items: center;
+                font-weight: bold;
+                border-bottom: 1px solid rgb(157, 157, 157);
+            }
+            
+            .col{
+                padding: 5px;
+            }
+
+            .col:nth-child(1){
+                width: 50px;
+            }
+
+            .col:nth-child(2){
+                width: 100px;
+                text-align: center;
+                & img {
+                    width: 100%;
+                    aspect-ratio: 1/1;
+                    object-fit: cover;
+                }
+            }
+
+            .col:nth-child(3){
+                width: 200px;
+            }
+
+            .col:nth-child(4){
+                flex: 1;
+            }
+
+            .col:nth-child(5){
+                width: 200px;
+            }
+
+            .col:nth-child(6){
+                width: 150px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .btn{
+                cursor: pointer;
+                color: #fff;
+                background-color: rgb(137, 212, 237);
+                padding: 5px 10px;
+                border-radius: 5px;
+            }
+
+            .cover{
+                position: fixed;
+                height: 100vh;
+                background-color: rgba(0, 0, 0, 0.7);
+                backdrop-filter: blur(4px);
+                display: none;
+                padding: 30px;
+                z-index: 5;
+                .tip{
+                    float: right;
+                    color: #fff;
+                    font-size: large;
+                }
+
+                .image {
+                    height: 350px;
+                    padding: 5px;
+                    position: relative;
+                    & img{
+                        height: 100%;
+                        aspect-ratio: 16/9;
+                        object-fit: cover;
+                    }
+
+                    .onload{
+                        color: #fff;
+                        font-size: xx-large;
+                        position: absolute;
+                        top: 50%;
+                    }
+                }
+                .info{
+                    padding: 5px;
+                    color: #fff;
+                    padding-right: 20px;
+                    line-height: 28px;
+                    font-size: large;
+                    & span{
+                        font-weight: 800;
+                    }
+
+                    .text{
+                        display: inline-block;
+                    }
+
+                    .text-intro{
+                        display: block;
+                        text-align: justify;
+                        overflow: auto;
+                        height: 300px;
+                        padding-right: 10px;
+                    }
+                }
+            }
+
+            .active{
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="cover">
+            <div class="tip">（雙擊畫面關閉）</div>
+            <div class="image">
+                <div class="onload">圖片加載中</div>
+                <img src="" alt="">
+            </div>
+
+            <div class="info">
+                <div class="name">
+                    <span>景點: </span>
+                    <div class="text"></div>
+                </div>
+                <div class="address">
+                    <span>地址: </span>
+                    <div class="text"></div>
+                </div>
+                <div class="phone">
+                    <span>聯絡電話: </span>
+                    <div class="text"></div>
+                </div>
+                <div class="detail">
+                    <span>介紹: </span>
+                    <div class="text-intro"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="head">
+            <div class="col">編號</div>
+            <div class="col">縮圖</div>
+            <div class="col">景點</div>
+            <div class="col">地址</div>
+            <div class="col">聯絡電話</div>
+            <div class="col">介紹</div>
+        </div>
+        <!-- <div class="row">
+            <div class="col">1</div>
+            <div class="col">
+                <img src="https://travel.tycg.gov.tw/content/images/attractions/12947/640x480_image635944291052818598.jpg" alt="">
+            </div>
+            <div class="col">戀戀空港灣休閒農場</div>
+            <div class="col">桃園市338蘆竹區坑口里小古山路183-1號</div>
+            <div class="col">886-9-88530337</div>
+            <div class="col">
+                <div class="btn">查看</div>
+            </div>
+        </div> -->
+    </div>
+
+    <script>
+        let infoUrl = "scenic_spot_C_f.json";
+
+        $(".cover").on("dblclick", ()=>{
+            $(".cover").removeClass("active");
+            // 重新顯示載入中文字，直到加載完成
+            $(".onload").show();
+            // 關閉後讓列表頁的滾軸恢復顯示
+            $("body").css("overflow", "auto");
+        });
+
+        // 圖片載入完成後，隱藏文字
+        $(".image img").on("load", ()=>{
+            $(".onload").hide();
+        });
+        
+        $.getJSON(infoUrl, function(datas){
+            // console.log(datas.XML_Head.Infos.Info);
+            // $.grep篩選有圖片的資料
+            datas = $.grep(datas.XML_Head.Infos.Info, (elm, index)=>{
+                return elm.Picture1 != "";
+            });
+
+            // 提取100筆資料
+            let counter = 0;
+            datas.forEach((elm, index)=>{
+                if(counter<100){
+                    let template = `
+                    <div class="row">
+                        <div class="col">${counter+1}</div>
+                        <div class="col">
+                            <img src="${elm.Picture1}" alt="">
+                        </div>
+                        <div class="col">${elm.Name}</div>
+                        <div class="col">${elm.Add}</div>
+                        <div class="col">${elm.Tel}</div>
+                        <div class="col">
+                            <div class="btn" data-id="${elm.Id}">查看</div>
+                        </div>
+                    </div>`;
+                    $(".container").append(template);
+                    console.log(elm);
+                    counter++;
+                }else{
+                    return false;
+                }
+            });
+            // console.log(datas);
+
+            $(".btn").on("click", (e)=>{
+                let that = e.currentTarget;
+                // find(item => item.索引 (>/</==/...條件))是純js的陣列/物件篩選方法
+                let data = datas.find(item => item.Id == $(that).data("id"));
+                // console.log(data);
+                $(".cover").addClass("active");
+                $(".image img").attr("src", data.Picture1);
+                $(".info .name .text").text(data.Name);
+                $(".info .address .text").text(data.Add);
+                $(".info .phone .text").text(data.Tel);
+                $(".info .detail .text-intro").text(data.Toldescribe);
+                // 查看詳細介紹時，列表頁的滾軸消失
+                $("body").css("overflow", "hidden");
+            });
+        });
+    </script>
+</body>
+
+</html>

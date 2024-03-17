@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>網頁遊戲</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            height: 100%;
+            margin-top: 0;
+        }
+
+        .game {
+            position: relative;
+            width: 480px;
+            height: 360px;
+            overflow: hidden;
+            .bgi {
+                width: 100%;
+                height: 100%;
+                background-image: url(/20231226/遊戲1用圖/universe1.png);
+                animation-name: bgiAni;
+                animation-duration: 1s;
+                animation-iteration-count: infinite;
+                animation-timing-function: step-start;
+                overflow: hidden;
+            }
+
+            .myPlane {
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: auto;
+                bottom: 10px;
+            }
+
+            .bullet {
+                position: absolute;
+                left: 0;
+                right: 0;
+                width: 24px;
+                height: 25px;
+                margin: auto;
+                bottom: 60px;
+            }
+            .enemy{
+                position: absolute;
+                width: 88px;
+                height: 64px;
+                right: 0;
+                left: 0;
+                margin: auto;
+                top: -70px;
+            }
+        }
+
+        @keyframes bgiAni {
+            0% {
+                background-image: url(/20231226/遊戲1用圖/universe1.png);
+            }
+            50% {
+                background-image: url(/20231226/遊戲1用圖/universe2.png);
+            }
+            100% {
+                background-image: url(/20231226/遊戲1用圖/universe1.png);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="game">
+        <div class="bgi"></div>
+        <img src="/20231226/遊戲1用圖/plane1.png" alt="" class="myPlane">
+    </div>
+
+    <script>
+        let x = 0;
+        let bn = 0;
+        let en = 0;
+        // 建立鍵盤操作物件
+        let keysPressed = {};
+        let canShoot = true;
+
+        $(window).on("keyup", (e) => {
+            delete keysPressed[e.which];
+        }).on("keydown", (e) => {
+            // 屬性->e.which ； 值->true
+            keysPressed[e.which] = true;
+        });
+
+        gameLoop();
+        setEnemy();
+        setInterval(()=>{
+            setEnemy();
+        }, 800)
+
+        function setEnemy(){
+            // 設定跑道: 以0為基準有-2~2五個跑道，每個跑道寬180px
+            let posiX = (Math.floor(Math.random()*5) - 2) * 180;
+            en++;
+            let template = `
+            <div class="enemy enemy${en}">
+                <img src="/20231226/遊戲1用圖/plane2.png" alt="">
+            </div>`;
+            $(".game").append(template);
+            $(".game .enemy"+en).css("left", posiX);
+            $(".game .enemy"+en).animate({
+                top: 400
+            },{
+                duration: 4000,
+                easing: "linear",
+                complete: function(){
+                    // 到底之後，移除敵人
+                    $(this).remove();
+                }
+            });
+        }
+
+        function gameLoop(){
+            if(keysPressed[37]){
+                // 向左
+                x -= 10;
+                if (x <= -400) { x = -400; }
+                $(".myPlane").css("left", x);
+            }
+            if(keysPressed[39]){
+                // 向右
+                x += 10;
+                if (x >= 400) { x = 400; }
+                $(".myPlane").css("left", x);
+            }
+            if(keysPressed[32]){
+                // 空白鍵發射子彈
+                if(canShoot === true){
+                    canShoot = false;
+                    bn++;
+                    let template = `
+                        <div class="bullet bullet${bn}">
+                            <img src="/20231226/遊戲1用圖/bullet1.png" alt="">
+                        </div>`;
+                    $(".game").append(template);
+                    $(".game .bullet"+bn).css("left", x);
+                    $(".game .bullet"+bn).animate({bottom: "480px"}, 1000, "linear", function(){
+                        $(this).remove();
+                    });
+                    // 每120ms允許再發射一次子彈
+                    setTimeout(()=>{
+                        canShoot = true;
+                    }, 120)
+                }
+            }
+            // 讓動畫無限循環播放
+            //  requestAnimationFrame 提供一個接口，讓動畫同步於瀏覽器的畫面更新頻率
+            requestAnimationFrame(gameLoop);
+        }
+    </script>
+</body>
+
+</html>

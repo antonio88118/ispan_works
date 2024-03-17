@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>淡入與淡出</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 600px;
+        }
+
+        .row {
+            font-size: 24px;
+            padding: 10px;
+            border-radius: 10px;
+            height: 30px;
+            margin-bottom: 10px;
+        }
+
+        .row1 {
+            background-color: #e7ef9c;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row2">
+            <button id="btn1">淡入</button>
+            <button id="btn2">淡出</button>
+            <button id="btn3">開關</button>
+            <button id="btn4">淡到</button>
+        </div>
+        <div class="row row1"></div>
+        <div class="text"></div>
+    </div>
+
+    <script>
+        $("#btn2").on("click", ()=>{
+            $(".row1").fadeOut(1500, ()=>{
+                $(".text").text("淡出");
+            });
+        });
+
+        $("#btn1").on("click", ()=>{
+            $(".row1").fadeIn(1500, ()=>{
+                $(".text").text("淡入");
+            });
+        });
+
+        $("#btn3").on("click", ()=>{
+            $(".row1").fadeToggle();
+        });
+
+        $("#btn4").on("click", ()=>{
+            // 淡出到透明度0.4
+            $(".row1").fadeTo(500, 0.4, ()=>{
+                $(".text").text("到了");
+            });
+        });
+    </script>
+</body>
+
+</html>

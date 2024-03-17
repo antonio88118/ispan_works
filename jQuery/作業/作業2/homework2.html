@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>增加/刪除圖片上傳欄位</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body{
+            margin: 0;
+        }
+        .container{
+            background-color: grey;
+            margin: 10px auto;
+            padding: 10px;
+            width: 400px;
+            position: relative;
+        }
+        .row{
+            margin-bottom: 20px;
+        }
+        .row >*{
+            display: inline-block;
+        }
+        label{
+            cursor: pointer;
+            padding: 3px 10px;
+            background-color: rgb(247, 247, 247);
+            color: dodgerblue;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+        .upload_id{
+            margin-right: 10px;
+            font-size: large;
+        }
+        input[type=file]{
+            display: none;
+        }
+        input[type=text]{
+            display: block;
+            margin-left: 19px;
+            margin-block: 8px;
+            padding: 5px;
+            width: 80%;
+            border-radius: 5px;
+            border: 0;
+        }
+        .delete_default{
+            cursor: default;
+            border: 0;
+            padding: 3px 10px;
+            background-color: rgb(247, 247, 247);
+            color: rgb(182, 182, 182);
+            border-radius: 25px;
+            font-weight: bold;
+            vertical-align: right;
+            float: right;
+            font-size: 16px;
+        }
+        .delete_btn{
+            cursor: pointer;
+            border: 0;
+            padding: 3px 10px;
+            background-color: rgb(247, 247, 247);
+            color: dodgerblue;
+            border-radius: 25px;
+            font-weight: bold;
+            vertical-align: right;
+            float: right;
+            font-size: 16px;
+        }
+        .add_upload{
+            position: absolute;
+            right: 0;
+            bottom: -40px;
+            width: 70px;
+            height: 40px;
+            background-color: grey;
+            text-align: center;
+            & i{
+                cursor: pointer;
+                color: rgb(247, 247, 247);
+                font-size: x-large;
+                line-height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="" enctype="multipart/form-data">
+            <div class="list">
+                <div class="row">
+                    <div class="upload_id">1</div>
+                    <label for="upload_image_1">選擇檔案</label>
+                    <div class="upload_text">尚未選擇檔案</div>
+                    <div class="delete_default">刪除</div>
+                    <input type="file" name="upload_image" id="upload_image_1">
+                    <input type="text" placeholder="檔案1相關描述" name="image_description">
+                </div>
+            </div>
+        </form>
+        <div class="add_upload">
+            <i class="fa-solid fa-plus add_button"></i>
+        </div>
+    </div>
+
+    <script>
+        let newId = 1;
+        $(".add_button").on("click", ()=>{
+            newId++;
+            let template = `
+                <div class="row">
+                    <div class="upload_id">${newId}</div>
+                    <label for="upload_image_${newId}">選擇檔案</label>
+                    <div class="upload_text">尚未選擇檔案</div>
+                    <div class="delete_btn">刪除</div>
+                    <input type="file" name="upload_image" id="upload_image_${newId}">
+                    <input type="text" placeholder="檔案${newId}相關描述" name="image_description">
+                </div>`;
+            $(".list").append(template);
+        });
+
+        // click事件針對的是.delete_btn
+        $(".list").on("click", ".delete_btn", function(){
+            $(this).parent().remove();
+        })
+    </script>
+</body>
+</html>

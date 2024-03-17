@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>改變外面內容</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 600px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        ul {
+            width: 100%;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            font-size: 36px;
+            background-color: #a236f6;
+            color: #fff;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            text-align: center;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        .active1 {
+            background-color: #771bbd;
+        }
+
+        .active2 {
+            background-color: #ce9cf5;
+        }
+
+        .btns {
+            margin-top: 20px;
+        }
+
+        button {
+            width: 100%;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .words {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+        </ul>
+        <div class="btns">
+            <input name="put" type="radio" id="after" value="after" checked><label for="after">放到指定的後面</label>
+            <input name="put" type="radio" id="before" value="before"><label for="before">放到指定的前面</label>
+            <input name="put" type="radio" id="switch" value="switch"><label for="switch">交換</label>
+            <input name="put" type="radio" id="switch2" value="switch2"><label for="switch2">交換2</label>
+        </div>
+    </div>
+
+    <script>
+        let selectedArr = [];
+        console.log($("input").val());
+        $("li").on("click", (e)=>{
+            let that = e.currentTarget;
+            // 若選中的小於2個
+            if(selectedArr.length < 2){
+                // 把選項存進陣列
+                selectedArr.push($(that).index());
+                $(that).addClass("active"+selectedArr.length);
+                if(selectedArr.length === 2){
+                    setTimeout(()=>{
+                        let item0, item1;
+                        console.log($("input:checked").val());
+                        switch($("input:checked").val()){
+                            case "after":
+                                item0 = $("li").eq(selectedArr[0]);
+                                item1 = $("li").eq(selectedArr[1]);
+                                item1.after(item0);
+                                reset();
+                                break;
+                            case "before":
+                                item0 = $("li").eq(selectedArr[0]);
+                                item1 = $("li").eq(selectedArr[1]);
+                                item1.before(item0);
+                                reset();
+                                break;
+                            case "switch":
+                                item0 = $("li").eq(selectedArr[0]).clone();
+                                item1 = $("li").eq(selectedArr[1]).clone();
+                                $("li").eq(selectedArr[0]).replaceWith(item1);
+                                $("li").eq(selectedArr[1]).replaceWith(item0);
+                                reset();
+                                break;
+                            case "switch2":
+                                selectedArr.sort();
+                                item0 = $("li").eq(selectedArr[0]).detach();
+                                item1 = $("li").eq(selectedArr[1]-1).detach();
+                                
+                                if(selectedArr[0] < $("li").length){
+                                    item1.insertBefore($("li").eq(selectedArr[0]));
+                                }else{
+                                    item1.append($("ul"));
+                                }
+
+                                if(selectedArr[1] < $("li").length){
+                                    item0.insertBefore($("li").eq(selectedArr[1]));
+                                }else{
+                                    item0.appendTo($("ul"));
+                                }
+                                reset();
+                                break;
+                        }
+                    }, 1000);
+                }
+            }
+        });
+        function reset(){
+            selectedArr = [];
+            $("li").removeClass("active1");
+            $("li").removeClass("active2");
+        }
+    </script>
+</body>
+
+</html>
