@@ -1,6 +1,6 @@
 # ispan_works 資策會課程練習作品目錄&資料夾內容說明
 
-**p.s. 期中期末大型專題因使用版權圖片，故存放在私人儲存庫，若有查看需求請e-mail聯絡**
+**p.s. 期中期末大型專題因使用版權圖片，故存放在私人儲存庫，若有查看需求請發郵件至yangan88118@gmail.com**
 
 ## HTML5+CSS3+Bootstrap
 
@@ -63,9 +63,93 @@
 - **20231201**
   - 正規表達式(regexp)
   - try...catch語法
-  - 使用ajax發送GET/POST請求
+  - 使用AJAX發送GET/POST請求
   - PDO
  
 ## [jQuery](./jQuery)
 
-- 
+- **驗收作業**
+  - [作業1-表單驗證，變更未填欄位樣式](./jQuery/作業/作業1)
+  - [作業2-透過點擊事件動態新增檔案上傳欄位](./jQuery/作業/作業2)
+  - [作業3-點擊頁碼切換圖片與圖片輪播](./jQuery/作業/作業3)
+  - [作業4-連接觀光資料.json，製作有100筆資料的景點資訊列表](./jQuery/作業/作業4)
+- **20231225 ~ 20231226**
+  - 選擇器
+  - 滑鼠事件
+  - 鍵盤事件
+- **20231227**
+  - 表單事件(搭配作業1)
+  - 載入事件
+  - 瀏覽器事件：視窗大小變化(resize)、捲動(scroll)
+- **20231228 ~ 20240102**
+  - 遍歷、篩選與節點操作(搭配作業3)
+  - 方法(grep、inArray、isArray、makeArray、unique/sort、map、merge、parseHTML、data)
+  - AJAX(搭配作業4)
+  - [練習作品：樂透抽選、模擬信用卡號輸入，輸入完翻面](./jQuery/20231229)
+- **20240103**
+  - rotate、fade、silde
+  - [練習作品：網頁射擊小遊戲](./jQuery/20240103/pageGame6.html)
+
+## Node.js
+
+- [node01 檔案操作](./Node/node01)
+  - 認識ES6
+  - 認識fs模組
+  - 檔案
+    - 寫入(writeFile/writeFileSync、appendFile、createWriteStream)
+    - 讀取(readFile/readFileSync、createReadStream)
+    - 修改檔名(rename/renameSync)
+    - 刪除(unlick/rmSync)
+  - 資料夾操作
+    - 建立(mkdir)
+    - 讀取(readdir)
+    - 刪除(rmdir)
+  - 查看檔案資訊(stat)
+  - url與path模組
+    - url：fileURLToPath
+    - path：basename、dirname、extname、parse、resolve、sep
+- [node02 http模組](./Node/node02)
+  - createSever
+  - response(setHeader、end)
+  - 搭配檔案操作
+- [node03 模組化練習](./Node/node03)
+  - 練習拆解程式為模組
+- [node04 Express](./Node/node04)
+  - 認識路由(express01 ~ express02)
+  - 取得要求訊息參數：req.method/url/httpVersion/headers(express03)
+  - 取得路由參數(express04 ~ express05)
+  - 一般回應設定：res.send/status/json/set/redirect/sendFile(express06)
+  - middleware(express07 ~ express08)
+  - 使用靜態資源(static)：引入Bootstrap、jQuery、自製html網頁(express09 ~ express12)
+  - 防止連結資源盗用：req.get("referer")(express13)
+  - 路由模組化：express.Router()(express14)
+  - express generator(generator01)
+- node05 樣板引擎-使用ejs
+  - [使用ejs樣板建立網頁視覺](./Node/node05/ejs04.mjs)
+  - 檔案上傳練習：[multer](./Node.js/node05/upload01.mjs)、[formiable](./Node/node05/upload02.mjs)
+- node06 連接資料庫
+  - Promise語法練習
+  - [使用mysql2、mysql2/promise連接資料庫](./Node/node06/case01)
+    - createConnection/createPool
+- node07 ESLint、CORS與SESSION
+  - 命令參數(argv)與環境參數(env)
+  - ESLint練習
+  - [製作簡易前後端，整合CORS、SESSION，連接資料庫並記錄使用者登入狀態](./Node/node07/loginsession)
+
+## [React-NEXT](./React-NEXT)
+
+- **cs-0124 ~ cs-0126**
+  - JSX語法
+  - 狀態(state)與不可改變性(immutability)、useState()
+  - 條件渲染
+  - 物件陣列的各種操作、根據陣列渲染(使用map)
+  - 純函式
+- **cs-0129**
+  - 元件拆分練習：書籍資料列表與收藏
+  - 使用屬性(props)傳值給子元件
+- **cs-0130**
+  - context練習：使用者登入/登出與記錄資訊
+- **cs-0201 ~ cs-0205**
+  - 可控與不可控表單(useRef())
+  - [商品列表與購物車介面實作練習](./React-NEXT/pages/cs-0201/checkout)
+  - useEffect()
