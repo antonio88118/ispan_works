@@ -1,6 +1,9 @@
-# ispan_works 資策會課程練習作品目錄&資料夾內容說明
+# ispan_works 資策會課程練習作品目錄&內容說明
 
-**p.s. 期中期末大型專題因使用版權圖片，故存放在私人儲存庫，若有查看需求請發郵件至yangan88118@gmail.com**
+**p.s. 期中期末團體專題「Boundless 線上音樂學習平台」因使用到版權圖片，故存放在私人儲存庫，若有查看需求請發郵件至yangan88118@gmail.com**
+專題負責功能簡述──
+期中小專：製作樂器商品管理後台，可查看商品一覽(可篩選)、新增/修改/刪除商品資訊
+期末大專：改為負責「線上組團」前台功能，使用者可發起或加入一個樂團，30天內達成目標人數即可成團，並且根據不同身分(無所屬樂團者、發起人、申請人、參與者)能進行不同操作
 
 ## HTML5+CSS3+Bootstrap
 
@@ -153,3 +156,29 @@
   - 可控與不可控表單(useRef())
   - [商品列表與購物車介面實作練習](./React-NEXT/pages/cs-0201/checkout)
   - useEffect()
+
+## HTML5-API
+
+- [FileReader](./HTML5-API/file)
+  - 認識fileList
+  - 讀取文字、影像、聲音格式檔案
+  - 改變上傳檔案欄位樣式，可預覽上傳圖片
+- [Web Storage](./HTML5-API/storage)
+  - cookie使用練習
+  - localstorage使用練習：模擬購物流程(商品列表-結帳)，購物車儲存於localstorage
+- [Form](./HTML5-API/form)
+  - 測試所有HTML5表單元素、屬性(pattern、step、autocomplete等)與自訂required提示(setCustomValidity())
+  - 認識語意標籤<details>與<summary>，以及contenteditable屬性
+  - [自製月曆輸入欄位介面](./HTML5-API/form/calendar.html)
+
+## RESTful-API
+- [完整API規劃](./RESTful-API/lowdb2)
+  - 使用lowdb實作資料庫
+  - 規劃並實作使用者資料增刪改查與登入等API
+- [使用token驗證登入](./RESTful-API/loginToken)
+  - 使用JWT實作
+  - 製作前後端，實作使用者登入
+- **WebSocket 線上聊天室**
+  - [公共頻道聊天](./RESTful-API/websocket01)
+  - [公共頻道聊天+悄悄話](./RESTful-API/websocket02_exam)
+  - [公共頻道聊天+悄悄話+建立私人聊天室](./RESTful-API/websocket03)
