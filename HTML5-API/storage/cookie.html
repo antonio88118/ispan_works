@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cookie</title>
+</head>
+<body>
+    <script>
+       
+        setCookie('username', 'Antobnio Yang', 30);
+        setCookie('email', 'test@mail.com', 30);
+        setCookie('tel', '0911222333', 30);
+        console.log(document.cookie);
+        console.log(getCookie('tel'));
+        delCookie('email');
+        console.log(getCookie('email'));
+        console.log(getCookie('username'));
+
+        function delCookie(key) {
+            let dateNow = new Date();
+            // 立即過期
+            dateNow.setDate(dateNow.getDate() - 30);
+            let utcString = dateNow.toUTCString();
+            console.log(utcString);
+            // expires: 過期時間，沒寫的話會隨瀏覽器關閉刪除
+            document.cookie = `${key}=; expires=${utcString}; path=/`;
+        };
+
+        function setCookie(key, value, expiresDay) {
+            let dateNow = new Date();
+            // 30天後過期
+            dateNow.setDate(dateNow.getDate() + expiresDay);
+            let utcString = dateNow.toUTCString();
+            console.log(utcString);
+            // expires: 過期時間，沒寫的話會隨瀏覽器關閉刪除
+            document.cookie = `${key}=${value}; expires=${utcString}; path=/`;
+        };
+
+        function getCookie(name) {
+            const nameEQ = `${name}=`;
+            // trim() 移除字串起始及結尾處的空白字元
+            const ca = document.cookie.split(';').map(cookie => cookie.trim());
+            const cookie = ca.find(cookie => cookie.startsWith(nameEQ));
+            return cookie ? cookie.substring(nameEQ.length) : null;
+        };
+    </script>
+</body>
+</html>

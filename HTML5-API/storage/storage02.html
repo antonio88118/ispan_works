@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Storage 02</title>
+    <style>
+      input[type="text"] {
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 24px;
+        padding-left: 10px;
+      }
+
+      .todoList {
+        font-size: 24px;
+      }
+
+      .deleted {
+        position: absolute;
+      }
+    </style>
+  </head>
+
+  <body>
+    <input type="text" name="" id="myInput" autofocus />
+    <div class="todoList">
+      <!-- <div class="todo">
+            <input type="checkbox" name="" id="todo1">
+            <label for="todo1">買雞蛋</label>
+        </div> -->
+    </div>
+
+    <script>
+      let todoArray;
+      const myInput = document.querySelector("#myInput");
+      const todoList = document.querySelector(".todoList");
+
+      let setTodo = (tempObj) => {
+        let node = document.createElement("div");
+        node.innerHTML = `
+                <div class="todo">
+                    <input type="checkbox" name="" id="todo${tempObj.time}">
+                    <label for="todo${tempObj.time}">${tempObj.text}</label>
+                </div>`;
+        todoList.append(node.children[0]);
+      };
+
+      // 若本地儲存存在todo
+      if (localStorage.getItem("todo")) {
+        // 把字串格式的資料，轉換成js物件
+        todoArray = JSON.parse(localStorage.getItem("todo"));
+        // console.log(typeof(localStorage.getItem('todo')));
+        // console.log(todoArray);
+        todoArray.forEach((todo) => setTodo(todo));
+      } else {
+        todoArray = [];
+      }
+
+      myInput.addEventListener("keyup", (e) => {
+        // console.log(e);
+        // 若按下ctrl + enter
+        if (e.key === "Enter" && e.ctrlKey === true) {
+          let tempObj = {};
+          // 輸入內容
+          tempObj.text = e.target.value;
+          // 用於設定id的流水號
+          tempObj.time = new Date().getTime();
+          todoArray.push(tempObj);
+          console.log(todoArray);
+          // 清空輸入欄位
+          myInput.value = "";
+
+          // 以字串格式存入JSON物件
+          localStorage.setItem("todo", JSON.stringify(todoArray));
+
+          setTodo(tempObj);
+        }
+      });
+
+      todoList.addEventListener("change", (e) => {
+        // checkbox點了之後不可再點選
+        e.target.disabled = true;
+
+        // 把字串的todo部份去掉
+        let todoId = parseInt(e.target.id.slice(4), 10);
+        // 去掉被選取的todo物件，更新陣列內容
+        todoArray = todoArray.filter((todo) => todo.time != todoId);
+
+        let elem = e.target.closest(".todo");
+        // 更新本地端儲存的todo，storage中的儲存格式是字串，所以必須經過轉換
+        localStorage.setItem("todo", JSON.stringify(todoArray));
+
+        // 下面開始是動畫
+        elem.classList.add("deleted");
+        const animation = elem.animate(
+          [
+            {
+              transform: `translateY(0px)`,
+              opacity: 1,
+            },
+            {
+              transform: `translateY(${window.innerHeight - 100}px)`,
+              opacity: 0,
+            },
+          ],
+          {
+            duration: 500,
+            fill: "forwards",
+            easing: "ease-in-out",
+          }
+        );
+
+        // 動畫結束後，移除dom元素
+        animation.onfinish = () => {
+          elem.remove();
+        };
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+{
+    "products": [
+      {
+        "id": 357756,
+        "img": "https://images.pexels.com/photos/357756/pexels-photo-357756.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "name": "加州捲",
+        "price": 180
+      },
+      {
+        "id": 271715,
+        "img": "https://images.pexels.com/photos/271715/pexels-photo-271715.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "name": "握壽司",
+        "price": 80
+      },
+      {
+        "id": 60616,
+        "img": "https://images.pexels.com/photos/60616/fried-chicken-chicken-fried-crunchy-60616.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "name": "炸雞",
+        "price": 320
+      }
+    ]
+  }

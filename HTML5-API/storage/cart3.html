@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>購物車3 結帳</title>
+    <style>
+        .pd {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .pd .img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .pd .img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .pd .name {
+            font-size: 20px;
+            padding-inline: 10px;
+            width: 60px;
+        }
+
+        .pd .price {
+            font-size: 20px;
+            padding-inline: 10px;
+            width: 60px;
+        }
+
+        .pd .sn {
+            padding-right: 10px;
+        }
+
+        .total {
+            background-color: cornflowerblue;
+            color: white;
+            text-align: right;
+            font-size: 24px;
+            padding-right: 25px;
+        }
+
+        .back {
+            font-size: 14px;
+            background-color: crimson;
+            color: white;
+            padding-inline: 10px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        span{
+            color: crimson;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>購物車內容 - 結帳 - <a class="back" href="./cart1.html">Back</a></h1>
+    <div class="pds">
+        <!-- <div class="pd">
+            <div class="sn">#1</div>
+            <div class="img">
+                <img src="https://images.pexels.com/photos/357756/pexels-photo-357756.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    alt="">
+            </div>
+            <div class="name">XXX</div>
+            <div><input type="number" value="0" name="amount"></div>
+            <div><button class="btnUpdate">修改</button></div>
+            <div><button class="btnDel">刪除</button></div>
+        </div> -->
+    </div>
+    <div class="total">NT$8888</div>
+    <h2>請選擇優惠券</h2>
+    <div class="coupons">
+        <!-- <div class="coupon" cid="0">
+            <input type="radio" id="c0" name="coupon" checked>
+            <label for="a0">不使用優惠券</label>
+        </div>
+        <div class="coupon" cid="1">
+            <input type="radio" id="c1" name="coupon">
+            <label for="a1">全館打八折</label>
+        </div> -->
+    </div>
+
+    <script>
+        const divPds = document.querySelector('.pds');
+        const divTotal = document.querySelector('.total');
+        const divCoupons = document.querySelector('.coupons');
+
+        let cartArr;
+        let datas, total, couponDatas;
+
+        // 取得storage中存取的購物車內容
+        try {
+            cartArr = JSON.parse(localStorage.getItem('cart'));
+        } catch (error) {
+            console.log(error);
+            cartArr = [];
+            localStorage.clear();
+        }
+        if (!cartArr) {
+            cartArr = [];
+        }
+        console.log(cartArr);
+
+        // 取得商品資料
+        let getData = () => {
+            return new Promise((resolve, reject) => {
+                let url = './products.json';
+                fetch(url).then(response => {
+                    return response.json();
+                }).then(result => {
+                    return resolve(result);
+                }).catch(error => {
+                    console.log(error);
+                    return reject(undefined);
+                });
+            });
+        }
+
+        // 取得優惠券
+        let getCData = () => {
+            return new Promise((resolve, reject) => {
+                let url = './coupons.json';
+                fetch(url).then(response => {
+                    return response.json();
+                }).then(result => {
+                    return resolve(result);
+                }).catch(error => {
+                    console.log(error);
+                    return reject(undefined);
+                });
+            });
+        }
+
+
+        // 優惠券區塊初始化
+        let initCoupon = () => {
+            divCoupons.innerHTML = `
+            <div class="coupon" cid="0">
+                <input type="radio" id="c0" name="coupon" checked>
+                <label for="a0">不使用優惠券</label>
+            </div>`;
+
+            couponDatas.forEach(item => {
+                let node = document.createElement('div');
+                node.innerHTML = `
+                <div class="coupon" cid="${item.id}">
+                    <input type="radio" id="c${item.id}" name="coupon">
+                    <label for="c${item.id}">${item.title}</label>
+                </div>`;
+                // 去除div
+                divCoupons.append(node.children[0]);
+            });
+        }
+
+        // 頁面初始化
+        let initPage = async () => {
+            datas = await getData();
+            total = 0;
+            let result = await getCData();
+            couponDatas = result.coupons;
+            console.log(couponDatas);
+            // 每次更動前，先清空pds內的內容
+            divPds.innerHTML = '';
+            cartArr.forEach((item, index) => {
+                let node = document.createElement('div');
+                // 取得id對應的商品資料
+                let data = datas.products.find(p => p.id === item.id);
+                node.innerHTML = `
+                <div class="pd" pid="${item.id}">
+                    <div class="sn">${index + 1}</div>
+                    <div class="img">
+                        <img src="${data.img}"
+                            alt="">
+                    </div>
+                    <div class="name">${data.name}</div>
+                    <div class="price">${data.price}</div>
+                    <div><input type="number" value="${item.amount}" name="amount"></div>
+                    <div><button class="btnUpdate">修改</button></div>
+                    <div><button class="btnDel">刪除</button></div>
+                </div>`;
+                // 去除div
+                divPds.append(node.children[0]);
+                total += data.price * item.amount;
+            });
+            divTotal.innerHTML = 'NT$ '+total.toLocaleString();
+            await initCoupon();
+        }
+
+        initPage();
+
+
+        // 選擇優惠券
+        divCoupons.addEventListener('change', e => {
+            let divCoupon = e.target.closest('.coupon');
+            let cid = parseInt(divCoupon.getAttribute('cid'), 10);
+            let discount;
+            if (cid === 0) {
+                discount = 1;
+                divTotal.innerHTML = 'NT$ '+total.toLocaleString();
+            } else {
+                discount = couponDatas.find(item => item.id === cid).Discount;
+                let newTotal;
+                if (discount > 0) {
+                    newTotal = total*(1 - discount);
+                } else {
+                    newTotal = total + discount;
+                }
+                divTotal.innerHTML = `
+                <del class="old">NT$ ${total.toLocaleString()}</del> <span class="new">NT$ ${newTotal.toLocaleString()}</span>`;
+            }
+            
+        });
+
+        // 純js未來事件的綁定
+        divPds.addEventListener('click', e => {
+            // 刪除商品
+            if (e.target.classList.contains('btnDel')) {
+                let pd = e.target.closest('.pd');
+                let id = parseInt(pd.getAttribute('pid'), 10);
+                cartArr = cartArr.filter(item => item.id !== id);
+                localStorage.setItem('cart', JSON.stringify(cartArr));
+                console.log(id);
+                initPage();
+                // 重整頁面的購物車更新方法
+                // window.location = './cart3.html';
+
+
+            // 更新購買數量
+            } else if (e.target.classList.contains('btnUpdate')) {
+                let pd = e.target.closest('.pd');
+                let id = parseInt(pd.getAttribute('pid'), 10);
+                let amount = parseInt(pd.querySelector('[name=amount]').value, 10);
+
+                // 數量0時，從購物車移除
+                if (amount === 0) {
+                    cartArr = cartArr.filter(item => item.id !== id);
+                    localStorage.setItem('cart', JSON.stringify(cartArr));
+                } else {
+                    // 商品id + 數量
+                    let cartData = cartArr.find(item => item.id === id);
+                    // 詳細資訊，用於取得價格
+                    let productData = datas.products.find(item => item.id === id);
+
+                    // 更新購買數量和總價
+                    // 減去舊價格
+                    total -= productData.price * cartData.amount;
+                    // 更新購買數量
+                    cartData.amount = amount;
+                    // 加上新價格
+                    total += productData.price * cartData.amount;
+                    divTotal.innerHTML = 'NT$ '+total.toLocaleString();
+                    localStorage.setItem('cart', JSON.stringify(cartArr));
+                    // console.log(cartArr);
+                }
+            }
+        });
+
+        
+    </script>
+</body>
+
+</html>

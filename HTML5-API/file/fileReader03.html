@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filereader 03 文字</title>
+</head>
+<body>
+    <!-- <audio src="" id="player" controls></audio> -->
+    <input type="file" name="myFile" id="myFile" accept="text/html, .txt, .csv, .json">
+    <div id="textArea"></div>
+
+    <script>
+        document.querySelector('[name=myFile]').addEventListener('change', e => {
+            let file = e.target.files[0];
+            let reader = new FileReader();
+            reader.readAsText(file);
+            // 當讀入圖片檔案時，顯示預覽
+            reader.addEventListener('load', e => {
+                textArea.innerHTML = e.target.result;
+            });
+        });
+    </script>
+</body>
+</html>

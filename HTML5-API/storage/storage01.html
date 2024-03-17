@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage 01</title>
+</head>
+<body>
+    
+    <script>
+        let storage = localStorage;
+        storage.setItem('username', 'Antonio Yang');
+        storage.setItem('email', 'test@mail.com');
+        storage.setItem('tel', '0922333444');
+        console.log(storage.getItem('username'));
+        // null
+        // storage.removeItem('username');
+        // storage.clear();
+
+        // console.log(storage.getItem('email'));
+        // console.log(storage.getItem('tel'));
+
+        console.log(storage.length);
+        // console.log(storage.key(1));
+        // console.log(storage.getItem(storage.key(1)));
+
+        // for(let i=0; i<storage.length; i++){
+        //     console.log(`${storage.key(i)} = ${storage.getItem(storage.key(i))}`);
+        // }
+
+        // for...of 物件遍歷
+        // Object.entries(storage)可以把物件中的每個元素，轉換成可迭代的陣列格式，如此便可以用[]解構賦值，分別取得key和value
+        for(let [key, value] of Object.entries(storage)){
+            console.log(key+' = '+value);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>bootstrap demo</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+      .flex-basis-80px {
+        /* range輸入欄位不能用width控制寬度 */
+        /* width: 80px; */
+        flex: 0 0 80px !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container p-3">
+      <!-- 選擇月份 -->
+      <div class="input-group mb-2">
+        <span class="input-group-text">month</span>
+        <input type="month" class="form-control" />
+      </div>
+      <!-- 數字輸入欄，加上step可設定間距 -->
+      <div class="input-group mb-2">
+        <span class="input-group-text">number</span>
+        <input type="number" class="form-control" step="5" />
+      </div>
+      <!-- 拖曳式範圍輸入欄，適合給手機板使用 -->
+      <div class="input-group mb-2">
+        <span class="input-group-text">range</span>
+        <input type="range" class="form-control form-range h-auto px-2" step="100" min="1500" max="10000"/>
+        <output class="form-control flex-basis-80px"></output>
+      </div>
+      <!-- 顏色輸入欄 -->
+      <div class="input-group mb-2">
+        <span class="input-group-text">color</span>
+        <input
+          type="color"
+          name=""
+          id=""
+          class="form-control gorm-control-color"
+        />
+      </div>
+      <!-- 日期輸入欄 -->
+      <div class="input-group mb-2">
+        <span class="input-group-text">date</span>
+        <input type="date" class="form-control" />
+      </div>
+      <!-- 詳細時間輸入欄 -->
+      <div class="input-group mb-2">
+        <span class="input-group-text">datetime-local</span>
+        <input type="datetime-local" class="form-control" />
+      </div>
+      <!-- 時間輸入欄 -->
+      <div class="input-group mb-2">
+        <span class="input-group-text">time</span>
+        <input type="time" class="form-control">
+      </div>
+      <!-- 週次輸入欄 -->
+      <div class="input-group mb-2">
+        <span class="input-group-text">week</span>
+        <input type="week" class="form-control">
+      </div>
+      <!-- 搜尋輸入欄，其實和一般文字輸入無異 -->
+      <div class="input-group mb-2">
+        <span class="input-group-text">search</span>
+        <input type="search" class="form-control">
+      </div>
+      <!-- 電話輸入欄 -->
+      <div class="input-group mb-2">
+        <span class="input-group-text">tel</span>
+        <input type="tel" class="form-control">
+      </div>
+      <!-- 網址輸入欄 -->
+      <div class="input-group mb-2">
+        <span class="input-group-text">url</span>
+        <input type="url" class="form-control">
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        document.querySelector('input[type=range]').addEventListener('input', (e) => {
+            console.log(e.currentTarget.value);
+            document.querySelector('output').value = e.currentTarget.value
+        })
+    </script>
+  </body>
+</html>

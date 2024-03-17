@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filereader 02 聲音</title>
+    <style>
+      video {
+        width: 720px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <audio src="" id="player" controls></audio> -->
+    <video src="" id="player" controls></video>
+    <input type="file" name="myFile" id="myFile" accept="video/*" />
+
+    <script>
+      document
+        .querySelector("[name=myFile]")
+        .addEventListener("change", (e) => {
+          let file = e.target.files[0];
+          let reader = new FileReader();
+          reader.readAsDataURL(file);
+          // 當讀入圖片檔案時，顯示預覽
+          reader.addEventListener("load", (e) => {
+            player.src = e.target.result;
+            player.play();
+          });
+        });
+    </script>
+  </body>
+</html>

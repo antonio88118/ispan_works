@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date and Time Input</title>
+</head>
+
+<body>
+    <form action="#">
+        <label for="datetime">選擇日期和時：</label>
+        <input type="datetime-local" id="datetime" name="datetime"">
+    </form>
+
+    <script>
+        const dateInput = document.querySelector('input');
+        const input = document.getElementById('datetime');
+        const selectedDate = new Date(input.value);
+        const roundedDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), selectedDate.getHours());
+        input.valueAsNumber = roundedDate.getTime();
+    </script>
+</body>
+
+</html>

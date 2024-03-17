@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filereader 01 圖片</title>
+  </head>
+  <body>
+    <div class="img"></div>
+    <input type="file" name="myFile" id="myFile" accept="image/*" />
+
+    <script>
+      document
+        .querySelector("[name=myFile]")
+        .addEventListener("change", (e) => {
+          let file = e.target.files[0];
+          let reader = new FileReader();
+          reader.readAsDataURL(file);
+          // 當讀入圖片檔案時，顯示預覽
+          reader.addEventListener("load", (e) => {
+            // Image物件相當於img標籤
+            let image = new Image();
+            // e.target = reader
+            image.src = e.target.result;
+            let img = document.querySelector(".img");
+            // 每次顯示前先清空上一張圖片
+            img.innerHTML = "";
+            img.append(image);
+          });
+        });
+    </script>
+  </body>
+</html>

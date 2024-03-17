@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filelist 01</title>
+    <style>
+      .myFiles {
+        display: none;
+      }
+      .container {
+        background-color: cornflowerblue;
+        min-height: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="file" class="myFiles" id="myFiles" multiple />
+    <div class="container" id="container"></div>
+    <script>
+      const container = document.querySelector(".container");
+      const myFiles = document.querySelector(".myFiles");
+      container.addEventListener("click", () => {
+        // 觸發input file
+        myFiles.click();
+      });
+
+      myFiles.addEventListener("change", (e) => {
+        // 上傳的檔案無論數量都會存在files中
+        let fileList = e.target.files;
+        [...fileList].forEach((file) => {
+          console.log(file);
+          container.innerHTML += `${file.name}<br>`;
+        });
+      });
+    </script>
+  </body>
+</html>

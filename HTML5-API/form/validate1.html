@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表單驗證1</title>
+</head>
+<body>
+    <!-- onsubmit="return false" 用js阻止送出，僅用於測試，不應該直接寫在標籤內 -->
+    <form action="" autocomplete="off" onsubmit="return false">
+        <label for="myName">姓名</label>
+        <!-- pattern=".{6}" 正規表達式，必須輸入6個字 -->
+        <input type="text" id="myName" name="myName" autofocus required autocomplete="name" pattern=".{6}"><br>
+
+        <label for="myPwd">密碼</label>
+        <input type="password" id="myPwd" name="myPwd" required autocomplete="off" pattern=".{6}"><br>
+
+        <label for="myPwd2">再次輸入密碼</label>
+        <input type="password" id="myPwd2" name="myPwd2" required autocomplete="new-password"><br>
+
+        <label for="myTel">手機</label>
+        <!-- 正規表達式
+            ^ : 開頭，$ : 結尾 ，\d : 數字，{n} : 長度，? : ?前的字元可有可無 -->
+        <input type="tel" id="myTel" name="myTel" required autocomplete="tel" pattern="^09\d{2}-?\d{3}-?\d{3}$"><br>
+
+        <br><br>
+        <button type="submit">送出</button>
+    </form>
+
+    <script>
+        const myPwd = document.querySelector('#myPwd');
+        const myPwd2 = document.querySelector('#myPwd2');
+
+        // 當離開「再次輸入密碼」欄位，檢查是否和密碼相同
+        myPwd2.addEventListener('blur', (e) => {
+            // console.log(e);
+            if(myPwd.value !== myPwd2.value) {
+                // setCustomValidity(): 當表單送出後，若內容與規範不符，出現錯誤訊息，是取代html標籤內檢查的做法
+                myPwd2.setCustomValidity('輸入密碼不一致')
+            } else {
+                myPwd2.setCustomValidity('')
+            }
+        })
+    </script>
+</body>
+</html>

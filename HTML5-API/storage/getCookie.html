@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            height: 100svh;
+            display: grid;
+            place-items: center;
+        }
+
+        .info{
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .box{
+            width: 200px;
+            height: 200px;
+            cursor: pointer;
+            & img{
+                width: 100%;
+            }
+        }
+
+        .unbox{
+            height: 240px;
+            & img{
+                height: 100%;
+            }
+        }
+
+        .hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="package">
+            <div class="info">恭喜中獎</div>
+            <div class="box hidden">
+                <img src="https://littleblessings.com.au/wp-content/uploads/2019/09/Gift-Box.jpg" alt="">
+            </div>
+            <div class="unbox hidden">
+                <img src="https://st4.depositphotos.com/2495409/24488/i/450/depositphotos_244880124-stock-photo-opened-gift-box-illustration-isolated.jpg" alt="">
+            </div>
+        </div>
+    </div>
+    <script>
+        const box = document.querySelector('.box');
+        const unbox = document.querySelector('.unbox');
+        const info = document.querySelector('.info');
+
+        if (!getCookie('gifted')) {
+            box.classList.remove('hidden');
+            info.innerHTML = '請抽獎';
+        } else {
+            unbox.classList.remove('hidden');
+            info.innerHTML = `以抽過，第 ${getCookie('gifted')} 獎`;
+        }
+
+        box.addEventListener('click', () => {
+            const num = Math.floor(Math.random()*20) +1;
+            setCookie('gifted', num, 365);
+            box.classList.add('hidden');
+            unbox.classList.remove('hidden');
+            info.innerHTML = `恭喜中獎，第 ${getCookie('gifted')} 獎`;
+        });
+
+        function delCookie(key) {
+            let dateNow = new Date();
+            dateNow.setDate(dateNow.getDate() - 30);
+            let utcString = dateNow.toUTCString();
+            console.log(utcString);
+            // expires: 過期時間，沒寫的話會隨瀏覽器關閉刪除
+            document.cookie = `${key}=; expires=${utcString}; path=/`;
+        };
+
+        function setCookie(key, value, expiresDay) {
+            let dateNow = new Date();
+            // 30天後過期
+            dateNow.setDate(dateNow.getDate() + expiresDay);
+            let utcString = dateNow.toUTCString();
+            console.log(utcString);
+            // expires: 過期時間，沒寫的話會隨瀏覽器關閉刪除
+            document.cookie = `${key}=${value}; expires=${utcString}; path=/`;
+        };
+
+        function getCookie(name) {
+            const nameEQ = `${name}=`;
+            // trim() 移除字串起始及結尾處的空白字元
+            const ca = document.cookie.split(';').map(cookie => cookie.trim());
+            const cookie = ca.find(cookie => cookie.startsWith(nameEQ));
+            return cookie ? cookie.substring(nameEQ.length) : null;
+        };
+    </script>
+</body>
+</html>
