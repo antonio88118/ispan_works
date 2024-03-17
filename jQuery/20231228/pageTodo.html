@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>綁定未來產生之物件的事件</title>
+    <style>
+        .row2{
+            border-bottom: 1px dotted gray;
+            margin-top: 10px;
+            font-size: 24px;
+        }
+        .row1{
+            border-bottom: 1px dotted gray;
+            margin-top: 10px;
+            font-size: 24px;
+        }
+        input[type=text]{
+            width: 100%;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        input[type=text] + label{
+            display: block;
+            flex: 1;
+        }
+        .todoRow{
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row row2">
+            待辦事項
+        </div>
+
+        <div class="area1">
+            <div class="row row1 todoRow">
+                <input id="todo1" type="checkbox">
+                <label for="todo1">買雞蛋</label>
+            </div>
+            <!-- 新增的checkbox會被加在這裡 -->
+            <div class="row row1 inputRow">
+                <input type="text" placeholder="輸入後ENTER送出">
+            </div>
+        </div>
+
+        <div class="area2">
+            <!-- 勾選的事項會被移到這裡，由上往下開始疊 -->
+            <div class="row row2">
+                完成事項
+            </div>
+        </div>
+    </div>
+    <script>
+        // 買雞蛋的id是todo1，所以接下來的todo要從1往上加
+        let todoAmount = 1;
+        $("input[type=text]").on("keyup", function(e){
+            // e代表在文字輸入欄位的「按下鍵盤並放開」事件
+            // e.key取得按下的鍵盤按鍵
+            if(e.key === "Enter"){
+                todoAmount++;
+                // 令一個變數，值=欄位輸入的文字
+                let todoContent = $(this).val();
+                let template = `
+                    <div class="row row1">
+                        <input id="todo${todoAmount}" type="checkbox">
+                        <label for="todo${todoAmount}">${todoContent}</label>
+                     </div>`;
+                // 使用before()把新增的checkbox加在最近的row上面
+                $(this).closest(".row").before(template);
+                $(this).val("");
+            }
+        })
+
+        // $("input[type=checkbox]").on("change", function(){
+        //     // 取得欄位勾選狀態，勾選會回傳true
+        //     if($(this).prop("checked") === true){
+        //         // 把離row最近的checkbox，移到area2的下面
+        //         $(this).closest(".row").appendTo(".area2");
+        //     }else{
+        //         $(this).closest(".row").insertBefore(".inputRow");
+        //     }
+        // });
+
+        $(".container").on("change", "input[type=checkbox]", function(){
+            // 取得欄位勾選狀態，勾選會回傳true
+            if($(this).prop("checked") === true){
+                // 把離row最近的checkbox，移到area2的下面
+                $(this).closest(".row").appendTo(".area2");
+            }else{
+                $(this).closest(".row").insertBefore(".inputRow");
+            }
+        });
+    </script>
+</body>
+</html>

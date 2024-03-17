@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>改變屬性內容</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 600px;
+            background-color: #dedddd;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 20px;
+        }
+
+        .row {
+            width: 100%;
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .row1 label {
+            width: 100px;
+        }
+
+        .row1 input {
+            width: 100%;
+        }
+
+        .row4 {
+            margin-top: 100px;
+            flex-direction: column;
+        }
+
+        .row4 button {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        input:disabled+label {
+            color: #adaaaa;
+        }
+
+        .names {
+            display: flex;
+            margin-bottom: 5px;
+        }
+
+        .names input {
+            flex: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form action="">
+            <div class="row row1">
+                <label for="input1">文字欄位</label>
+                <input type="text" id="input1" disabled>
+            </div>
+            <div class="row row2">
+                <div class="col col1">多選欄位</div>
+                <div class="col col2">
+                    <input type="checkbox" id="input2_1" disabled>
+                    <label for="input2_1">input2_1</label>
+                    <input type="checkbox" id="input2_2" disabled>
+                    <label for="input2_2">input2_2</label>
+                    <input type="checkbox" id="input2_3" disabled>
+                    <label for="input2_3">input2_3</label>
+                    <input type="checkbox" id="input2_4" disabled>
+                    <label for="input2_4">input2_4</label>
+                </div>
+            </div>
+            <div class="row row3">
+                <div class="col col1">單選欄位</div>
+                <div class="col col2">
+                    <input type="radio" id="input3_1" disabled>
+                    <label for="input3_1">input3_1</label>
+                    <input type="radio" id="input3_2" disabled>
+                    <label for="input3_2">input3_2</label>
+                    <input type="radio" id="input3_3" disabled>
+                    <label for="input3_3">input3_3</label>
+                </div>
+            </div>
+            <div class="row row4">
+                <button id="button1">設定欄位為：可輸入</button>
+                <button id="button2">設定文字欄內容</button>
+                <div class="names">
+                    <input id="name1" type="text" placeholder="文字欄位name">
+                    <input id="name2" type="text" placeholder="多選欄位name">
+                    <input id="name3" type="text" placeholder="單選欄位name">
+                </div>
+                <button id="button3">修正文字欄位送出</button>
+                <button id="button4">修正多選欄位送出</button>
+                <button id="button5">修正單選欄位送出</button>
+                <button id="button6">設定多選欄位選項</button>
+                <button id="button7" type="submit">送出</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // 設定欄位為：可輸入
+        $("#button1").on("click", (e)=>{
+            e.preventDefault();
+            $("input").removeAttr("disabled");
+        })
+
+        // 送出
+        $("#button7").on("click",(e)=>{
+            // 先把送出(submit)關掉，檢查符合條件才允許送出
+            e.preventDefault();
+            let submitCheck = true;
+
+            // check start
+            if($(".row1 input[type=text]").val() === ""){
+                submitCheck = false;
+            }
+
+            if($("input[type=checkbox]:checked").length === 0){
+                submitCheck = false;
+            }
+
+            if($("input[type=radio]:checked").length === 0){
+                submitCheck = false;
+            }
+
+            // check end
+            if(submitCheck == true){
+                $("form").submit();
+            }else{
+                alert("請填入所有欄位");
+            }
+        })
+
+        // 設定文字欄內容
+        $("#button2").on("click", (e)=>{
+            e.preventDefault();
+            $(".row1 input[type=text]").val("test");
+        })
+
+        // 修正文字欄位送出
+        $("#button3").on("click", (e)=>{
+            e.preventDefault();
+            $("#name1").val("aaa");
+            if($("#name1").val() !== ""){
+                $(".row1 input[type=text]").attr("name", $("#name1").val())
+            }
+        })
+
+        // button4跟5會做兩件事: 設定輸入欄位的value跟name
+
+        // 修正多選欄位送出
+        $("#button4").on("click", (e)=>{
+            e.preventDefault();
+            $("#name2").val("bbb");
+            $("input[type=checkbox]").each((index, elm)=>{
+                // 設定checkbox的value=<label>的文字內容(ex: input2_1)
+                $(elm).val($(elm).next("label").text());
+            })
+            if($("#name2").val() !== ""){
+                
+                $("input[type=checkbox]").attr("name", $("#name2").val())
+            }
+        })
+
+        // 修正多選欄位送出
+        $("#button5").on("click", (e)=>{
+            e.preventDefault();
+            $("#name3").val("ccc");
+            $("input[type=radio]").each((index, elm)=>{
+                $(elm).val($(elm).next("label").text());
+            })
+            if($("#name3").val() !== ""){
+                $("input[type=radio]").attr("name", $("#name3").val())
+            }
+        })
+
+        $("#button6").on("click", (e)=>{
+            e.preventDefault();
+            $("input[type=checkbox]").prop("checked", false);
+            $("input[type=radio]").prop("checked", false);
+            $("input[type=checkbox]").eq(2).prop("checked", true);
+            $("input[type=checkbox]").eq(3).prop("checked", true);
+            $("input[type=radio]").eq(0).prop("checked", true);
+        })
+    </script>
+</body>
+
+</html>

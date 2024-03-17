@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Filter 方法</title>
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            background-color: #e2e1e1;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            overflow: auto;
+        }
+
+        .bg {
+            position: fixed;
+            z-index: -1;
+            width: 700px;
+            background-color: #fff;
+            height: 100%;
+            padding-top: 50px;
+            padding-left: 30px;
+            padding-right: 30px;
+            box-shadow: 0px 0px 15px #aaaaaa;
+        }
+
+        .container {
+            width: 700px;
+            height: 100%;
+            padding-top: 50px;
+            padding-left: 30px;
+            padding-right: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container>.row {
+            display: flex;
+            border: 1px solid #bdbbbb;
+            padding: 6px;
+        }
+
+        .container>.row:not(:last-child) {
+            border-bottom: 0px solid #bdbbbb;
+        }
+
+        .container>.row>.col {
+            padding: 6px;
+            display: flex;
+            border: 1px solid #a3a0a0;
+        }
+
+        .container>.row>.col {
+            padding: 6px;
+            width: 200px;
+            border: 1px solid #878787;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container>.row>.col:not(:last-child) {
+            border-right: 0px solid #878787;
+        }
+
+        .container>.row>.col>div {
+            box-sizing: border-box;
+            padding: 5px;
+            width: 30px;
+            height: 30px;
+            margin-right: 2px;
+            margin-bottom: 2px;
+            background-color: #c4bcbc;
+            display: flex;
+            flex-wrap: wrap;
+            font-size: 10px;
+            color: #c4bcbc;
+        }
+
+        .container>.row>.col>div>div {
+            width: 7px;
+            height: 7px;
+            margin-right: 2px;
+            margin-bottom: 2px;
+            background-color: #a59f9f;
+        }
+
+        .sp1 {
+            background-color: #ffcc00;
+        }
+
+        .container>.sp1 {
+            background-color: #ffcc00;
+        }
+
+        .container>.row>.sp1 {
+            background-color: #ffcc00;
+        }
+
+        .container>.row>.col>.sp1 {
+            background-color: #ffcc00;
+        }
+
+        .container>.row>.col>div.sp1 {
+            background-color: #ffcc00;
+        }
+
+        .container>.row>.col>div>div.sp1 {
+            background-color: #ffcc00;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg"></div>
+    <div class="container">
+        <div class="row row1">
+            <div class="col col1">
+                <div class="level1 div1"></div>
+                <div class="level1 div2">
+                    <div class="level2 div1"></div>
+                    <div class="level2 div2"></div>
+                </div>
+                <div class="level1 div3"></div>
+                <div class="level1 div4"></div>
+                <div class="level1 div5"></div>
+                <div class="level1 div6"></div>
+            </div>
+            <div class="col col2">
+                <div class="level1 div1"></div>
+                <div class="level1 div2"></div>
+                <div class="level1 div3"></div>
+                <div class="level1 div4"></div>
+                <div class="level1 div5">
+                    <div class="level2 div1"></div>
+                </div>
+                <div class="level1 div6"></div>
+            </div>
+            <div class="col col3">
+                <div class="level1 div1">
+                    <div class="level2 div1"></div>
+                </div>
+                <div class="level1 div2"></div>
+                <div class="level1 div3"></div>
+                <div class="level1 div4"></div>
+                <div class="level1 div5"></div>
+                <div class="level1 div6"></div>
+            </div>
+        </div>
+        <div class="row row2">
+            <div class="col col1">
+                <div class="level1 div1">
+                    <div class="level2 div1"></div>
+                </div>
+                <div class="level1 div2"></div>
+                <div class="level1 div3"></div>
+                <div class="level1 div4"></div>
+                <div class="level1 div5">
+                    <div>
+                        <div>yes</div>
+                    </div>
+                </div>
+                <div class="level1 div6"></div>
+            </div>
+            <div class="col col2">
+                <div class="level1 div1"></div>
+                <div class="level1 div2"></div>
+                <div class="level1 div3">yes</div>
+                <div class="level1 div4"></div>
+                <div class="level1 div5"></div>
+                <div class="level1 div6"></div>
+            </div>
+            <div class="col col3">
+                <div class="level1 div1"></div>
+                <div class="level1 div2"></div>
+                <div class="level1 div3"></div>
+                <div class="level1 div4"></div>
+                <div class="level1 div5">
+                    <div class="level2 div1"></div>
+                </div>
+                <div class="level1 div6"></div>
+            </div>
+        </div>
+        <div class="row row3">
+            <div class="col col1">
+                <div class="level1 div1"></div>
+                <div class="level1 div2"></div>
+                <div class="level1 div3">
+                    <div class="level2 div1"></div>
+                </div>
+                <div class="level1 div4"></div>
+                <div class="level1 div5"></div>
+                <div class="level1 div6"></div>
+            </div>
+            <div class="col col2">
+                <div class="level1 div1"></div>
+                <div class="level1 div2"></div>
+                <div class="level1 div3"></div>
+                <div class="level1 div4">
+                    <div class="level2 div1"></div>
+                </div>
+                <div class="level1 div5"></div>
+                <div class="level1 div6"></div>
+            </div>
+            <div class="col col3">
+                <div class="level1 div1"></div>
+                <div class="level1 div2"></div>
+                <div class="level1 div3 yes"></div>
+                <div class="level1 div4"></div>
+                <div class="level1 div5"><span></span></div>
+                <div class="level1 div6"></div>
+            </div>
+        </div>
+        <div class="row row4">
+            <div class="col col1">
+                <div class="level1 div1"></div>
+                <div class="level1 div2"></div>
+                <div class="level1 div3"></div>
+                <div class="level1 div4"></div>
+                <div class="level1 div5"></div>
+                <div class="level1 div6">
+                    <div class="level2 div1"></div>
+                    <div class="level2 div2"></div>
+                    <div class="level2 div3"></div>
+                </div>
+            </div>
+            <div class="col col2">
+                <div class="level1 div1"></div>
+                <div class="level1 div2"></div>
+                <div class="level1 div3"></div>
+                <div class="level1 div4">
+                    <div class="level2 div1"></div>
+                    <div class="level2 div2 yes"></div>
+                </div>
+                <div class="level1 div5"></div>
+                <div class="level1 div6"></div>
+            </div>
+            <div class="col col3">
+                <div class="level1 div1"></div>
+                <div class="level1 div2">
+                    <div class="div1"></div>
+                    <div class="level2 div2"></div>
+                </div>
+                <div class="level1 div3"></div>
+                <div class="level1 div4"></div>
+                <div class="level1 div5 yes"></div>
+                <div class="level1 div6"></div>
+            </div>
+        </div>
+        <div class="row row5">
+            <div class="col col1">
+                <div class="level1 div1">
+                    <div class="level2 div1"></div>
+                </div>
+                <div class="level1 div2"></div>
+                <div class="level1 div3"></div>
+                <div class="level1 div4"></div>
+                <div class="level1 div5"></div>
+                <div class="level1 div6"></div>
+            </div>
+            <div class="col col2">
+                <div class="level1 div1"></div>
+                <div class="level1 div2">
+                    <div class="level2 div1"></div>
+                    <div class="level2 div2"></div>
+                </div>
+                <div class="level1 div3"></div>
+                <div class="level1 div4"><span class="yes"></span></div>
+                <div class="level1 div5"></div>
+                <div class="level1 div6"></div>
+            </div>
+            <div class="col col3">
+                <div class="level1 div1"><span>yes</span></div>
+                <div class="level1 div2"></div>
+                <div class="level1 div3">
+                    <div class="level2 div1"></div>
+                    <div class="level2 div2"></div>
+                    <div class="level2 div3 yes"></div>
+                </div>
+                <div class="level1 div4"></div>
+                <div class="level1 div5 yes"></div>
+                <div class="level1 div6"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let num = 0
+
+        // $("html").on("click", ()=>{
+        //     // eq(n): container的第一子代中(因為.container > div)，第n個div
+        //     $(".container div").removeClass("sp1");
+        //     $(".container div").eq(num).addClass("sp1");
+        //     num++;
+        // })
+
+        // $("html").on("click", ()=>{
+        //     // 只針對container的第一子代
+        //     $(".container > div").removeClass("sp1");
+        //     $(".container > div").eq(num).addClass("sp1");
+        //     num++;
+        // })
+
+        // $("html").on("click", ()=>{
+        //     $(".container div").first().addClass("sp1");
+        //     $(".container div").last().addClass("sp1");
+        // })
+
+        // $("html").on("click", ()=>{
+        //     $(".container div").even().addClass("sp1");
+        //     $(".container div").odd().addClass("sp1");
+        // })
+
+        // $("html").on("click", ()=>{
+        //     // level2是小方塊
+        //     $(".container div").filter(".level2").addClass("sp1");
+        // })
+
+        // $("html").on("click", ()=>{
+        //     // $(".container div").filter(".level2").addClass("sp1");
+
+        //     // :nth-child(3n) 每隔3個
+        //     // $(".container div").filter(":nth-child(3n)").addClass("sp1");
+
+        //     // html中每個物件都有索引值，可以用index去抓
+        //     $(".container div").filter(function(index){
+        //         return index % 7 === 2
+        //     }).addClass("sp1");
+        // })
+
+        // $("html").on("click", ()=>{
+        //     // 選取子孫層中包含level2者
+        //     $(".container > div > div > div").has(".level2").addClass("sp1");
+        // })
+
+        // $("html").on("click", ()=>{
+        //     $(".container > div > div > div").has("span").addClass("sp1");
+        // })
+
+        // $("html").on("click", ()=>{
+        //     $(".container > div > div > div > div").parent().addClass("sp1");
+        // })
+
+        // $("html").on("click", ()=>{
+        //     $(".container > div > div").not(".level2").addClass("sp1");
+        // })
+
+        // $("html").on("click", ()=>{
+        //     $(".container div").map(function(index, elm){
+        //         // 如果是container下所有div中的第1子代
+        //         if($(elm).is(":first-child")){
+        //             $(elm).addClass("sp1");
+        //         }
+        //     })
+        // })
+
+        $("html").on("click", ()=>{
+            $(".container div").slice(-5).addClass("sp1");
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>表單事件 值的變化</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 600px;
+        }
+
+        .row {
+            display: flex;
+            padding: 10px;
+            background-color: #c6c5c5;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .row.active{
+            background-color: #f6b46d;
+        }
+
+        .row1 {
+            background-color: #e3eced;
+        }
+
+        .active {
+            background-color: #f6b46d;
+        }
+
+        label {
+            min-width: 50px;
+            padding-left: 5px;
+            padding-right: 20px;
+        }
+
+        input[type=text],
+        select {
+            width: 100%;
+            border: none;
+        }
+
+        select {
+            font-size: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 50px;
+            border: none;
+        }
+
+        .row1 {
+            min-height: 50px;
+        }
+
+        .tag{
+            background-color: aquamarine;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form>
+            <div class="row row1">
+
+            </div>
+            <div class="row row2">
+                <label for="inpu1" name="input1">inpu1</label>
+                <input id="inpu1" type="text">
+            </div>
+            <div class="row row3">
+                <input id="inpu2_1" type="checkbox" name="input2" value="c1">
+                <label for="inpu2_1">inpu2_1</label>
+                <input id="inpu2_2" type="checkbox" name="input2" value="c2">
+                <label for="inpu2_2">inpu2_2</label>
+                <input id="inpu2_3" type="checkbox" name="input2" value="c3">
+                <label for="inpu2_3">inpu2_3</label>
+                <input id="inpu2_4" type="checkbox" name="input2" value="c4">
+                <label for="inpu2_4">inpu2_4</label>
+            </div>
+            <div class="row row4">
+                <input id="inpu3_1" type="radio" name="input3" value="r1">
+                <label for="inpu3_1">inpu3_1</label>
+                <input id="inpu3_2" type="radio" name="input3" value="r2">
+                <label for="inpu3_2">inpu3_2</label>
+                <input id="inpu3_3" type="radio" name="input3" value="r3">
+                <label for="inpu3_3">inpu3_3</label>
+                <input id="inpu3_4" type="radio" name="input3" value="r4">
+                <label for="inpu3_4">inpu3_4</label>
+            </div>
+            <div class="row row5">
+                <label for="input5">input5</label>
+                <textarea name="input5" id="input5"></textarea>
+            </div>
+            <div class="row row6">
+                <label for="input6">input5</label>
+                <select name="input6" id="input6">
+                    <option value="s1">input6_1</option>
+                    <option value="s2">input6_2</option>
+                    <option value="s3">input6_3</option>
+                    <option value="s4">input6_4</option>
+                    <option value="s5">input6_5</option>
+                </select>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        $(".row")
+            .on("focusin", function(){
+                $(this).addClass("active");
+            })
+            .on("focusout", function(){
+                $(this).removeClass("active");
+            });
+
+        $("input[type=text], textarea").on("keyup", function(){
+            // console.log($(this).val());
+            $(".row1").text($(this).val());
+            // 因為文字顯示的區域是html，需要把textarea輸入的換行(\n)換成<br>
+            // $(".row1").html($(this).val().replaceAll("\n", "<br>"));
+            // $(".row1").html($(this).val().replace(/\n/g, "<br>"));
+            $(".row1").html($(this).val().split(" ").map(elm=>`<span class="tag">${elm}</span>`));
+        });
+
+        $("select").on("change", function(){
+            console.log($(this).find(":selected").text());
+            console.log($(this).find(":selected").index());
+            console.log($(this).find(":selected").val());
+            // let selectedText = $(this).find(":selected").text();
+            // let selectedIndex = $(this).find(":selected").index();
+            // let selectedVal = $(this).find(":selected").val();
+            // $(".row1").text("text: "+selectedText+", index: "+selectedIndex+", value: "+selectedVal);
+            $(".row1").text(`select選項索引: ${$(this).find(":selected").index()} 選項內容: ${$(this).find(":selected").text()} 值: ${$(this).find(":selected").val()}`);
+        });
+
+        $("input[type=radio]").on("change", function(){
+            // radiobox的label和其同層，使用next();
+            console.log($(this).next("label").text());
+            console.log($(this).val());
+            $(".row1").text(`radiobox選項內容:${$(this).next().text()} 值:${$(this).val()}`);
+        });
+
+        $("input[type=checkbox]").on("change", function(){
+            let vals = [];
+            let texts = [];
+            $(this).closest(".row").find("input[type=checkbox]:checked").each(function(){
+                vals.push($(this).val());
+                texts.push($(this).next("label").text());
+            });
+            $(".row1").text(vals.join(", "));
+        });
+    </script>
+</body>
+
+</html>

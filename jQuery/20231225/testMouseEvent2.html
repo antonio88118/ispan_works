@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>滑鼠雙擊事件</title>
+    <style>
+        .cat {
+            position: relative;
+            width: 220px;
+            height: 250px;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        .cat img {
+            position: absolute;
+            display: none;
+        }
+
+        .cat img.active {
+            display: block;
+        }
+
+        .hole {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 50px;
+            border-radius: 100%;
+            background-color: #9a9999;
+            text-align: center;
+            color: #fff;
+            font-size: 24px;
+            line-height: 50px;
+            user-select: none;
+        }
+
+        .hole.active {
+            background-color: #e48686;
+        }
+
+        .hole.active2 {
+            display: none;
+        }
+
+        .show {
+            position: relative;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 150px;
+            height: 50px;
+            color: #4e4747;
+            text-align: center;
+            line-height: 50px;
+            user-select: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cat">
+        <div class="hole">hit me</div>
+        <img src="https://media.tenor.com/rEX2Hydlda4AAAAM/cute-adorable.gif" alt="">
+    </div>
+    <div class="show">直接按兩下</div>
+
+    <script>
+        $(".hole").on("click", function(){
+            $(this).addClass("active"); // 變粉色
+        });
+
+        $(".hole").on("dblclick", (e)=>{
+            $(e.currentTarget).addClass("active2"); // 消失
+            $(".cat img").addClass("active");
+        });
+
+        // 觸發剛剛寫好的hole雙擊事件
+        $(".show").on("click", ()=>{
+            $(".hole").trigger("dblclick");
+        })
+    </script>
+</body>
+
+</html>

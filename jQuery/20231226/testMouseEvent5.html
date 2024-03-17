@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>滑鼠的進出離開</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .block {
+            width: 300px;
+            height: 300px;
+            margin-top: 50px;
+            background-color: #f59826;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .block2 {
+            width: 150px;
+            height: 150px;
+            background-color: #f8e8d5;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="block">
+        <div class="block2"></div>
+    </div>
+
+    <script>
+        // $(".block").on("mousedown", function (event) {
+        //     console.log("mousedown")
+        // }).on("mouseup", function (event) {
+        //     console.log("mouseup")
+        // }).on("mouseenter", function (event) {
+        //     console.log("mouseenter")
+        // }).on("mouseleave", function (event) {
+        //     console.log("mouseleave")
+        // }).on("mousemove", function (event) {
+        //     console.log("mousemove")
+        // }).on("mouseout", function (event) {
+        //     console.log("mouseout")
+        // }).on("mouseover", function (event) {
+        //     console.log("mouseover")
+        // });
+
+        // 滑鼠事件泡泡的有無: enter/leave沒有，over/out有
+        // $(".block").on("mouseover", ()=>{
+        //     console.log("block mouseover");
+        // });
+        // $(".block2").on("mouseover", ()=>{
+        //     console.log("block2 mouseover");
+        // });
+
+        // $(".block").on("mouseenter", ()=>{
+        //     console.log("block mouseenter");
+        // });
+        // $(".block2").on("mouseenter", ()=>{
+        //     console.log("block2 mouseenter");
+        // });
+
+        $(".block").on("mouseout", ()=>{
+            console.log("block mouseout");
+        });
+        $(".block2").on("mouseout", ()=>{
+            console.log("block2 mouseout");
+        });
+    </script>
+</body>
+
+</html>

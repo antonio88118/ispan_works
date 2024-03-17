@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>屬性選擇器</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <a href="https://api.jquery.com/category/ajax/" target="_blank" hreflang="en">Category: Ajax</a><br>
+    <a href="https://api.jquery.com/category/attributes/" target="_self" data-name="Attributes" hreflang="en-UK">Category: Attributes</a><br>
+    <a href="https://api.jquery.com/category/selectors/attribute-selectors/" target="_blank" data-name="Attribute" hreflang="english">Category: Attribute</a><br>
+    <a href="https://api.jquery.com/category/css/" target="_self" data-name="CSS">Category: CSS</a><br>
+    <input name="newsletter" value="newsletter"><br>
+    <input name="milkman" value="milkman"><br>
+    <input name="jobletter" value="jobletter"><br>
+    <input name="newsboy" value="newsboy"><br>
+    <input name="hotmanlike" value="hotmanlike"><br>
+
+    <script>
+        // $("a[data-name=CSS]").css("background-color", "red");
+        // $("a[target=_blank]").css("background-color", "red");
+
+        // 選取name中以news開頭者，引號可加可不加
+        // $("input[name^=news]").css("color", "red");
+        // $("input[name^='news']").css("color", "red");
+
+        // 選取name中以letter結尾者
+        // $("input[name$=letter]").css("border", "2px solid red");
+        // $("a[data-name]").css("background-color", "pink");
+
+        // 選取a標籤的hreflang中，屬性值是en或以en-開頭者
+        // $("a[hreflang|=en]").css("background-color", "pink");
+
+        // ~: 選取data-name中，屬性值完整符合Attribute者；*: 選取data-name中，字元包含Attribute者
+        // $("a[data-name~=Attribute]").css("background-color", "red");
+        // $("a[data-name*=Attribute]").css("background-color", "red");
+        $("a[target=_blank][hreflang|=en]").css("background-color", "red");
+    </script>
+</body>
+</html>

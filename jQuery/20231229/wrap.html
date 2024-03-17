@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>改變周圍內容</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 600px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 10px;
+        }
+
+        .col {
+            width: 50px;
+            height: 50px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #29f7ac;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        .active {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            background-color: #f14141;
+        }
+
+        .active::before {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            content: "";
+            background-image: url(https://cdn-icons-png.flaticon.com/128/826/826904.png);
+            background-size: cover;
+            width: 60px;
+            height: 60px;
+            animation-name: ani1;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+        }
+
+        .active .col {
+            position: absolute;
+            z-index: 1;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            width: 30px;
+            height: 30px;
+        }
+
+        @keyframes ani1 {
+            0% {
+                top: -10px;
+                left: -10px;
+            }
+
+            50% {
+                top: -30px;
+                left: -30px;
+            }
+
+            100% {
+                top: -10px;
+                left: -10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col col1">1</div>
+            <div class="col col2">2</div>
+            <div class="col col3">3</div>
+            <div class="col col4">4</div>
+            <div class="col col5">5</div>
+            <div class="col col6">6</div>
+            <div class="col col7">7</div>
+            <div class="col col8">8</div>
+            <div class="col col9">9</div>
+            <div class="col col10">10</div>
+            <div class="col col11">11</div>
+            <div class="col col12">12</div>
+            <div class="col col13">13</div>
+            <div class="col col14">14</div>
+            <div class="col col15">15</div>
+            <div class="col col16">16</div>
+            <div class="col col17">17</div>
+            <div class="col col18">18</div>
+            <div class="col col19">19</div>
+            <div class="col col20">20</div>
+            <div class="col col21">21</div>
+            <div class="col col22">22</div>
+            <div class="col col23">23</div>
+            <div class="col col24">24</div>
+            <div class="col col25">25</div>
+            <div class="col col26">26</div>
+            <div class="col col27">27</div>
+            <div class="col col28">28</div>
+            <div class="col col29">29</div>
+            <div class="col col30">30</div>
+            <div class="col col31">31</div>
+            <div class="col col32">32</div>
+            <div class="col col33">33</div>
+            <div class="col col34">34</div>
+            <div class="col col35">35</div>
+            <div class="col col36">36</div>
+            <div class="col col37">37</div>
+            <div class="col col38">38</div>
+            <div class="col col39">39</div>
+            <div class="col col40">40</div>
+        </div>
+    </div>
+
+    <script>
+        // $(".col").on("click", (e)=>{
+        //     $(".col").unwrap(".active");
+        //     let that = e.currentTarget;
+        //     // wrap()會把()內的html元素包在指定元素外面，幾乎用不到看看就好
+        //     $(that).wrap(`<div class="active"></div>`)
+        // })
+
+        $(document).on("click", (e)=>{
+            $(".col").wrapAll(`<div class="active"></div>`);
+        })
+
+    </script>
+</body>
+
+</html>

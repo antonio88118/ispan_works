@@ -1,0 +1,30 @@
+/* -----------------------------------------------------
+   created with https://www.codeandweb.com/texturepacker 
+   -----------------------------------------------------
+   $TexturePacker:SmartUpdate:108f3b8d08f769834f5789dfbdcba801:fcde176ac4f9d495566d20d96b912e4b:053008f6cd5cc968649486cb4759141a$
+   -----------------------------------------------------
+
+   usage: <span class="{-spritename-} sprite"></span>
+
+   replace {-spritename-} with the sprite you like to use
+
+*/
+
+.sprite {display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(ee.png);}
+
+.explosion_01 {width:128px; height:128px; background-position: -0px -0px}
+.explosion_02 {width:128px; height:128px; background-position: -128px -0px}
+.explosion_03 {width:128px; height:128px; background-position: -256px -0px}
+.explosion_04 {width:128px; height:128px; background-position: -384px -0px}
+.explosion_05 {width:128px; height:128px; background-position: -512px -0px}
+.explosion_06 {width:128px; height:128px; background-position: -640px -0px}
+.explosion_07 {width:128px; height:128px; background-position: -768px -0px}
+.explosion_08 {width:128px; height:128px; background-position: -896px -0px}
+.explosion_09 {width:128px; height:128px; background-position: -1024px -0px}
+.explosion_10 {width:128px; height:128px; background-position: -1152px -0px}
+.explosion_11 {width:128px; height:128px; background-position: -1280px -0px}
+.explosion_12 {width:128px; height:128px; background-position: -1408px -0px}
+.explosion_13 {width:128px; height:128px; background-position: -1536px -0px}
+.explosion_14 {width:128px; height:128px; background-position: -1664px -0px}
+.explosion_15 {width:128px; height:128px; background-position: -1792px -0px}
+.explosion_16 {width:128px; height:128px; background-position: -1920px -0px}

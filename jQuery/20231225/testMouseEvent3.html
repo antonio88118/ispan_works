@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>滑鼠右鍵選單</title>
+    <style>
+        body{
+            /* svh是針對行動裝置顯示的高度單位，會扣除系統操作欄的高度 */
+            height: 100svh;
+            display: grid;
+            place-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="tip">開啟右鍵選單</div>
+
+    <script>
+        // $(document).on("contextmenu", (e)=>{
+        //     // 取消默認，右鍵選單無法開啟
+        //     e.preventDefault();
+        // });
+
+        // $(".tip").on("contextmenu", (e)=>{
+        //     // 阻止事件冒泡到document，在文字區域可以開啟選單
+        //     e.stopPropagation();
+        // })
+        document.addEventListener("contextmenu", (e)=>{
+            e.preventDefault();
+        })
+        document.querySelector(".tip").addEventListener("contextmenu", (e)=>{
+            e.stopPropagation();
+        })
+    </script>
+</body>
+</html>

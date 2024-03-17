@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>3D視覺效果</title>
+    <style>
+        .card{
+            position: relative;
+            width: 400px;
+            aspect-ratio: 4/3;
+            /* 設定景深(Z軸)，用於之後的3D效果 */
+            perspective: 500px;
+            .content{
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                /* 讓物件以3D呈現 */
+                transform-style: preserve-3d;
+                /* 翻回正面 */
+                transition: transform 1.5s;
+                .page{
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: aquamarine;
+                    border-radius: 10px;
+                    font-size: 80px;
+                    font-family: sans-serif;
+                    display: grid;
+                    place-items: center;
+                    /* 隱藏背面，因為html中，背面寫在正面下面，不隱藏的話會覆蓋正面 */
+                    backface-visibility: hidden;
+                }
+                .back{
+                    transform: rotateY(-180deg);
+                }
+            }
+            &:hover .content{
+                transform: rotateY(180deg);
+                /* 翻到背面 */
+                transition: transform 0.5s;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="content">
+            <div class="page front">FRONT</div>
+            <div class="page back">BACK</div>
+        </div>
+    </div>
+</body>
+</html>

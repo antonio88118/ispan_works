@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隨機不重複 AKA 大樂透</title>
+</head>
+<body>
+    <div>大樂透的抽選規則: 隨機抽選不重複，抽出後不放回</div>
+    <script>
+        console.log("抽選號碼: "+randomList(1,6,3));
+
+        function randomList(startNum, endNum, amount){
+            // 全部的號碼
+            let leftBox = [];
+            // 抽中的號碼
+            let rightBox = [];
+
+            // 把抽選號碼全部存到leftbox這個陣列中
+            for(let i=startNum; i<=endNum; i++){
+                leftBox.push(i);
+            }
+            
+            // 抽6個(次)
+            for(let i=0; i<amount; i++){
+                pickOne();
+            }
+            // 回傳抽選結果
+            return rightBox;
+
+            // 抽1個
+            function pickOne(){
+                // 隨機取leftbox陣列中的一個索引值(index) p.s.可以搜尋「從指定範圍內隨機取數字」的原理
+                let pickIndex = Math.floor(Math.random()*leftBox.length);
+
+                // 然後把該index對應的數字存到rightbox陣列裡
+                rightBox.push(leftBox[pickIndex]);
+
+                // 從leftbox中抽出來的號碼，應該從leftbox中消失
+                // 所以從索引值=pickIndex開始取出並刪除資料，取1筆
+                leftBox.splice(pickIndex, 1);
+                // console.log(pickIndex);
+                // console.log(leftBox);
+            }
+        }
+    </script>
+</body>
+</html>

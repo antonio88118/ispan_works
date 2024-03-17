@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>表單事件 焦點</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 600px;
+        }
+
+        .row {
+            display: flex;
+            padding: 10px;
+            background-color: #c6c5c5;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .row.active {
+            background-color: #f6b46d;
+        }
+
+        .row label {
+            width: 50px;
+        }
+
+        .row input {
+            width: 100%;
+            border: none;
+        }
+
+        .row input.active {
+            outline: 3px solid red;
+        }
+
+        /* .row input:focus {
+            outline: 3px solid cadetblue;
+            使用border會把表單空間撐開
+        } */
+
+        .row input::placeholder {
+            font-size: 12px;
+            color: rgb(213, 88, 88);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form>
+            <div class="row row1">
+                <label for="inpu1">inpu1</label>
+                <input id="inpu1" type="text" placeholder="test">
+            </div>
+            <div class="row row2">
+                <label for="inpu2">inpu2</label>
+                <input id="inpu2" type="text">
+            </div>
+            <div class="row row3">
+                <label for="inpu3">inpu3</label>
+                <input id="inpu3" type="text">
+            </div>
+            <div class="row row4">
+                <label for="inpu4">inpu4</label>
+                <input id="inpu4" type="text">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        $("input")
+            .on("focus", function(){
+                $(this).addClass("active");
+                // input的父層是row
+                // $(this).parent().addClass("active");
+                // 往上層找到最近的row
+                $(this).closest(".row").addClass("active");
+            })
+            .on("blur", function(){
+                $(this).removeClass("active");
+                $(this).parent().removeClass("active");
+            });
+
+        // $(".row")
+        //     .on("focusin", function(){
+        //         $(this).addClass("active");
+        //     })
+        //     .on("focusout", function(){
+        //         $(this).removeClass("active");
+        //     });
+    </script>
+</body>
+
+</html>

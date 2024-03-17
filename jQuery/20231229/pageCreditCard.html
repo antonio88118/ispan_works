@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>信用卡</title>
+    <style>
+        .card{
+            position: relative;
+            width: 400px;
+            aspect-ratio: 4/3;
+            /* 設定景深(Z軸)，用於之後的3D效果 */
+            perspective: 500px;
+            .content{
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                /* 讓物件以3D呈現 */
+                transform-style: preserve-3d;
+                /* 翻回正面 */
+                transition: transform 1.5s;
+                .page{
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: aquamarine;
+                    border-radius: 10px;
+                    font-size: 20px;
+                    font-family: sans-serif;
+                    display: grid;
+                    place-items: center;
+                    backface-visibility: hidden;
+                }
+                .back{
+                    transform: rotateY(-180deg);
+                    .cw{
+                        line-height: 36px;
+                        background-color: #fff;
+                        width: calc(100% - 20px);
+                        height: 44px;
+                        font-size: 16px;
+                        text-align: right;
+                        box-sizing: border-box;
+                        padding-right: 5px;
+                    }
+                }
+            }
+            .active{
+                transform: rotateY(180deg);
+                /* 翻到背面 */
+                transition: transform 0.5s;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="content">
+            <div class="page front">
+                <div class="nums">#### #### #### ####</div>
+            </div>
+            <div class="page back">
+                <div class="cw"></div>
+            </div>
+        </div>
+    </div>
+    <form action="">
+        <div class="area1">
+            <input type="text" class="num1">
+            <input type="text" class="num1">
+            <input type="text" class="num1">
+            <input type="text" class="num1">
+        </div>
+        <div class="area4">
+            <input type="text" class="cwnum" style="background-color: rgb(233, 233, 233);">
+        </div>
+    </form>
+
+    <script>
+        // index:索引值，input:每一個輸入欄位物件
+        $(".area1 input").each((index, input)=>{
+            // input事件包括keyup跟keydown
+            $(input).on("input", (e)=>{
+                // 用變數that，代稱目前正在輸入的欄位
+                let that = e.currentTarget;
+                // console.log($(that).val().length);
+
+                // 若輸入超過4個字
+                if($(that).val().length > 3){
+                    // keydown事件的預設是可以輸入，所以preventDefault就是變成無法輸入
+                    e.preventDefault();
+                }
+
+                if($(that).val().length === 4){
+                    // 最後一個輸入欄位輸入完
+                    if(index === 3){
+                        // area4的輸入欄位
+                        $(".area4 input").focus();
+                    }else{
+                        $(that).next("input").focus();
+                    }
+
+                    // 上面只有自動換欄位，接下來要阻止使用者回頭繼續輸入
+                    $(that).on("keydown", (e)=>{
+                        // 若不是刪除鍵(Backspace)，阻止鍵盤輸入
+                        if(e.which !== 8){
+                            e.preventDefault();
+                            // 若輸入內容長度<4，再度允許輸入
+                            if($(that).val().length < 4){
+                                $(that).unbind("keydown").keydown();
+                            }
+                        }
+                    })
+                }
+            })
+        })
+
+        $(".area4 input").on("keyup" ,(e)=>{
+            let that = e.currentTarget;
+            // 若欄位無輸入，且按下Backspace鍵
+            if($(that).val().length === 0 && e.which === 8){
+                // 焦點回到area1的最後一個輸入欄位
+                $(".area1 input")[3].focus();
+            }
+        })
+
+        $(".area1 input").on("focus", ()=>{
+            $(".card .content").removeClass("active");
+        })
+
+        $(".area4 input").on("focus", ()=>{
+            $(".card .content").addClass("active");
+        })
+    </script>
+</body>
+</html>
